@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights — greenLi</title>
+  <meta name="description" content="Pilot results, technical deep-dives, market analysis, and press coverage from the greenLi team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.875rem; display:block; }
+    .section-heading { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.15; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
+
+    #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
+    #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-link:hover { color:var(--text); }
+    .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
+    #mobile-menu.open { display:flex; }
+    #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
+    #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
+
+    .filter-tab { font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:500; letter-spacing:0.04em; color:var(--dim); background:transparent; border:none; border-bottom:2px solid transparent; padding:0.75rem 1.25rem; cursor:pointer; transition:color 0.2s ease,border-color 0.2s ease; position:relative; bottom:-1px; }
+    .filter-tab:hover { color:var(--muted); }
+    .filter-tab:focus-visible { outline:2px solid var(--green-light); outline-offset:3px; }
+    .filter-tab.active { color:var(--green); border-bottom-color:var(--green); }
+
+    .blog-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:transform 0.25s ease,box-shadow 0.25s ease; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.3),0 0 40px rgba(58,232,122,0.06); }
+
+    .form-label { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.04em; color:var(--muted); display:block; margin-bottom:0.5rem; }
+    .form-input { width:100%; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.75rem 1rem; outline:none; transition:border-color 0.2s ease,box-shadow 0.2s ease; }
+    .form-input::placeholder { color:var(--dim); }
+    .form-input:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(58,232,122,0.12); }
+
+    .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
+    .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
+    .footer-link:hover { color:var(--text); }
+
+    @media (max-width:900px) { .blog-grid { grid-template-columns:1fr 1fr !important; } }
+    @media (max-width:768px) {
+      .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
+      .footer-grid { grid-template-columns:1fr 1fr !important; }
+    }
+    @media (max-width:540px) {
+      .blog-grid { grid-template-columns:1fr !important; }
+      .footer-grid { grid-template-columns:1fr !important; }
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link" data-page="home">Home</a>
+      <a href="./technology.html" class="nav-link" data-page="technology">Technology</a>
+      <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
+      <a href="./team.html" class="nav-link" data-page="team">Team</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
+      <a href="./contact.html" class="nav-link" data-page="contact">Contact</a>
+    </div>
+    <a href="./applications.html#pilot-form" class="btn-primary-sm nav-cta-desktop">Start a Pilot</a>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="./index.html" class="nav-link">Home</a>
+    <a href="./technology.html" class="nav-link">Technology</a>
+    <a href="./applications.html" class="nav-link">Applications</a>
+    <a href="./team.html" class="nav-link">Team</a>
+    <a href="./insights.html" class="nav-link nav-active">Insights</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+    <a href="./applications.html#pilot-form" class="btn-primary-sm">Start a Pilot</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="min-height:58vh; display:flex; align-items:center; padding-top:120px; padding-bottom:72px;
+  background:
+    radial-gradient(ellipse 70% 70% at 75% 35%, rgba(58,232,122,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 80% at 10% 75%, rgba(58,232,122,0.04) 0%, transparent 50%),
+    var(--bg);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
+    <span class="eyebrow">Insights</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:20ch; margin-bottom:1.5rem;">
+      Insights from the lab and the field.
+    </h1>
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75;">
+      Pilot results, technical deep-dives, market analysis, and press coverage from the greenLi team.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FILTER TABS + BLOG GRID
+══════════════════════════════════════════ -->
+<section style="padding:6rem 1.5rem 8rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+
+    <!-- Filter tabs -->
+    <div role="tablist" style="display:flex; flex-wrap:wrap; border-bottom:1px solid var(--border); margin-bottom:3.5rem; gap:0;">
+      <button role="tab" class="filter-tab active" data-filter="all">All</button>
+      <button role="tab" class="filter-tab" data-filter="pilot-studies">Pilot Studies</button>
+      <button role="tab" class="filter-tab" data-filter="technical">Technical</button>
+      <button role="tab" class="filter-tab" data-filter="market-analysis">Market Analysis</button>
+      <button role="tab" class="filter-tab" data-filter="press">Press</button>
+    </div>
+
+    <!-- Blog grid -->
+    <div class="blog-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;" id="blog-grid">
+
+      <!-- Card 1: Technical -->
+      <div class="blog-card" data-category="technical">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 70% 80% at 20% 50%, rgba(58,232,122,0.14) 0%, var(--surface-2) 65%),
+                      radial-gradient(ellipse 60% 60% at 85% 20%, rgba(58,232,122,0.06) 0%, transparent 55%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green); background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); padding:0.25rem 0.625rem; border-radius:3px;">Technical</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">8 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Why we chose membranes over adsorption</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">A breakdown of the four dominant Direct Lithium Extraction approaches and where each one breaks down at scale.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Market Analysis -->
+      <div class="blog-card" data-category="market-analysis">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 80% 70% at 75% 40%, rgba(58,232,122,0.12) 0%, var(--surface-2) 60%),
+                      radial-gradient(ellipse 50% 80% at 15% 75%, rgba(58,232,122,0.05) 0%, transparent 60%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#A8D8FF; background:rgba(168,216,255,0.08); border:1px solid rgba(168,216,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Market Analysis</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">12 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Inside the SQM Atacama economics</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">How a 39 percent OpEx reduction reshapes the unit economics of the world's largest salar brine operation.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Pilot Studies -->
+      <div class="blog-card" data-category="pilot-studies">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 65% 90% at 45% 20%, rgba(58,232,122,0.16) 0%, var(--surface-2) 65%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#FFD580; background:rgba(255,213,128,0.08); border:1px solid rgba(255,213,128,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Pilot Studies</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">6 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Pilot update: refinery wastewater at 10 m³/day</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Early findings from our first refinery wastewater pilot, including recovery rates and contaminant handling.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Technical -->
+      <div class="blog-card" data-category="technical">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 75% 60% at 55% 80%, rgba(58,232,122,0.11) 0%, var(--surface-2) 60%),
+                      radial-gradient(ellipse 40% 70% at 10% 20%, rgba(58,232,122,0.07) 0%, transparent 55%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green); background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); padding:0.25rem 0.625rem; border-radius:3px;">Technical</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">10 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">The case for on-site cathode manufacture</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Why the future of lithium supply is decentralized, and what that means for OEMs and battery producers.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Press -->
+      <div class="blog-card" data-category="press">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 60% 75% at 30% 60%, rgba(58,232,122,0.09) 0%, var(--surface-2) 65%),
+                      radial-gradient(ellipse 70% 50% at 80% 15%, rgba(58,232,122,0.06) 0%, transparent 55%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#C4A8FF; background:rgba(196,168,255,0.08); border:1px solid rgba(196,168,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Press</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">3 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">greenLi raises seed round led by Earth &amp; Beyond Ventures</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Funding announcement and what we are doing with the capital.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Market Analysis -->
+      <div class="blog-card" data-category="market-analysis">
+        <div style="height:175px; position:relative; overflow:hidden;
+          background: radial-gradient(ellipse 80% 65% at 60% 50%, rgba(58,232,122,0.13) 0%, var(--surface-2) 60%);
+          display:flex; align-items:flex-end; padding:1rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
+        </div>
+        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#A8D8FF; background:rgba(168,216,255,0.08); border:1px solid rgba(168,216,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Market Analysis</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">14 min read</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Lithium from seawater is closer than you think</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">A realistic timeline for seawater lithium extraction at commercial scale, and what it would take to get there.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty state (shown when filter has no results) -->
+    <div id="empty-state" style="display:none; text-align:center; padding:5rem 1.5rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--dim);">No posts in this category yet. <a href="#" onclick="setFilter('all'); return false;" style="color:var(--green);">View all posts.</a></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRESS STRIP
+══════════════════════════════════════════ -->
+<section style="padding:4rem 1.5rem; background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="max-width:720px; margin:0 auto; text-align:center;">
+    <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem;">Press Coverage</p>
+    <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75;">
+      Press coverage will appear here as it lands. For media inquiries contact <a href="mailto:press@greenli.com" style="color:var(--green); text-decoration:none; font-weight:500;">press@greenli.com</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════ -->
+<section style="padding:8rem 1.5rem; background:var(--bg);">
+  <div style="max-width:540px; margin:0 auto; text-align:center;">
+    <span class="eyebrow" style="text-align:center; display:block;">Newsletter</span>
+    <h2 class="section-heading" style="margin-bottom:1rem;">Get pilot updates and technical deep-dives, monthly.</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; margin-bottom:2.5rem;">
+      No marketing emails. One email per month, written by the founding team, covering what we have learned and what we are working on.
+    </p>
+
+    <div id="newsletter-form-wrap">
+      <form id="newsletter-form" novalidate style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <input type="email" id="nl-email" required class="form-input" placeholder="your@email.com" style="flex:1; min-width:220px;">
+        <button type="submit" class="btn-primary" id="nl-submit" style="flex-shrink:0; white-space:nowrap;">
+          <span id="nl-text">Subscribe</span>
+          <span id="nl-spinner" style="display:none; width:16px; height:16px; border:2px solid rgba(10,12,11,0.3); border-top-color:#0A0C0B; border-radius:50%; animation:spin 0.7s linear infinite; vertical-align:middle;"></span>
+        </button>
+      </form>
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1rem;">
+        One email per month. Unsubscribe at any time.
+      </p>
+    </div>
+
+    <div id="newsletter-success" style="display:none; animation:fadeIn 0.4s ease;">
+      <div style="width:48px; height:48px; background:rgba(58,232,122,0.1); border:2px solid rgba(58,232,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4L16 6" stroke="#3AE87A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:600; color:var(--text);">You're subscribed.</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); margin-top:0.5rem;">First issue coming next month.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div>
+        <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">we extract lithium, efficiently, affordably, and greenLi</p>
+      </div>
+      <div>
+        <p class="footer-heading">Company</p>
+        <a href="./team.html" class="footer-link">Team</a>
+        <a href="./insights.html" class="footer-link">Insights</a>
+        <a href="./contact.html" class="footer-link">Contact</a>
+      </div>
+      <div>
+        <p class="footer-heading">Technology</p>
+        <a href="./technology.html#how-it-works" class="footer-link">How It Works</a>
+        <a href="./technology.html#pilot-studies" class="footer-link">Pilot Studies</a>
+        <a href="./technology.html#ip" class="footer-link">Intellectual Property</a>
+      </div>
+      <div>
+        <p class="footer-heading">Applications</p>
+        <a href="./applications.html#salar" class="footer-link">Salar Brine</a>
+        <a href="./applications.html#refinery" class="footer-link">Refinery Wastewater</a>
+        <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
+        <a href="./applications.html#seawater" class="footer-link">Desalination</a>
+        <a href="./applications.html#pilot-form" class="footer-link" style="color:var(--green);">Start a Pilot</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">&copy; 2026 greenLi. All rights reserved.</p>
+      <a href="mailto:press@greenli.com" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">press@greenli.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    const isOpen = m.classList.toggle('open');
+    document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelector('[data-page="insights"]')?.classList.add('nav-active');
+
+  // Filter tabs
+  function setFilter(filter) {
+    document.querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.filter === filter);
+    });
+    let anyVisible = false;
+    document.querySelectorAll('.blog-card').forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.style.display = show ? 'flex' : 'none';
+      if (show) anyVisible = true;
+    });
+    document.getElementById('empty-state').style.display = anyVisible ? 'none' : 'block';
+  }
+
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => setFilter(tab.dataset.filter));
+  });
+
+  // Newsletter
+  document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('nl-email');
+    if (!email.value.trim()) { email.style.borderColor = '#E84A3A'; email.focus(); return; }
+    email.style.borderColor = '';
+
+    document.getElementById('nl-text').style.display = 'none';
+    document.getElementById('nl-spinner').style.display = 'inline-block';
+    document.getElementById('nl-submit').disabled = true;
+
+    await new Promise(r => setTimeout(r, 1000));
+
+    document.getElementById('newsletter-form-wrap').style.display = 'none';
+    document.getElementById('newsletter-success').style.display = 'block';
+  });
+</script>
+</body>
+</html>
