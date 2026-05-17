@@ -207,8 +207,14 @@
       <img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block; transition: opacity 0.2s ease;">
     </a>
     <div class="nav-links">
-      <a href="./index.html" class="nav-link" data-page="home">Home</a>
-      <a href="./technology.html" class="nav-link" data-page="technology">Technology</a>
+      <a href="./index.html" class="nav-link nav-active" data-page="home">Home</a>
+      <div style="position:relative; display:inline-flex; align-items:center;">
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;">Technology <span style="font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease;" id="nav-caret">▾</span></a>
+        <div id="tech-dropdown" style="display:none; position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid #2A3828; border-radius:6px; padding:0.375rem; min-width:150px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); z-index:100;">
+          <a href="./mle.html" style="display:block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:#8A9E8F; text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s, color 0.15s;" onmouseover="this.style.background='#1C2219';this.style.color='#F0F4F1'" onmouseout="this.style.background='transparent';this.style.color='#8A9E8F'">M.L.E.</a>
+          <a href="./dcm.html" style="display:block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:#8A9E8F; text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s, color 0.15s;" onmouseover="this.style.background='#1C2219';this.style.color='#F0F4F1'" onmouseout="this.style.background='transparent';this.style.color='#8A9E8F'">D.C.M.</a>
+        </div>
+      </div>
       <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
       <a href="./team.html" class="nav-link" data-page="team">Team</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
@@ -225,6 +231,8 @@
   <div id="mobile-menu" role="menu">
     <a href="./index.html" class="nav-link nav-active" role="menuitem">Home</a>
     <a href="./technology.html" class="nav-link" role="menuitem">Technology</a>
+    <a href="./mle.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
     <a href="./applications.html" class="nav-link" role="menuitem">Applications</a>
     <a href="./team.html" class="nav-link" role="menuitem">Team</a>
     <a href="./insights.html" class="nav-link" role="menuitem">Insights</a>
@@ -267,10 +275,11 @@
     <p style="font-family:'Inter',sans-serif;
               font-size:clamp(1rem, 1.8vw, 1.2rem);
               font-weight:300; color:#8A9E8F; max-width:56ch; line-height:1.75; margin-bottom:2.75rem;">
-      A proprietary membrane platform that separates lithium from any aqueous source — salar brine, refinery wastewater, geothermal fluid, seawater. Higher recovery, lower cost, fewer dependencies.
+      Two complementary technologies — M.L.E. purifies any aqueous lithium source, D.C.M. converts it directly into battery-ready cathode materials. From salar brine to seawater, higher recovery, lower cost, fewer dependencies.
     </p>
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="./technology.html" class="btn-primary">Explore the Technology</a>
+      <a href="./contact.html?type=pilot" class="btn-primary">Explore a Pilot Partnership</a>
+      <a href="./technology.html" class="btn-secondary">Meet the Technology</a>
     </div>
   </div>
 
@@ -302,7 +311,7 @@
 <section style="padding:8rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow" style="text-align:left;">The greenLi Approach</span>
-    <h2 class="section-heading" style="margin-bottom:3.5rem;">Three advantages. One platform.</h2>
+    <h2 class="section-heading" style="margin-bottom:3.5rem;">Two systems. Three advantages.</h2>
 
     <div class="stats-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
 
@@ -353,6 +362,176 @@
 
 
 <!-- ══════════════════════════════════════════
+     PILOT PROCESS — FROM HANDSHAKE TO FACILITY
+══════════════════════════════════════════ -->
+<section id="pilot-process" style="padding:8rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">Pilot Partnerships</span>
+    <h2 class="section-heading" style="margin-bottom:1rem;">From handshake to facility.</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:1.25rem;">
+      A staged partnership model with two remuneration paths at each binding step.
+    </p>
+    <div style="display:flex; gap:2rem; margin-bottom:4rem; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:0.625rem;">
+        <div style="width:10px; height:10px; background:var(--green); border-radius:2px; flex-shrink:0;"></div>
+        <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted);">(A) Contract services fee on successful operation</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.625rem;">
+        <div style="width:10px; height:10px; background:var(--border-hi); border-radius:2px; flex-shrink:0;"></div>
+        <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted);">(B) Facility purchase value</span>
+      </div>
+    </div>
+
+    <!-- Phase labels + step cards -->
+
+    <!-- DISCOVERY -->
+    <div style="margin-bottom:2.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+        <div style="background:rgba(58,100,232,0.12); border:1px solid rgba(58,100,232,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6496E8;">Discovery</span>
+        </div>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">1</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Initial Meeting</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties meet and define project scope.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">2</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">mNDA + Data Share</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties sign mNDA. Client shares asset data.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">3</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Extraction Simulation</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client receives greenLi extraction simulation for their asset.</p>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">~1 month</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMISSION -->
+    <div style="margin-bottom:2.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+        <div style="background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green);">Commission</span>
+        </div>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">4</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Non-binding LoI</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client signs non-binding Letter of Intent with greenLi to proceed.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">5</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Pilot Proposal</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client receives a detailed pilot proposal from greenLi.</p>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">~1 month</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">6</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Sign Pilot MoU</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties sign binding MoU for pilot operation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILOT -->
+    <div style="margin-bottom:2.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+        <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#E8A83A;">Pilot</span>
+        </div>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.12); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#E8A83A; font-weight:400;">7</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Build Pilot</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi builds the pilot system at the client's facility.</p>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">3–6 months</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.12); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#E8A83A; font-weight:400;">8</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Pilot Operation</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi operates the pilot and invoices the client.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCALE-UP -->
+    <div style="margin-bottom:3.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+        <div style="background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.15); border-radius:4px; padding:0.3125rem 0.875rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green-dim);">Scale-Up</span>
+        </div>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.1); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green-dim); font-weight:400;">9</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Full-deployment MoU</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Binding MoU for modular, ramp-up deployment. Same two remuneration paths apply.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.1); border-radius:8px; padding:1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green-dim); font-weight:400;">10</span>
+            </div>
+            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Build &amp; Operate</h4>
+          </div>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi builds and operates the full system at commercial scale.</p>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">12–24 months + ongoing</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="./contact.html?type=pilot" class="btn-primary">Start the Discovery Process</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
      CTA BLOCK
 ══════════════════════════════════════════ -->
 <section style="padding:10rem 1.5rem; text-align:center;
@@ -398,8 +577,9 @@
       <!-- Technology -->
       <div>
         <p class="footer-heading">Technology</p>
-        <a href="./technology.html#how-it-works" class="footer-link">How It Works</a>
-        <a href="./technology.html#pilot-studies" class="footer-link">Pilot Studies</a>
+        <a href="./technology.html" class="footer-link">Overview</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
         <a href="./technology.html#ip" class="footer-link">Intellectual Property</a>
       </div>
 
@@ -442,6 +622,14 @@
 
   // Active nav link
   document.querySelector('[data-page="home"]')?.classList.add('nav-active');
+
+  // Technology dropdown
+  const techLink = document.querySelector('[data-page="technology"]')?.parentElement;
+  if (techLink) {
+    const dropdown = document.getElementById('tech-dropdown');
+    techLink.addEventListener('mouseenter', () => { if (dropdown) dropdown.style.display = 'flex'; dropdown.style.flexDirection = 'column'; });
+    techLink.addEventListener('mouseleave', () => { if (dropdown) dropdown.style.display = 'none'; });
+  }
 
   // Counter animation
   function animateCounter(el, target, duration) {

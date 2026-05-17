@@ -79,11 +79,17 @@
     <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Home</a>
-      <a href="./technology.html" class="nav-link" data-page="technology">Technology</a>
+      <div style="position:relative;" onmouseover="this.querySelector('.tech-dropdown-menu').style.display='block'" onmouseout="this.querySelector('.tech-dropdown-menu').style.display='none'">
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;gap:4px;">Technology <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="opacity:0.5;margin-top:1px;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="tech-dropdown-menu" style="display:none;position:absolute;top:100%;left:0;background:rgba(10,12,11,0.98);border:1px solid var(--border-hi);border-radius:6px;padding:0.5rem;min-width:160px;margin-top:8px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+          <a href="./mle.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:4px;text-decoration:none;transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='transparent'">M.L.E.</a>
+          <a href="./dcm.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:4px;text-decoration:none;transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='transparent'">D.C.M.</a>
+        </div>
+      </div>
       <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
       <a href="./team.html" class="nav-link" data-page="team">Team</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
-      <a href="./contact.html" class="nav-link" data-page="contact">Contact</a>
+      <a href="./contact.html" class="nav-link nav-active" data-page="contact">Contact</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
@@ -92,6 +98,8 @@
   <div id="mobile-menu">
     <a href="./index.html" class="nav-link">Home</a>
     <a href="./technology.html" class="nav-link">Technology</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— D.C.M.</a>
     <a href="./applications.html" class="nav-link">Applications</a>
     <a href="./team.html" class="nav-link">Team</a>
     <a href="./insights.html" class="nav-link">Insights</a>

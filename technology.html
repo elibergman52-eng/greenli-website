@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Technology — greenLi</title>
-  <meta name="description" content="Three proprietary processes: a lithium-selective membrane, a solid-phase capture material, and a transfer step that produces battery-grade cathode precursor on site.">
+  <meta name="description" content="Two complementary systems — M.L.E. purifies any aqueous lithium source; D.C.M. generates battery-ready cathode materials directly from purified Li brines.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -14,6 +14,8 @@
       --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
       --border: #1F2820; --border-hi: #2A3828;
       --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --amber: #E8A83A; --amber-dim: #C48C28; --amber-muted: rgba(232,168,58,0.12);
+      --blue-muted: rgba(58,168,232,0.10);
       --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,46 +29,58 @@
     .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
     .btn-primary:hover { background:var(--green-dim); }
     .btn-primary:active { transform:scale(0.97); }
-    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
-    .btn-primary-sm:hover { background:var(--green-dim); }
-    .btn-primary-sm:active { transform:scale(0.97); }
     .btn-outline { display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.04em; color:var(--green); border:1px solid var(--green); padding:0.625rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease; }
     .btn-outline:hover { background:rgba(58,232,122,0.1); }
     .btn-outline:active { transform:scale(0.97); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
 
-    .stat-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem 2rem; box-shadow:0 1px 2px rgba(0,0,0,0.4),0 4px 12px rgba(0,0,0,0.3),0 0 40px rgba(58,232,122,0.05); transition:transform 0.25s ease,box-shadow 0.25s ease; }
-    .stat-card:hover { transform:translateY(-3px); box-shadow:0 2px 4px rgba(0,0,0,0.4),0 8px 24px rgba(0,0,0,0.35),0 0 60px rgba(58,232,122,0.09); }
-    .stat-number { font-family:'JetBrains Mono',monospace; font-size:clamp(2.75rem,4.5vw,4rem); font-weight:400; color:var(--green); letter-spacing:-0.04em; line-height:1; margin-bottom:1rem; }
-    .stat-title { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem; }
-    .stat-body { font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.7; }
-
+    /* NAV */
     #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
     #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
     .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
     .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
     .nav-link:hover { color:var(--text); }
     .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
-    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-links { display:flex; align-items:center; gap:1.75rem; }
     #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
     #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
     #mobile-menu.open { display:flex; }
     #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
     #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
 
+    /* NAV DROPDOWN */
+    .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
+    .nav-dropdown-menu { display:none; position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; min-width:150px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+    .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
+    .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; }
+    .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; }
+    .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
+
+    /* FOOTER */
     .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
     .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
     .footer-link:hover { color:var(--text); }
 
+    /* SYSTEM CARDS */
+    .system-card { border-radius:12px; padding:2.5rem; transition:transform 0.25s ease,box-shadow 0.25s ease; }
+    .system-card:hover { transform:translateY(-4px); }
+
+    /* VISUAL PLACEHOLDER */
+    .visual-placeholder { border:1.5px dashed var(--border-hi); border-radius:8px; background:rgba(58,232,122,0.025); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:3rem 2rem; }
+    .visual-placeholder-label { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); letter-spacing:0.08em; text-transform:uppercase; text-align:center; }
+
     @media (max-width:768px) {
       .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
-      .stats-4-grid { grid-template-columns:1fr 1fr !important; }
       .footer-grid { grid-template-columns:1fr 1fr !important; }
+      .system-cards-grid { grid-template-columns:1fr !important; }
+      .chain-row { flex-direction:column !important; }
+      .chain-arrow { transform:rotate(90deg); }
     }
     @media (max-width:480px) {
-      .stats-4-grid { grid-template-columns:1fr !important; }
       .footer-grid { grid-template-columns:1fr !important; }
     }
-    @keyframes spin { to { transform:rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -79,7 +93,13 @@
     </a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Home</a>
-      <a href="./technology.html" class="nav-link" data-page="technology">Technology</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link nav-active" data-page="technology" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
       <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
       <a href="./team.html" class="nav-link" data-page="team">Team</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
@@ -96,6 +116,8 @@
   <div id="mobile-menu">
     <a href="./index.html" class="nav-link">Home</a>
     <a href="./technology.html" class="nav-link nav-active">Technology</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— D.C.M.</a>
     <a href="./applications.html" class="nav-link">Applications</a>
     <a href="./team.html" class="nav-link">Team</a>
     <a href="./insights.html" class="nav-link">Insights</a>
@@ -114,261 +136,244 @@
     var(--bg);">
   <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
     <span class="eyebrow">Technology</span>
-    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:20ch; margin-bottom:1.5rem;">
-      Membrane separation, built for lithium.
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:18ch; margin-bottom:1.5rem;">
+      Two systems. One platform.
     </h1>
-    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75;">
-      Three proprietary processes that work together: a lithium-selective membrane, a solid-phase capture material, and a transfer step that produces battery-grade cathode precursor on site.
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75; margin-bottom:2.5rem;">
+      Our two technologies are complementary, applying to different parts of the lithium supply chain. M.L.E. purifies the raw Li asset. D.C.M. generates the final product.
     </p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     HOW IT WORKS
-══════════════════════════════════════════ -->
-<section id="how-it-works" style="padding:8rem 1.5rem; background:var(--surface);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">How It Works</span>
-    <h2 class="section-heading" style="margin-bottom:5rem;">Three processes. One platform.</h2>
-
-    <div style="position:relative; padding-left:3.5rem; border-left:2px solid var(--border);">
-
-      <!-- Step 01 -->
-      <div style="position:relative; padding-bottom:4rem; display:flex; gap:3rem; align-items:flex-start;">
-        <!-- dot on the line -->
-        <div style="position:absolute; left:-3.5rem; top:0.3rem; transform:translateX(-50%); width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.5);"></div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:3.5rem; font-weight:400; color:var(--green); opacity:0.18; line-height:1; flex-shrink:0; width:4.5rem; text-align:right; margin-top:-0.25rem;">01</div>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:1rem;">Separate</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:62ch;">
-            Lithium-selective membrane isolates lithium ions from a mixed aqueous feed. Deployed in a conventional spiral-wound configuration with proven scale-up paths from desalination. The output is a high-purity, lithium-enriched permeate that replaces multi-stage chemical purification.
-          </p>
-          <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.25rem; background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.15); border-radius:4px; padding:0.5rem 1rem;">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#3AE87A" stroke-width="1.5"/><path d="M4 7l2 2 4-4" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--green); font-weight:500;">Only spiral-wound Li-selective membrane outside of LG</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 02 -->
-      <div style="position:relative; padding-bottom:4rem; display:flex; gap:3rem; align-items:flex-start;">
-        <div style="position:absolute; left:-3.5rem; top:0.3rem; transform:translateX(-50%); width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.5);"></div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:3.5rem; font-weight:400; color:var(--green); opacity:0.18; line-height:1; flex-shrink:0; width:4.5rem; text-align:right; margin-top:-0.25rem;">02</div>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:1rem;">Capture</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:62ch;">
-            Lithium ions are captured on a proprietary solid material. This step concentrates lithium for downstream conversion and decouples extraction throughput from cathode production timing.
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 03 -->
-      <div style="position:relative; display:flex; gap:3rem; align-items:flex-start;">
-        <div style="position:absolute; left:-3.5rem; top:0.3rem; transform:translateX(-50%); width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.5);"></div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:3.5rem; font-weight:400; color:var(--green); opacity:0.18; line-height:1; flex-shrink:0; width:4.5rem; text-align:right; margin-top:-0.25rem;">03</div>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:1rem;">Transfer</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:62ch;">
-            A proprietary electrochemical process transfers captured lithium directly onto cathode material. Eliminates the conventional chemical conversion stage, removes intermediate transport, and enables on-site cathode manufacture.
-          </p>
-          <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.25rem; background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.15); border-radius:4px; padding:0.5rem 1rem;">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#3AE87A" stroke-width="1.5"/><path d="M4 7l2 2 4-4" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--green); font-weight:500;">No known direct competition on capture + transfer steps</span>
-          </div>
-        </div>
-      </div>
-
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="./mle.html" class="btn-primary">Explore M.L.E.</a>
+      <a href="./dcm.html" class="btn-outline">Explore D.C.M.</a>
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════
-     GENERALIZED FACILITY DESIGN
+     SUPPLY CHAIN DIAGRAM
 ══════════════════════════════════════════ -->
-<section style="padding:8rem 1.5rem; background:var(--bg);">
+<section style="padding:7rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Generalized Facility Design</span>
-    <h2 class="section-heading" style="margin-bottom:1rem;">One architecture, every feed.</h2>
+    <span class="eyebrow">The Opportunity</span>
+    <h2 class="section-heading" style="margin-bottom:1rem;">Rethinking where value is captured.</h2>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:3.5rem;">
-      Every aqueous lithium asset is different. Salinity, contaminant load, and lithium concentration vary by orders of magnitude between salar brine and seawater. The greenLi facility design adapts through a recovery cascade and purification cascade architecture, with pre-processing matched to the source.
+      The saleable value of a lithium atom multiplies by over 100× as it moves through the conventional supply chain. greenLi's platform allows Li asset operators to capture the margin at every stage — not just the first.
     </p>
 
-    <!-- Facility Design Diagram -->
-    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; overflow-x:auto;
-      box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 40px rgba(58,232,122,0.04);">
-      <div style="display:grid; grid-template-columns:auto 1fr auto; gap:2rem; align-items:center; min-width:640px;">
+    <!-- Chain Diagram -->
+    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:2.5rem; overflow-x:auto; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
 
-        <!-- Left: Input + Pre-process -->
-        <div style="display:flex; flex-direction:column; gap:0.75rem; padding-right:2rem; border-right:1px dashed var(--border-hi);">
-          <div style="background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.2); border-radius:6px; padding:0.875rem 1.25rem; text-align:center;">
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--text);">Aqueous Li Asset</p>
+      <!-- Chain steps row -->
+      <div style="display:flex; align-items:flex-start; gap:0; min-width:820px;">
+
+        <!-- Step 1 -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Raw Brine</p>
           </div>
-          <div style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); padding-left:0.5rem; line-height:1.8;">
-            <p style="font-weight:600; color:var(--muted); margin-bottom:0.25rem;">Pre-processing:</p>
-            <p>· Solid removal</p>
-            <p>· pH dosing</p>
-            <p>· Alumina / Silica</p>
-            <p>· Iron / CaSO₄</p>
-            <p>· Softening</p>
-          </div>
-          <div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; color:var(--dim);">
-            <svg width="20" height="8" viewBox="0 0 20 8" fill="none"><path d="M0 4h18M15 1l3 3-3 3" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">&lt;0.1 $/mol</p>
         </div>
 
-        <!-- Center: Cascades -->
-        <div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); text-align:center; margin-bottom:1.25rem;">Li-selective Membrane Separation</p>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-            <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:1.25rem;">
-              <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Recovery Cascade</p>
-              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); line-height:1.6;">High performance Li recovery from high salinity influents</p>
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="flex:1.3; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Semi-processed Brine</p>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">&lt;0.1 $/mol</p>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 3 — "purified brine" is where MLE outputs and DCM inputs -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.2); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--green); line-height:1.3;">Purified Brine</p>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--muted);">0.3–0.5 $/mol</p>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Intermediary Salts</p>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">0.7–1.1 $/mol</p>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 5 -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Bulk Cathodes</p>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">3.4–8.6 $/mol</p>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 6 -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.25); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--amber); line-height:1.3;">Battery-ready Cathode</p>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--amber); font-weight:500;">12–16 $/mol</p>
+        </div>
+
+      </div>
+
+      <!-- Brackets row -->
+      <div style="display:flex; margin-top:1.5rem; gap:0; min-width:820px;">
+
+        <!-- MLE bracket — spans steps 1-3 (roughly first 44%) -->
+        <div style="flex:3.8; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.18); border-radius:6px; padding:0.875rem 1rem; margin-right:0.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--green); letter-spacing:0.06em;">M.L.E.</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Purifies any aqueous Li source into battery-grade permeate.</p>
             </div>
-            <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:1.25rem;">
-              <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Purification Cascade</p>
-              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); line-height:1.6;">Combined permeates for high volume recovery in purification</p>
+            <a href="./mle.html" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--green); text-decoration:none; white-space:nowrap; letter-spacing:0.04em;">Explore M.L.E. →</a>
+          </div>
+        </div>
+
+        <!-- DCM bracket — spans steps 3-6 (roughly last 56%) -->
+        <div style="flex:4.2; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.18); border-radius:6px; padding:0.875rem 1rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--amber); letter-spacing:0.06em;">D.C.M.</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Generates battery-ready cathode materials directly from purified Li brines.</p>
             </div>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); text-align:center; margin-top:1rem;">
-            Handles inputs from 0.17 ppm seawater through 30,000 ppm refinery wastewater
-          </p>
-        </div>
-
-        <!-- Right: Outputs -->
-        <div style="display:flex; flex-direction:column; gap:1rem; padding-left:2rem; border-left:1px dashed var(--border-hi);">
-          <div style="display:flex; align-items:center; gap:0.5rem; color:var(--dim);">
-            <svg width="20" height="8" viewBox="0 0 20 8" fill="none"><path d="M0 4h18M15 1l3 3-3 3" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div style="background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.25); border-radius:6px; padding:0.875rem 1.25rem; text-align:center;">
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.875rem; font-weight:600; color:var(--green);">Li-enriched Permeate</p>
-          </div>
-          <div style="background:var(--surface-3); border:1px solid var(--border); border-radius:6px; padding:0.875rem 1.25rem; text-align:center;">
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.875rem; font-weight:600; color:var(--muted);">De-lithiated Effluent</p>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); margin-top:0.25rem;">Suitable for re-injection</p>
+            <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--amber); text-decoration:none; white-space:nowrap; letter-spacing:0.04em;">Explore D.C.M. →</a>
           </div>
         </div>
 
       </div>
-    </div>
 
-    <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); margin-top:1.25rem; line-height:1.6;">
-      The result is a single platform that handles inputs from 0.17 ppm seawater through 30,000 ppm refinery wastewater, with the same modular hardware.
-    </p>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1rem; line-height:1.6;">Conventional supply chain value expressed per mole of Li. greenLi's platform allows operators to access the full value chain — not just raw brine extraction.</p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════
-     PERFORMANCE TARGETS
+     TWO SYSTEM CARDS
 ══════════════════════════════════════════ -->
-<section style="padding:8rem 1.5rem; background:var(--surface);">
+<section style="padding:7rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Performance Targets</span>
-    <h2 class="section-heading" style="margin-bottom:3.5rem;">What the platform delivers.</h2>
+    <span class="eyebrow">Our Technologies</span>
+    <h2 class="section-heading" style="margin-bottom:3.5rem;">Complementary by design.</h2>
 
-    <div class="stats-4-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; margin-bottom:2.5rem;">
-      <div class="stat-card">
-        <div class="stat-number"><span data-counter data-target="80">80</span><span style="font-size:0.55em;">%+</span></div>
-        <h3 class="stat-title">Li Recovery</h3>
-        <p class="stat-body">On salar brine feeds at existing operations</p>
+    <div class="system-cards-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+      <!-- MLE Card -->
+      <div class="system-card" style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 60px rgba(58,232,122,0.05);">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem;">
+          <div style="background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; padding:0.875rem 1.25rem;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:700; color:var(--green); letter-spacing:0.08em;">M.L.E.</p>
+          </div>
+          <div>
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:600; color:var(--text); letter-spacing:-0.02em;">Membrane Lithium Extraction</p>
+          </div>
+        </div>
+
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:2rem;">
+          Using a proprietary Li-selective membrane developed at Tel Aviv University, our M.L.E. system separates Li from competing ions, purifying Li-containing aqueous resources at any concentration. Our system transposes the desalination industry into an effective, continuous D.L.E. solution.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.625rem; margin-bottom:2rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Agnostic to Li source</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Rapidly scalable</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Modular deployment</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Pilot-ready Q4 2026</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <a href="./mle.html" class="btn-primary" style="font-size:0.875rem; padding:0.6875rem 1.5rem;">Deep Dive: M.L.E. →</a>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">TRL 4 → 6 · Q3 2026</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number"><span data-counter data-target="19">19</span><span style="font-size:0.55em;">%+</span></div>
-        <h3 class="stat-title">Capacity Uplift</h3>
-        <p class="stat-body">On the same brine volume without new reserves</p>
+
+      <!-- DCM Card -->
+      <div class="system-card" style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 60px rgba(232,168,58,0.05);">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem;">
+          <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:8px; padding:0.875rem 1.25rem;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:700; color:var(--amber); letter-spacing:0.08em;">D.C.M.</p>
+          </div>
+          <div>
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:600; color:var(--text); letter-spacing:-0.02em;">Direct Cathode Manufacture</p>
+          </div>
+        </div>
+
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:2rem;">
+          With a revolutionary approach, our proprietary system offers a "brine-to-battery" solution that generates high quality battery-ready cathode powders directly from purified Li brines. With D.C.M., proprietors of lithium assets can vertically integrate down the supply chain.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.625rem; margin-bottom:2rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Agnostic to cathode chemistry</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Pilot-ready Q2 2027</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Bolt-on to mines / DLE</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Vertical integration</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <a href="./dcm.html" style="display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.03em; color:var(--amber); border:1px solid rgba(232,168,58,0.4); padding:0.6875rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease;" onmouseover="this.style.background='rgba(232,168,58,0.08)'" onmouseout="this.style.background='transparent'">Deep Dive: D.C.M. →</a>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">TRL 3 → 5 · Q3 2026</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number"><span style="font-size:0.7em;">~</span><span data-counter data-target="39">39</span><span style="font-size:0.55em;">%</span></div>
-        <h3 class="stat-title">OpEx Reduction</h3>
-        <p class="stat-body">Per cubic meter of feed versus evaporation</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" style="font-family:'Space Grotesk',sans-serif; font-size:2.75rem; font-weight:700;">4×</div>
-        <h3 class="stat-title">Feed Flexibility</h3>
-        <p class="stat-body">Skid-based, scalable from pilot to full facility without redesign</p>
-      </div>
+
     </div>
-
-    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); line-height:1.6; max-width:72ch;">
-      These figures are based on internal modeling and bench-scale validation. Pilot data will be published on the Insights page as studies complete.
-    </p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════
-     PILOT STUDIES
+     IP OVERVIEW
 ══════════════════════════════════════════ -->
-<section id="pilot-studies" style="padding:8rem 1.5rem; background:var(--bg);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Current Pilot Studies</span>
-    <h2 class="section-heading" style="margin-bottom:1rem;">Active across four feed types.</h2>
-    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:60ch; margin-bottom:3rem;">
-      Each pilot validates a different point on the salinity and contaminant spectrum.
-    </p>
-
-    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
-      <table style="width:100%; border-collapse:collapse; font-family:'Inter',sans-serif;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border-hi);">
-            <th style="font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); padding:1.25rem 1.5rem; text-align:left;">Feed Type</th>
-            <th style="font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); padding:1.25rem 1.5rem; text-align:left;">Status</th>
-            <th style="font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); padding:1.25rem 1.5rem; text-align:left;">Current</th>
-            <th style="font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); padding:1.25rem 1.5rem; text-align:left;">Target Capacity</th>
-            <th style="font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); padding:1.25rem 1.5rem; text-align:left;">Revenue Target</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border); transition:background 0.15s ease;" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='transparent'">
-            <td style="font-size:0.9375rem; color:var(--text); padding:1.375rem 1.5rem; font-weight:500;">Refinery Wastewater</td>
-            <td style="padding:1.375rem 1.5rem;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.75rem; border-radius:3px; background:rgba(58,232,122,0.1); color:var(--green); border:1px solid rgba(58,232,122,0.2);">Active</span>
-            </td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">10 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">60 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2026</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border); transition:background 0.15s ease;" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='transparent'">
-            <td style="font-size:0.9375rem; color:var(--text); padding:1.375rem 1.5rem; font-weight:500;">Seawater</td>
-            <td style="padding:1.375rem 1.5rem;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.75rem; border-radius:3px; background:rgba(58,232,122,0.1); color:var(--green); border:1px solid rgba(58,232,122,0.2);">Active</span>
-            </td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">200 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2026–27</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border); transition:background 0.15s ease;" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='transparent'">
-            <td style="font-size:0.9375rem; color:var(--text); padding:1.375rem 1.5rem; font-weight:500;">Salar Brine</td>
-            <td style="padding:1.375rem 1.5rem;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.75rem; border-radius:3px; background:rgba(74,94,80,0.2); color:var(--muted); border:1px solid var(--border-hi);">In Planning</span>
-            </td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--dim); padding:1.375rem 1.5rem;">—</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">1,800 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2027</td>
-          </tr>
-          <tr style="transition:background 0.15s ease;" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='transparent'">
-            <td style="font-size:0.9375rem; color:var(--text); padding:1.375rem 1.5rem; font-weight:500;">Oilfield Wastewater</td>
-            <td style="padding:1.375rem 1.5rem;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.75rem; border-radius:3px; background:rgba(74,94,80,0.2); color:var(--muted); border:1px solid var(--border-hi);">In Planning</span>
-            </td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--dim); padding:1.375rem 1.5rem;">—</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2,000 m³/day</td>
-            <td style="font-family:'JetBrains Mono',monospace; font-size:0.875rem; color:var(--muted); padding:1.375rem 1.5rem;">2027</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1.25rem;">Pilot study results and case data will be published on the Insights page as findings become available.</p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     INTELLECTUAL PROPERTY
-══════════════════════════════════════════ -->
-<section id="ip" style="padding:8rem 1.5rem; background:var(--surface);">
+<section id="ip" style="padding:7rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Intellectual Property</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">Three protected innovations.</h2>
@@ -376,27 +381,27 @@
     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
 
       <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 30px rgba(58,232,122,0.04);">
-        <div style="width:44px; height:44px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="10" rx="2" stroke="#3AE87A" stroke-width="1.5"/><path d="M7 9V6a3 3 0 116 0v3" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem; background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.15); border-radius:4px; padding:0.3125rem 0.75rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--green);">M.L.E.</span>
         </div>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Li-selective Membrane</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">The only spiral-wound, lithium-selective separation product on the market outside of LG. Protected and ready for scale-up via established desalination manufacturing.</p>
       </div>
 
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 30px rgba(58,232,122,0.04);">
-        <div style="width:44px; height:44px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="10" rx="2" stroke="#3AE87A" stroke-width="1.5"/><path d="M7 9V6a3 3 0 116 0v3" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 30px rgba(232,168,58,0.03);">
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem; background:rgba(232,168,58,0.07); border:1px solid rgba(232,168,58,0.15); border-radius:4px; padding:0.3125rem 0.75rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber);">D.C.M.</span>
         </div>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Solid-phase Capture Material</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Proprietary material concentrates lithium from the enriched permeate stream. Decouples extraction throughput from cathode production timing. No known direct competition.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Proprietary material concentrates lithium from the enriched permeate stream for direct cathode integration. No known direct competition in this step of the process.</p>
       </div>
 
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 30px rgba(58,232,122,0.04);">
-        <div style="width:44px; height:44px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="10" rx="2" stroke="#3AE87A" stroke-width="1.5"/><path d="M7 9V6a3 3 0 116 0v3" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 30px rgba(232,168,58,0.03);">
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem; background:rgba(232,168,58,0.07); border:1px solid rgba(232,168,58,0.15); border-radius:4px; padding:0.3125rem 0.75rem;">
+          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber);">D.C.M.</span>
         </div>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Cathode Transfer Process</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Proprietary electrochemical process transfers captured lithium directly onto cathode material on site. Eliminates intermediate transport and chemical conversion. No known direct competition.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Proprietary process transfers captured lithium directly onto cathode material on site. Eliminates intermediate transport and chemical conversion. No known direct competition.</p>
       </div>
 
     </div>
@@ -405,18 +410,22 @@
 
 
 <!-- ══════════════════════════════════════════
-     CTA
+     PILOT CTA
 ══════════════════════════════════════════ -->
 <section style="padding:10rem 1.5rem; text-align:center;
   background: radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%), var(--bg);">
   <div style="max-width:580px; margin:0 auto;">
+    <span class="eyebrow" style="display:block; text-align:center;">Pilot Partnerships</span>
     <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.875rem,4vw,2.875rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:1.25rem; line-height:1.1;">
-      Want a deeper technical brief?
+      Ready to run a pilot?
     </h2>
     <p style="font-family:'Inter',sans-serif; color:var(--muted); font-size:1.0625rem; line-height:1.75; margin-bottom:2.75rem;">
-      Our team can walk through process flow diagrams, performance data, and integration paths for your specific feed.
+      Our staged partnership model takes you from initial meeting to full facility operation. Our team can walk through process flow diagrams, performance data, and integration paths for your specific feed.
     </p>
-    <a href="./contact.html?type=technical" class="btn-primary">Request a Technical Briefing</a>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="./contact.html?type=pilot" class="btn-primary">Start the Discovery Process</a>
+      <a href="./index.html#pilot-process" class="btn-outline">See How We Work</a>
+    </div>
   </div>
 </section>
 
@@ -437,8 +446,9 @@
       </div>
       <div>
         <p class="footer-heading">Technology</p>
-        <a href="./technology.html#how-it-works" class="footer-link">How It Works</a>
-        <a href="./technology.html#pilot-studies" class="footer-link">Pilot Studies</a>
+        <a href="./technology.html" class="footer-link">Overview</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
         <a href="./technology.html#ip" class="footer-link">Intellectual Property</a>
       </div>
       <div>
@@ -447,12 +457,12 @@
         <a href="./applications.html#refinery" class="footer-link">Refinery Wastewater</a>
         <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
         <a href="./applications.html#seawater" class="footer-link">Desalination</a>
-        <a href="./contact.html" class="footer-link" style="color:var(--green);">Get in Touch</a>
+        <a href="./contact.html?type=pilot" class="footer-link" style="color:var(--green);">Start a Pilot</a>
       </div>
     </div>
     <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
       <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">&copy; 2026 greenLi. All rights reserved.</p>
-      <a href="mailto:press@greenli.com" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">press@greenli.com</a>
+      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
     </div>
   </div>
 </footer>
@@ -465,22 +475,6 @@
     const isOpen = m.classList.toggle('open');
     document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
   });
-  document.querySelector('[data-page="technology"]')?.classList.add('nav-active');
-
-  function animateCounter(el, target) {
-    const start = performance.now();
-    const update = (now) => {
-      const progress = Math.min((now - start) / 1200, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(target * ease);
-      if (progress < 1) requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-  }
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target, Number(e.target.dataset.target)); obs.unobserve(e.target); } });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-counter]').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
