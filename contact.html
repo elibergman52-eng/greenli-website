@@ -79,9 +79,9 @@
     <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Home</a>
-      <div style="position:relative;" onmouseover="this.querySelector('.tech-dropdown-menu').style.display='block'" onmouseout="this.querySelector('.tech-dropdown-menu').style.display='none'">
+      <div id="tech-nav-wrapper" style="position:relative; display:inline-flex; align-items:center;">
         <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;gap:4px;">Technology <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="opacity:0.5;margin-top:1px;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="tech-dropdown-menu" style="display:none;position:absolute;top:100%;left:0;background:rgba(10,12,11,0.98);border:1px solid var(--border-hi);border-radius:6px;padding:0.5rem;min-width:160px;margin-top:8px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+        <div class="tech-dropdown-menu" style="display:none;position:absolute;top:100%;left:0;background:rgba(10,12,11,0.98);border:1px solid var(--border-hi);border-radius:6px;padding:0.5rem;padding-top:0.75rem;min-width:160px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
           <a href="./mle.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:4px;text-decoration:none;transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='transparent'">M.L.E.</a>
           <a href="./dcm.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:4px;text-decoration:none;transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='transparent'">D.C.M.</a>
         </div>
@@ -330,6 +330,7 @@
     document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
   });
   document.querySelector('[data-page="contact"]')?.classList.add('nav-active');
+  (function(){ var w=document.getElementById('tech-nav-wrapper'); var d=w&&w.querySelector('.tech-dropdown-menu'); if(!w||!d)return; w.addEventListener('mouseenter',function(){d.style.display='flex';}); w.addEventListener('mouseleave',function(){d.style.display='none';}); })();
 
   // Pre-select inquiry type from URL param
   const urlType = new URLSearchParams(window.location.search).get('type');
