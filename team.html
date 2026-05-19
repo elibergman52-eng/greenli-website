@@ -80,7 +80,7 @@
       <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
       <a href="./team.html" class="nav-link nav-active" data-page="team">Team</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
-      <a href="./contact.html" class="nav-link" data-page="contact">Contact</a>
+      <a href="./contact.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Run a Simulation</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
@@ -108,10 +108,10 @@
   <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
     <span class="eyebrow">Team</span>
     <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:22ch; margin-bottom:1.5rem;">
-      Built by engineers, scientists, and operators who have done this before.
+      Operators, scientists, and engineers.
     </h1>
     <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:62ch; line-height:1.75;">
-      greenLi is a spinout from Prof. Hadas Mamane's laboratory at Tel Aviv University, backed by Earth &amp; Beyond Ventures and a syndicate of deeptech co-investors. The team brings together membrane science, electrochemistry, environmental engineering, IP law, and operational experience in the desalination industry.
+      greenLi is built by people who have run plants, scaled membranes, and developed lithium chemistry at the bench. The team combines academic research from Tel Aviv University with operational experience across water and energy infrastructure.
     </p>
   </div>
 </section>
@@ -264,11 +264,11 @@
 ══════════════════════════════════════════ -->
 <section style="padding:6rem 1.5rem; background:var(--bg); border-top:1px solid var(--border);">
   <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Investors</span>
-    <h2 class="section-heading" style="margin-bottom:2rem;">Backed by deeptech specialists.</h2>
+    <span class="eyebrow">Backed by</span>
+    <h2 class="section-heading" style="margin-bottom:2rem;">Investors and partners.</h2>
     <div style="max-width:680px;">
       <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem;">
-        Lead investment from <span style="color:var(--green); font-weight:500;">Earth &amp; Beyond Ventures</span>, a deeptech VC focused on infrastructure, climate, and resource technologies. Co-investors include strategic and financial partners across Israel, Europe, and North America.
+        Earth &amp; Beyond Ventures (lead). Co-investors across deeptech and water infrastructure. Commercial partnership with SQM.
       </p>
       <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem 2rem; display:inline-flex; align-items:center; gap:1.25rem;">
         <div style="width:40px; height:40px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.2); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
@@ -289,12 +289,16 @@
   background: radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%), var(--bg);">
   <div style="max-width:540px; margin:0 auto;">
     <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.875rem,4vw,2.875rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:1.25rem; line-height:1.1;">
-      Want to talk to the team?
+      Want to work with us?
     </h2>
     <p style="font-family:'Inter',sans-serif; color:var(--muted); font-size:1.0625rem; line-height:1.75; margin-bottom:2.75rem;">
-      Pilot conversations, technical questions, partnership discussions. We respond personally.
+      If you are an operator, investor, or strategic partner, we respond personally.
     </p>
-    <a href="./contact.html" class="btn-primary">Get in Touch</a>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="./contact.html" class="btn-primary">Run an extraction simulation</a>
+      <a href="mailto:eitan@greenli.biz" class="btn-outline">Email us</a>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem;">Quick turnaround. Specific to your water chemistry. No lab work, no NDA.</p>
   </div>
 </section>
 
@@ -302,6 +306,18 @@
 <!-- FOOTER -->
 <footer style="background:var(--bg); border-top:1px solid var(--border);">
   <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+    <!-- Newsletter block -->
+    <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2.5rem; margin-bottom:4rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:240px;">
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); margin-bottom:0.375rem;">Stay informed.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.6;">Technology updates, pilot milestones, and market intelligence. No noise.</p>
+      </div>
+      <form style="display:flex; gap:0.75rem; flex-wrap:wrap; flex:1; min-width:280px; max-width:440px;" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'font-family:Inter,sans-serif;font-size:0.875rem;color:var(--green);\'>You\'re on the list.</p>';">
+        <input type="email" placeholder="your@email.com" required style="flex:1; min-width:180px; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.625rem 1rem; outline:none;">
+        <button type="submit" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:#0A0C0B; background:var(--green); padding:0.625rem 1.25rem; border-radius:4px; border:none; cursor:pointer; white-space:nowrap;">Subscribe</button>
+      </form>
+    </div>
+
     <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
       <div>
         <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
@@ -321,11 +337,11 @@
       </div>
       <div>
         <p class="footer-heading">Applications</p>
-        <a href="./applications.html#salar" class="footer-link">Salar Brine</a>
-        <a href="./applications.html#refinery" class="footer-link">Refinery Wastewater</a>
+        <a href="./applications.html#brine" class="footer-link">Salar Brine</a>
+        <a href="./applications.html#hard-rock" class="footer-link">Refinery Wastewater</a>
         <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
-        <a href="./applications.html#seawater" class="footer-link">Desalination</a>
-        <a href="./contact.html" class="footer-link" style="color:var(--green);">Get in Touch</a>
+        <a href="./applications.html#produced-water" class="footer-link">Produced Water</a>
+        <a href="./contact.html" class="footer-link" style="color:var(--green);">Run a Simulation</a>
       </div>
     </div>
     <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
