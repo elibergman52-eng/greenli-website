@@ -256,9 +256,10 @@
   <!-- Multi-layer gradient overlay -->
   <div style="position:absolute; inset:0; z-index:1;
     background:
-      radial-gradient(ellipse 80% 70% at 20% 65%, rgba(58,232,122,0.09) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 88% 10%, rgba(10,12,11,0.55) 0%, transparent 55%),
-      linear-gradient(168deg, rgba(10,12,11,0.2) 0%, rgba(10,12,11,0.85) 100%);"></div>
+      radial-gradient(ellipse 80% 70% at 20% 65%, rgba(58,232,122,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 88% 10%, rgba(10,12,11,0.65) 0%, transparent 55%),
+      radial-gradient(ellipse 130% 60% at 0% 90%, rgba(10,12,11,0.88) 0%, transparent 65%),
+      linear-gradient(168deg, rgba(10,12,11,0.5) 0%, rgba(10,12,11,0.96) 100%);"></div>
 
   <!-- Grain overlay -->
   <div style="position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0.045;
@@ -267,23 +268,24 @@
 
   <!-- Content -->
   <div style="position:relative; z-index:3; max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%; padding-top:80px;">
-    <span class="eyebrow _h_ey">Monetize lithium assets across the full value chain</span>
+    <span class="eyebrow _h_ey">We extract lithium from water.</span>
     <h1 class="_h_h1" style="font-family:'Space Grotesk',sans-serif;
                font-size: clamp(2.75rem, 6.5vw, 5.25rem);
                font-weight:700; letter-spacing:-0.03em; line-height:1.06;
-               color:#F0F4F1; max-width:14ch; margin-bottom:1.5rem;">
-      We extract lithium from water.
+               color:#F0F4F1; max-width:22ch; margin-bottom:1.5rem;
+               text-shadow:0 2px 24px rgba(0,0,0,0.6);">
+      Monetize lithium assets across the full value chain.
     </h1>
     <p class="_h_bd" style="font-family:'Inter',sans-serif;
               font-size:clamp(1rem, 1.8vw, 1.2rem);
-              font-weight:300; color:#8A9E8F; max-width:56ch; line-height:1.75; margin-bottom:2.75rem;">
+              font-weight:300; color:#D0DACE; max-width:56ch; line-height:1.75; margin-bottom:2.75rem;
+              text-shadow:0 1px 12px rgba(0,0,0,0.5);">
       Two complementary technologies recover lithium from any water source and convert it directly into battery-ready cathode material. Capture margin across the full supply chain, not just at extraction.
     </p>
     <div class="_h_ct" style="display:flex; gap:1rem; flex-wrap:wrap;">
       <a href="./contact.html" class="btn-primary">Run an extraction simulation</a>
       <a href="./technology.html" class="btn-secondary">Meet the technology</a>
     </div>
-    <p class="_h_nt" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Quick turnaround. Specific to your water chemistry. No lab work, no NDA.</p>
   </div>
 
   <!-- Bottom gradient fade -->
@@ -351,6 +353,18 @@
 
 
 <!-- ══════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════ -->
+<section style="padding:6rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">How It Works</span>
+    <h2 class="section-heading" style="margin-bottom:3rem;">From your water source to a battery.</h2>
+    <img src="./supply-chain-flow.png" alt="Conventional supply chain: Raw Brine → Semi-processed Brine → Purified Brine → Intermediary Salts → Bulk Cathodes → Refined Cathode. M.L.E. purifies the raw Li asset. D.C.M. generates battery-ready cathode materials directly from purified brines." style="width:100%; border-radius:8px; display:block;">
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
      THROUGHPUT THESIS
 ══════════════════════════════════════════ -->
 <section style="padding:8rem 1.5rem; background:var(--surface);">
@@ -359,11 +373,12 @@
       <span class="eyebrow">Why Throughput Matters</span>
       <h2 class="section-heading" style="margin-bottom:1.5rem;">High flow changes the math.</h2>
       <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem;">
-        Conventional D.L.E. is concentration-bound. It works on rich brines and struggles below 200 ppm. M.L.E. is throughput-bound. We process larger volumes continuously, which means meaningful recovery is viable at concentrations and temperatures where conventional extraction is not.
+        Conventional Direct Lithium Extraction (D.L.E.) is concentration-bound. It works on rich brines and struggles below 200 ppm. Membrane Lithium Extraction (M.L.E.) is throughput-bound. We process larger volumes continuously, which means meaningful recovery is viable at concentrations and temperatures where conventional extraction is not.
       </p>
       <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;">
         That difference opens up entire categories of assets: produced water from oil and gas, geothermal return streams at 60 degrees Celsius, groundwater at 20 ppm. Assets the industry has written off.
       </p>
+      <a href="./mle.html" style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--green); text-decoration:none; letter-spacing:0.03em; margin-top:1.75rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">How M.L.E. works →</a>
     </div>
     <div style="display:flex; flex-direction:column; gap:1rem;">
       <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:1.5rem;">
@@ -390,21 +405,9 @@
       Most lithium asset operators stop at carbonate or hydroxide. They sell into a refining market where margins compress and dependencies sit outside their control.
     </p>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:68ch; margin-bottom:2rem;">
-      D.C.M. is different. It converts purified lithium directly into battery-ready cathode powder on site. No intermediate salts, no transport to a refiner, no cathode chemistry lock-in. Operators capture the margin that today flows to cell manufacturers.
+      Direct Cathode Manufacture (D.C.M.) is different. It converts purified lithium directly into battery-ready cathode powder on site. No intermediate salts, no transport to a refiner, no cathode chemistry lock-in. Operators capture the margin that today flows to cell manufacturers.
     </p>
     <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--green); text-decoration:none; letter-spacing:0.03em; display:inline-flex; align-items:center; gap:0.5rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">How D.C.M. works →</a>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     ANIMATION PLACEHOLDER
-══════════════════════════════════════════ -->
-<section style="padding:6rem 1.5rem; background:var(--surface);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">How It Works</span>
-    <h2 class="section-heading" style="margin-bottom:3rem;">From your water source to a battery.</h2>
-    <img src="./supply-chain-flow.png" alt="Conventional supply chain: Raw Brine → Semi-processed Brine → Purified Brine → Intermediary Salts → Bulk Cathodes → Refined Cathode. M.L.E. purifies the raw Li asset. D.C.M. generates battery-ready cathode materials directly from purified brines." style="width:100%; border-radius:8px; display:block;">
   </div>
 </section>
 
@@ -418,22 +421,18 @@
     <h2 class="section-heading" style="margin-bottom:3.5rem;">Four categories of lithium assets.</h2>
     <div class="stats-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;">
       <a href="./applications.html#brine" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem;">~2,000 ppm Li</p>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Brine Operations</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For salar operators and prospecting permit holders. More lithium from the same reserve.</p>
       </a>
       <a href="./applications.html#hard-rock" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem;">&gt;30,000 ppm Li</p>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Hard Rock Refineries</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For spodumene refiners. Recover the 20 percent of lithium currently lost to wastewater.</p>
       </a>
       <a href="./applications.html#produced-water" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem;">100 to 500 ppm Li</p>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Oil &amp; Gas Produced Water</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For operators in the Gulf and US. Turn a disposal cost into a revenue stream.</p>
       </a>
       <a href="./applications.html#geothermal" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem;">20 to 500 ppm Li</p>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Geothermal &amp; Groundwater</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For geothermal plants and low-concentration assets. The only extraction method compatible with 60 degrees Celsius return water.</p>
       </a>
@@ -463,11 +462,6 @@
       </div>
       <div class="gl-tick-sep"></div>
       <div class="gl-tick-item">
-        <span class="gl-tick-name">SQM</span>
-        <span class="gl-tick-role">Commercial Partner</span>
-      </div>
-      <div class="gl-tick-sep"></div>
-      <div class="gl-tick-item">
         <span class="gl-tick-name">Prof. Hadas Mamane</span>
         <span class="gl-tick-role">Scientific Founder</span>
       </div>
@@ -489,11 +483,6 @@
       </div>
       <div class="gl-tick-sep"></div>
       <div class="gl-tick-item">
-        <span class="gl-tick-name">SQM</span>
-        <span class="gl-tick-role">Commercial Partner</span>
-      </div>
-      <div class="gl-tick-sep"></div>
-      <div class="gl-tick-item">
         <span class="gl-tick-name">Prof. Hadas Mamane</span>
         <span class="gl-tick-role">Scientific Founder</span>
       </div>
@@ -507,181 +496,6 @@
   </div>
 </section>
 
-
-<!-- ══════════════════════════════════════════
-     PILOT PROCESS — FROM HANDSHAKE TO FACILITY
-══════════════════════════════════════════ -->
-<section id="pilot-process" style="padding:8rem 1.5rem; background:var(--surface);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">How We Engage</span>
-    <h2 class="section-heading" style="margin-bottom:1rem;">From simulation to facility.</h2>
-    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:1.25rem;">
-      A staged partnership model with two remuneration paths at each binding step.
-    </p>
-    <div style="display:flex; gap:2rem; margin-bottom:4rem; flex-wrap:wrap;">
-      <div style="display:flex; align-items:center; gap:0.625rem;">
-        <div style="width:10px; height:10px; background:var(--green); border-radius:2px; flex-shrink:0;"></div>
-        <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted);">(A) Contract services fee on successful operation</span>
-      </div>
-      <div style="display:flex; align-items:center; gap:0.625rem;">
-        <div style="width:10px; height:10px; background:var(--border-hi); border-radius:2px; flex-shrink:0;"></div>
-        <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted);">(B) Facility purchase value</span>
-      </div>
-    </div>
-
-    <!-- Phase labels + step cards -->
-
-    <!-- DISCOVERY -->
-    <div style="margin-bottom:2.5rem;">
-      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-        <div style="background:rgba(58,100,232,0.12); border:1px solid rgba(58,100,232,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6496E8;">Discovery</span>
-        </div>
-        <div style="flex:1; height:1px; background:var(--border);"></div>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
-        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">1</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Initial Meeting</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties meet and define project scope.</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">2</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">mNDA + Data Share</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties sign mNDA. Client shares asset data.</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,100,232,0.1); border:1px solid rgba(58,100,232,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#6496E8; font-weight:400;">3</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Extraction Simulation</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client receives greenLi extraction simulation for their asset.</p>
-          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">~1 month</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- COMMISSION -->
-    <div style="margin-bottom:2.5rem;">
-      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-        <div style="background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green);">Commission</span>
-        </div>
-        <div style="flex:1; height:1px; background:var(--border);"></div>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
-        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">4</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Non-binding LoI</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client signs non-binding Letter of Intent with greenLi to proceed.</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">5</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Pilot Proposal</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Client receives a detailed pilot proposal from greenLi.</p>
-          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">~1 month</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.12); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); font-weight:400;">6</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Sign Pilot MoU</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Parties sign binding MoU for pilot operation.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- PILOT -->
-    <div style="margin-bottom:2.5rem;">
-      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-        <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:4px; padding:0.3125rem 0.875rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#E8A83A;">Pilot</span>
-        </div>
-        <div style="flex:1; height:1px; background:var(--border);"></div>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-        <div style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.12); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#E8A83A; font-weight:400;">7</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Build Pilot</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi builds the pilot system at the client's facility.</p>
-          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">3–6 months</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.12); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#E8A83A; font-weight:400;">8</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Pilot Operation</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi operates the pilot and invoices the client.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SCALE-UP -->
-    <div style="margin-bottom:3.5rem;">
-      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-        <div style="background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.15); border-radius:4px; padding:0.3125rem 0.875rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green-dim);">Scale-Up</span>
-        </div>
-        <div style="flex:1; height:1px; background:var(--border);"></div>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.1); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green-dim); font-weight:400;">9</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Full-deployment MoU</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Binding MoU for modular, ramp-up deployment. Same two remuneration paths apply.</p>
-        </div>
-        <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.1); border-radius:8px; padding:1.5rem;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <div style="width:32px; height:32px; background:rgba(58,232,122,0.08); border:1px solid rgba(58,232,122,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green-dim); font-weight:400;">10</span>
-            </div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text);">Build &amp; Operate</h4>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">greenLi builds and operates the full system at commercial scale.</p>
-          <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); margin-top:0.75rem;">12–24 months + ongoing</p>
-        </div>
-      </div>
-    </div>
-
-    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:2.5rem;">
-      Most engagements begin with a free extraction simulation. Share your water chemistry. We model recovery potential before any lab work, NDA, or commitment.
-    </p>
-    <div>
-      <a href="./contact.html" class="btn-primary">Run an extraction simulation</a>
-      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Share your water chemistry. We model recovery, capacity, and revenue potential.</p>
-    </div>
-  </div>
-</section>
 
 
 <!-- ══════════════════════════════════════════
