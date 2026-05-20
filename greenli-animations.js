@@ -89,6 +89,36 @@
 
     /* ── 10. Section eyebrow line decoration ── */
     '.eyebrow{position:relative}',
+
+    /* ── 11. Tablet (769–1024px) ── */
+    '@media(max-width:1024px) and (min-width:769px){',
+    'section[style*="padding:8rem"]{padding-top:5.5rem!important;padding-bottom:5.5rem!important}',
+    'section[style*="padding:7rem"]{padding-top:4.5rem!important;padding-bottom:4.5rem!important}',
+    'section[style*="padding:10rem"]{padding-top:6.5rem!important;padding-bottom:6.5rem!important}',
+    'section [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important}',
+    'section [style*="gap:5rem"]{gap:3rem!important}',
+    'section [style*="gap:4rem"]{gap:2.5rem!important}',
+    '}',
+
+    /* ── 12. Mobile (≤768px) ── */
+    '@media(max-width:768px){',
+    /* Section vertical padding */
+    'section[style*="padding:8rem"]{padding-top:4rem!important;padding-bottom:4rem!important}',
+    'section[style*="padding:7rem"]{padding-top:3.5rem!important;padding-bottom:3.5rem!important}',
+    'section[style*="padding:6rem"]{padding-top:3rem!important;padding-bottom:3rem!important}',
+    'section[style*="padding:5rem"]{padding-top:2.5rem!important;padding-bottom:2.5rem!important}',
+    'section[style*="padding:10rem"]{padding-top:5rem!important;padding-bottom:5rem!important}',
+    /* Multi-column → single column */
+    'section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}',
+    'section [style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr!important}',
+    'section [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}',
+    /* Gap reduction */
+    'section [style*="gap:5rem"]{gap:2rem!important}',
+    'section [style*="gap:4rem"]{gap:2rem!important}',
+    'section [style*="gap:3rem"]{gap:1.5rem!important}',
+    /* Images */
+    'section img{max-width:100%!important}',
+    '}',
   ].join('\n');
 
   if (!document.getElementById('_glcss')) {

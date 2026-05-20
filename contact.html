@@ -65,6 +65,8 @@
       .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
       .routing-grid { grid-template-columns:1fr !important; }
       .footer-grid { grid-template-columns:1fr 1fr !important; }
+      /* Form card — reduce side padding so inputs have breathing room */
+      #contact-form [style*="padding:3rem"] { padding: 1.5rem !important; }
     }
     @media (max-width:480px) { .footer-grid { grid-template-columns:1fr !important; } }
     @keyframes spin { to { transform:rotate(360deg); } }
