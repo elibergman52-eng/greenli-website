@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
       --bg: #0A0C0B;
@@ -192,7 +192,7 @@
     .footer-link:hover { color: var(--text); }
 
     /* ── Comparison Table ── */
-    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
     .compare-table th {
       font-family: 'Inter', sans-serif; font-size: 0.6875rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 1.25rem; text-align: center;
@@ -203,6 +203,8 @@
     }
     .compare-table tr:last-child td { border-bottom: none; }
     .compare-table td:first-child { text-align: left; color: var(--muted); }
+    .compare-table td:not(:first-child) { text-align: center; }
+    .compare-table td svg { display: block; margin: 0 auto; }
     .compare-col-hi { background: rgba(58,232,122,0.05); border-left: 2px solid rgba(58,232,122,0.25); border-right: 2px solid rgba(58,232,122,0.25); }
     .compare-col-hi-top { border-top: 2px solid rgba(58,232,122,0.25); border-radius: 6px 6px 0 0; }
     .compare-col-hi-bot { border-bottom: 2px solid rgba(58,232,122,0.25); border-radius: 0 0 6px 6px; }
@@ -599,9 +601,9 @@
         <table class="compare-table" style="min-width:520px;">
           <thead>
             <tr style="background:var(--surface-3); border-bottom:1px solid var(--border-hi);">
-              <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; min-width:240px;">Capability</th>
-              <th style="color:var(--dim); padding:1.25rem 1rem; min-width:160px;">Conventional DLE</th>
-              <th class="compare-col-hi compare-col-hi-top" style="color:var(--green); padding:1.25rem 1rem; min-width:120px;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; opacity:0.7;">(greenLi)</span></th>
+              <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:56%;">Capability</th>
+              <th style="color:var(--dim); padding:1.25rem 1rem; width:22%;">Conventional DLE</th>
+              <th class="compare-col-hi compare-col-hi-top" style="color:var(--green); padding:1.25rem 1rem; width:22%;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; opacity:0.7;">(greenLi)</span></th>
             </tr>
           </thead>
           <tbody>
@@ -728,9 +730,9 @@
         <table class="compare-table" style="min-width:520px;">
           <thead>
             <tr style="background:var(--surface-3); border-bottom:1px solid var(--border-hi);">
-              <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; min-width:240px;">Capability</th>
-              <th style="color:var(--dim); padding:1.25rem 1rem; min-width:180px;">Traditional Battery<br>Manufacture</th>
-              <th class="compare-col-amber compare-col-amber-top" style="color:var(--amber); padding:1.25rem 1rem; min-width:120px;">D.C.M.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; opacity:0.7;">(greenLi)</span></th>
+              <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:56%;">Capability</th>
+              <th style="color:var(--dim); padding:1.25rem 1rem; width:22%;">Traditional Battery<br>Manufacture</th>
+              <th class="compare-col-amber compare-col-amber-top" style="color:var(--amber); padding:1.25rem 1rem; width:22%;">D.C.M.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; opacity:0.7;">(greenLi)</span></th>
             </tr>
           </thead>
           <tbody>
@@ -948,7 +950,7 @@
 <script src="./greenli-animations.js" defer></script>
 
 <!-- Leaflet -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqA=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
   var GL_REGIONS = [
@@ -1057,11 +1059,10 @@
     glSelectRegion('south-america');
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', glInitMap);
-  } else {
+  window.addEventListener('load', function () {
     glInitMap();
-  }
+    setTimeout(function () { if (glMap) glMap.invalidateSize(); }, 300);
+  });
 })();
 </script>
 </body>
