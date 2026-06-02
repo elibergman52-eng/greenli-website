@@ -330,6 +330,68 @@
         <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;">High-volume assets gain capacity. The same brine resource yields more lithium per year because there is no 18-month evaporation cycle in the way.</p>
       </div>
     </div>
+
+    <!-- Operating window chart -->
+    <div style="margin-top:3rem; overflow-x:auto;">
+      <svg viewBox="0 0 720 368" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;border-radius:10px;overflow:hidden;">
+        <rect width="720" height="368" fill="#141814" rx="10"/>
+        <!-- chart plot area -->
+        <rect x="70" y="30" width="620" height="280" rx="4" fill="#0A0C0B"/>
+        <!-- horizontal grid lines -->
+        <line x1="70" y1="248" x2="690" y2="248" stroke="#141814" stroke-width="1"/>
+        <line x1="70" y1="186" x2="690" y2="186" stroke="#141814" stroke-width="1"/>
+        <line x1="70" y1="123" x2="690" y2="123" stroke="#141814" stroke-width="1"/>
+        <line x1="70" y1="61"  x2="690" y2="61"  stroke="#141814" stroke-width="1"/>
+        <!-- vertical grid lines -->
+        <line x1="155" y1="30" x2="155" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="280" y1="30" x2="280" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="400" y1="30" x2="400" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="510" y1="30" x2="510" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
+        <!-- MLE operating window (0.17–30,000+ ppm, 0–80°C) -->
+        <rect x="70" y="61" width="620" height="249" rx="4" fill="rgba(58,232,122,0.07)" stroke="rgba(58,232,122,0.3)" stroke-width="1.5"/>
+        <!-- Conventional DLE window (200–5,000 ppm, 0–40°C) -->
+        <rect x="280" y="186" width="230" height="124" rx="4" fill="rgba(232,74,58,0.1)" stroke="rgba(232,74,58,0.4)" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <!-- Y-axis -->
+        <line x1="70" y1="30" x2="70" y2="310" stroke="#2A3828" stroke-width="1.5"/>
+        <!-- X-axis -->
+        <line x1="70" y1="310" x2="690" y2="310" stroke="#2A3828" stroke-width="1.5"/>
+        <!-- Y-axis ticks -->
+        <line x1="64" y1="310" x2="70" y2="310" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="64" y1="248" x2="70" y2="248" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="64" y1="186" x2="70" y2="186" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="64" y1="123" x2="70" y2="123" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="64" y1="61"  x2="70" y2="61"  stroke="#2A3828" stroke-width="1.5"/>
+        <!-- Y-axis labels -->
+        <text x="57" y="314" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">0°C</text>
+        <text x="57" y="252" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">20°C</text>
+        <text x="57" y="190" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">40°C</text>
+        <text x="57" y="127" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">60°C</text>
+        <text x="57" y="65"  text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">80°C</text>
+        <!-- X-axis ticks -->
+        <line x1="70"  y1="310" x2="70"  y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="155" y1="310" x2="155" y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="280" y1="310" x2="280" y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="400" y1="310" x2="400" y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="510" y1="310" x2="510" y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="690" y1="310" x2="690" y2="316" stroke="#2A3828" stroke-width="1.5"/>
+        <!-- X-axis labels -->
+        <text x="70"  y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">0.17</text>
+        <text x="155" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">20</text>
+        <text x="280" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">200</text>
+        <text x="400" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">1,000</text>
+        <text x="510" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">5,000</text>
+        <text x="690" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">30,000+</text>
+        <!-- Axis labels -->
+        <text x="380" y="350" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.06em" fill="#4A5E50">Li CONCENTRATION (ppm) — logarithmic scale</text>
+        <text x="16" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.06em" fill="#4A5E50" transform="rotate(-90, 16, 170)">TEMPERATURE (°C)</text>
+        <!-- MLE window label -->
+        <text x="86" y="80" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.09em" fill="#3AE87A">M.L.E. OPERATING WINDOW</text>
+        <text x="86" y="95" font-family="Inter, sans-serif" font-size="9.5" fill="rgba(58,232,122,0.55)">0.17 ppm → 30,000+ ppm · Ambient → 80°C</text>
+        <!-- Conventional DLE window label -->
+        <text x="292" y="208" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.07em" fill="rgba(232,74,58,0.9)">CONVENTIONAL DLE</text>
+        <text x="292" y="223" font-family="Inter, sans-serif" font-size="9" fill="rgba(232,74,58,0.65)">200–5,000 ppm · 0–40°C</text>
+      </svg>
+    </div>
   </div>
 </section>
 

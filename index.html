@@ -659,6 +659,69 @@
       Direct Cathode Manufacture (D.C.M.) is different. It converts purified lithium directly into battery-ready cathode powder on site, with no intermediate salts, no transport to a refiner, and no cathode chemistry lock-in. Operators capture the margin that today flows to cell manufacturers.
     </p>
 
+    <!-- DCM two-paths diagram -->
+    <div style="margin-bottom:2.5rem; overflow-x:auto;">
+      <svg viewBox="0 0 760 388" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;border-radius:10px;overflow:hidden;">
+        <rect width="760" height="388" fill="#141814" rx="10"/>
+        <!-- center divider -->
+        <line x1="380" y1="78" x2="380" y2="382" stroke="#1F2820" stroke-width="1" stroke-dasharray="4 4"/>
+        <!-- top shared box -->
+        <rect x="220" y="20" width="320" height="50" rx="6" fill="#1C2219" stroke="#2A3828"/>
+        <text x="380" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.1em" fill="#8A9E8F">LITHIUM BRINE FEED</text>
+        <text x="380" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#4A5E50">your aqueous lithium source</text>
+        <!-- fork lines -->
+        <line x1="380" y1="70" x2="380" y2="86" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="178" y1="86" x2="582" y2="86" stroke="#2A3828" stroke-width="1"/>
+        <line x1="178" y1="86" x2="178" y2="103" stroke="#2A3828" stroke-width="1.5"/>
+        <line x1="582" y1="86" x2="582" y2="103" stroke="rgba(232,168,58,0.55)" stroke-width="1.5"/>
+        <!-- column headers -->
+        <text x="178" y="101" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em" fill="#4A5E50">CONVENTIONAL PATH</text>
+        <text x="582" y="101" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em" fill="#E8A83A">GREENLI D.C.M.</text>
+        <!-- LEFT step 1 -->
+        <rect x="28" y="110" width="300" height="68" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="133" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#8A9E8F">Extract as Li₂CO₃ or LiOH</text>
+        <text x="178" y="153" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">Partial recovery. Evaporation or</text>
+        <text x="178" y="168" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">chemical precipitation required.</text>
+        <!-- left arrow 1→2 -->
+        <line x1="178" y1="178" x2="178" y2="198" stroke="#2A3828" stroke-width="1.5"/>
+        <polygon points="173,196 183,196 178,204" fill="#2A3828"/>
+        <!-- LEFT step 2 -->
+        <rect x="28" y="204" width="300" height="68" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="227" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#8A9E8F">Ship to centralized refinery</text>
+        <text x="178" y="247" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">Logistics cost, lead time, and</text>
+        <text x="178" y="262" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">processing margin flow to others.</text>
+        <!-- left arrow 2→3 -->
+        <line x1="178" y1="272" x2="178" y2="292" stroke="#2A3828" stroke-width="1.5"/>
+        <polygon points="173,290 183,290 178,298" fill="#2A3828"/>
+        <!-- LEFT step 3 -->
+        <rect x="28" y="298" width="300" height="72" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="322" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#8A9E8F">Sold to battery manufacturer</text>
+        <text x="178" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">Cathode margin absorbed by buyer.</text>
+        <text x="178" y="358" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#4A5E50">You stop at the bottom of the chain.</text>
+        <!-- RIGHT step 1 -->
+        <rect x="432" y="110" width="300" height="68" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.25)"/>
+        <text x="582" y="133" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#E8A83A">M.L.E. purification — on site</text>
+        <text x="582" y="153" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">80%+ Li recovery from raw feed.</text>
+        <text x="582" y="168" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Continuous. No evaporation cycles.</text>
+        <!-- right arrow 1→2 -->
+        <line x1="582" y1="178" x2="582" y2="198" stroke="rgba(232,168,58,0.45)" stroke-width="1.5"/>
+        <polygon points="577,196 587,196 582,204" fill="rgba(232,168,58,0.6)"/>
+        <!-- RIGHT step 2 -->
+        <rect x="432" y="204" width="300" height="68" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.25)"/>
+        <text x="582" y="227" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#E8A83A">D.C.M. synthesis — on site</text>
+        <text x="582" y="247" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Cathode powder synthesized</text>
+        <text x="582" y="262" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">directly from purified brine.</text>
+        <!-- right arrow 2→3 -->
+        <line x1="582" y1="272" x2="582" y2="292" stroke="rgba(232,168,58,0.45)" stroke-width="1.5"/>
+        <polygon points="577,290 587,290 582,298" fill="rgba(232,168,58,0.6)"/>
+        <!-- RIGHT step 3 -->
+        <rect x="432" y="298" width="300" height="72" rx="6" fill="rgba(232,168,58,0.1)" stroke="rgba(232,168,58,0.45)"/>
+        <text x="582" y="322" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">Battery-ready cathode</text>
+        <text x="582" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="rgba(232,168,58,0.8)">Full supply chain margin captured</text>
+        <text x="582" y="358" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="rgba(232,168,58,0.8)">at your facility. No middlemen.</text>
+      </svg>
+    </div>
+
     <!-- DCM comparison table -->
     <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.3); margin-bottom:2rem;">
       <div style="overflow-x:auto;">
@@ -893,9 +956,9 @@
       id: 'south-america',
       label: 'South America',
       coords: [-23.5, -68.0],
-      eyebrow: 'Atacama · SQM LOI Signed',
-      heading: 'Lithium Triangle',
-      body: 'Atacama holds more than 30% of global lithium reserves — and we have a signed LOI with SQM to deploy there. Our position at the heart of global supply gives us first-mover advantage in the world\'s most concentrated brine.'
+      eyebrow: 'Atacama · Lithium Triangle',
+      heading: 'South America',
+      body: 'The Atacama holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
     },
     {
       id: 'north-america',
