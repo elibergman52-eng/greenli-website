@@ -298,7 +298,15 @@
           <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
         </div>
       </div>
-      <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal &amp; Groundwater</a>
+        </div>
+      </div>
       <a href="./team.html" class="nav-link" data-page="about">About Us</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
       <a href="./contact.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
@@ -668,9 +676,7 @@
         <line x1="178" y1="86" x2="582" y2="86" stroke="#2A3828" stroke-width="1"/>
         <line x1="178" y1="86" x2="178" y2="103" stroke="#2A3828" stroke-width="1.5"/>
         <line x1="582" y1="86" x2="582" y2="103" stroke="rgba(232,168,58,0.55)" stroke-width="1.5"/>
-        <!-- column headers -->
-        <text x="178" y="101" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em" fill="#4A5E50">CONVENTIONAL PATH</text>
-        <text x="582" y="101" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em" fill="#E8A83A">GREENLI D.C.M.</text>
+        <!-- column headers removed — labels overlapped fork lines -->
         <!-- LEFT step 1 -->
         <rect x="28" y="110" width="300" height="68" rx="6" fill="#0F1210" stroke="#2A3828"/>
         <text x="178" y="133" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#8A9E8F">Extract as Li₂CO₃ or LiOH</text>
@@ -771,19 +777,19 @@
     <span class="eyebrow">Where the platform deploys</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">Four categories of lithium assets.</h2>
     <div class="stats-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;">
-      <a href="./applications.html#brine" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+      <a href="./app-brine.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Brine Operations</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">greenLi's platform deploys directly on salar operations and brine prospecting permits, recovering substantially more lithium from the same reserve volume. Operators gain more output from existing assets without expanding their footprint.</p>
       </a>
-      <a href="./applications.html#hard-rock" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+      <a href="./app-hard-rock.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Hard Rock Refineries</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For spodumene refiners, M.L.E. captures the 20 percent of lithium currently lost to process wastewater. A new revenue stream recovered from what was previously a disposal cost, with no disruption to existing operations.</p>
       </a>
-      <a href="./applications.html#produced-water" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+      <a href="./app-produced-water.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Oil &amp; Gas Produced Water</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Oil and gas operators producing water from lithium-bearing formations can capture lithium as a co-product rather than paying for disposal. A meaningful new revenue stream added to an existing operation, without changes to the core business.</p>
       </a>
-      <a href="./applications.html#geothermal" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+      <a href="./app-geothermal.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Geothermal &amp; Groundwater</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Geothermal plants and low-concentration groundwater assets can unlock lithium recovery for the first time. M.L.E. is the only extraction technology compatible with 60-degree Celsius return water and sub-50 ppm concentrations.</p>
       </a>
@@ -886,11 +892,11 @@
 
       <div>
         <p class="footer-heading">Applications</p>
-        <a href="./applications.html#brine" class="footer-link">Salar Brine</a>
-        <a href="./applications.html#hard-rock" class="footer-link">Refinery Wastewater</a>
-        <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
-        <a href="./applications.html#geothermal" class="footer-link">Groundwater</a>
-        <a href="./contact.html" class="footer-link" style="color:var(--green);">Get in Touch</a>
+        <a href="./app-brine.html" class="footer-link">Salar Brine</a>
+        <a href="./app-hard-rock.html" class="footer-link">Refinery Wastewater</a>
+        <a href="./app-produced-water.html" class="footer-link">Oil &amp; Gas</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal &amp; Groundwater</a>
+        <a href="./contact.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
       </div>
 
     </div>
