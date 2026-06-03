@@ -52,10 +52,10 @@
     '.gl-tick-sep{width:4px;height:4px;border-radius:50%;',
     '  background:rgba(58,232,122,.18);flex-shrink:0}',
     '.gl-tick-name{font-family:"Space Grotesk",sans-serif;font-size:1rem;font-weight:500;',
-    '  letter-spacing:-.01em;color:#5A7060}',
+    '  letter-spacing:-.01em;color:#8A9E8F}',
     '.gl-tick-role{font-family:"Inter",sans-serif;font-size:.6rem;font-weight:600;',
-    '  letter-spacing:.1em;text-transform:uppercase;color:#2A3828;',
-    '  padding:.2rem .5rem;border:1px solid #1F2820;border-radius:3px}',
+    '  letter-spacing:.1em;text-transform:uppercase;color:#6A8878;',
+    '  padding:.2rem .5rem;border:1px solid #2A3828;border-radius:3px}',
 
     /* ── 6. Shimmer on primary buttons ── */
     '.gl-sh{position:relative!important;overflow:hidden!important}',

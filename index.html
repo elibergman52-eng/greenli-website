@@ -329,8 +329,8 @@
 ══════════════════════════════════════════ -->
 <section style="position:relative; height:100vh; min-height:640px; display:flex; align-items:center; overflow:hidden;">
 
-  <video autoplay muted loop playsinline
-    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+  <video id="hero-video" autoplay muted playsinline
+    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:opacity 1.5s ease;">
     <source src="./1777153159096-mndzip0kiml.mp4" type="video/mp4">
   </video>
 
@@ -910,6 +910,12 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 80);
   }, { passive: true });
+
+  (function () {
+    var v = document.getElementById('hero-video');
+    if (!v) return;
+    v.addEventListener('ended', function () { v.style.opacity = '0'; });
+  })();
 
   const toggle = document.getElementById('nav-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
