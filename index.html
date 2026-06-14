@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>greenLi — Lithium extraction from any water source</title>
+  <title>greenLi | Lithium extraction from any water source</title>
   <meta name="description" content="Two complementary technologies extract aqueous lithium and manufacture battery-ready cathode materials on-site, on demand. Capture margin across the full supply chain.">
   <link rel="alternate" hreflang="en" href="./index.html">
   <link rel="alternate" hreflang="es" href="./es/index.html">
@@ -163,7 +163,7 @@
       transition: background 0.15s ease, color 0.15s ease; white-space: nowrap;
     }
     .nav-dropdown-item:hover { background: var(--surface-3); color: var(--text); }
-    .nav-caret { font-size: 0.55em; color: var(--dim); margin-left: 0.3em; transition: transform 0.2s ease; line-height: 1; }
+    .nav-caret { font-size: 0.55em; color: var(--dim); margin-left: 0.3em; transition: transform 0.2s ease; line-height: 1; text-decoration: none; display: inline-block; }
     .nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
 
     #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
@@ -292,7 +292,7 @@
     <div class="nav-links">
       <a href="./index.html" class="nav-link nav-active" data-page="home">Home</a>
       <div class="nav-dropdown">
-        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
@@ -300,8 +300,9 @@
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Applications Overview</a>
           <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
           <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
           <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
@@ -388,58 +389,24 @@
   <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600;
             letter-spacing:0.12em; text-transform:uppercase; color:var(--dim);
             margin-bottom:1.75rem; text-align:center; padding:0 1.5rem;">Backed By &amp; In Partnership With</p>
-  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; gap:1.5rem;">
-    <button id="partners-prev" aria-label="Previous" style="flex-shrink:0; background:var(--surface-2); border:1px solid var(--border-hi); border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s ease; color:var(--muted);" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='var(--surface-2)'">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3l-5 5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div id="partners-viewport" style="overflow:hidden; flex:1;">
-      <div id="partners-track" style="display:flex; gap:2.5rem; transition:transform 0.35s ease; align-items:center;">
-        <div style="flex-shrink:0; text-align:center; min-width:200px;">
-          <a href="https://www.tau.ac.il" target="_blank" rel="noopener" style="text-decoration:none;">
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Tel Aviv University</p>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Academic Origin</p>
-          </a>
-        </div>
-        <div style="flex-shrink:0; text-align:center; min-width:200px;">
-          <div>
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Earth &amp; Beyond Ventures</p>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Lead Investor</p>
-          </div>
-        </div>
-        <div style="flex-shrink:0; text-align:center; min-width:200px;">
-          <div>
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Prof. Hadas Mamane</p>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Scientific Founder</p>
-          </div>
-        </div>
-        <div style="flex-shrink:0; text-align:center; min-width:200px;">
-          <div>
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Deeptech &amp; Water Infrastructure</p>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Co-Investors</p>
-          </div>
-        </div>
-      </div>
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:3rem;">
+    <a href="https://www.tau.ac.il" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Tel Aviv University</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Academic Origin</p>
+    </a>
+    <a href="https://www.earthandbeyond.vc" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Earth &amp; Beyond Ventures</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Lead Investor</p>
+    </a>
+    <a href="https://en-exact-sciences.tau.ac.il/profile/mamane" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Prof. Hadas Mamane</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Scientific Founder</p>
+    </a>
+    <div style="text-align:center;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Deeptech &amp; Water Infrastructure</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Co-Investors</p>
     </div>
-    <button id="partners-next" aria-label="Next" style="flex-shrink:0; background:var(--surface-2); border:1px solid var(--border-hi); border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s ease; color:var(--muted);" onmouseover="this.style.background='var(--surface-3)'" onmouseout="this.style.background='var(--surface-2)'">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
   </div>
-  <script>
-  (function(){
-    var track = document.getElementById('partners-track');
-    var viewport = document.getElementById('partners-viewport');
-    var items = track.querySelectorAll('[style*="min-width:200px"]');
-    var current = 0;
-    var total = items.length;
-    function scrollTo(idx){
-      current = (idx + total) % total;
-      var itemW = items[0].offsetWidth + 40; // 40 = gap
-      track.style.transform = 'translateX(-' + (current * itemW) + 'px)';
-    }
-    document.getElementById('partners-prev').addEventListener('click', function(){ scrollTo(current - 1); });
-    document.getElementById('partners-next').addEventListener('click', function(){ scrollTo(current + 1); });
-  })();
-  </script>
 </section>
 
 
@@ -857,6 +824,31 @@
 </section>
 
 
+<section style="padding:4rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow" style="text-align:center; display:block;">Explore Your Asset</span>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
+      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Salar / Brine Operators</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Operate a salar or brine facility? Request a simulation to understand your recoverable lithium yield.</p>
+      </a>
+      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Oil &amp; Gas Operators</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Produce water at a lithium-bearing formation? Model the additional revenue from your existing output.</p>
+      </a>
+      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Geothermal Plants</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Re-inject at temperature? M.L.E. is the only platform designed to operate at your conditions.</p>
+      </a>
+      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Hard Rock Refiners</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Losing lithium to wastewater? Understand the recoverable value from streams you already manage.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
 <!-- ══════════════════════════════════════════
      CTA BLOCK
 ══════════════════════════════════════════ -->
@@ -888,7 +880,7 @@
 
     <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:3rem;">
       <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Stay current on lithium and battery manufacturing.</h3>
-      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; max-width:72ch; margin-bottom:1.5rem;">Sign up for our newsletter to get regular updates from greenLi about the goings-on in the lithium and battery manufacturing industries. Unsubscribe at any time.</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Sign up for our newsletter to get regular updates from greenLi about the goings-on in the lithium and battery manufacturing industries. Unsubscribe at any time.</p>
       <div id="footer-nl-wrap" style="display:flex; gap:0.75rem; flex-wrap:wrap; max-width:100%;">
         <input type="email" id="footer-nl-email" placeholder="Email address" style="flex:1; min-width:200px; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.6875rem 1rem; outline:none; transition:border-color 0.2s ease; appearance:none;">
         <button onclick="(function(){var e=document.getElementById('footer-nl-email');if(!e.value.trim()){e.style.borderColor='#E84A3A';return;}document.getElementById('footer-nl-wrap').innerHTML='<p style=\'font-family:Inter,sans-serif;font-size:0.9375rem;color:var(--green);font-weight:500;\'>Subscribed.</p>';})()" class="btn-primary-sm" style="flex-shrink:0;">Subscribe</button>

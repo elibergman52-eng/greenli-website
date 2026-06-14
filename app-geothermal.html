@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Geothermal — Applications — greenLi</title>
+  <title>Geothermal | Applications | greenLi</title>
   <meta name="description" content="Geothermal plants must return water at 60°C — outside the operating range of conventional DLE. M.L.E. is the only extraction technology designed to work at these temperatures.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +51,7 @@
     .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.05em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; display:block; }
     .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
     .nav-dropdown-item.active { color:var(--green); }
-    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; text-decoration:none; display:inline-block; }
     .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
 
     .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
@@ -86,7 +86,7 @@
     <div class="nav-links">
       <a href="./index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
-        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
+        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
@@ -94,8 +94,9 @@
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="./applications.html" class="nav-link nav-active" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <a href="./applications.html" class="nav-link nav-active" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Applications Overview</a>
           <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
           <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
           <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
@@ -302,7 +303,7 @@
           </p>
         </div>
         <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:10px; padding:2rem; margin-bottom:1.5rem;">
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem;">Relevant Operators</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem;">Relevant Operators</p>
           <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">
             Vulcan Energy Resources, Cornish Lithium, Fervo Energy, Ormat Technologies, and earlier-stage geothermal and groundwater developers in the EU, US, and Israel.
           </p>
@@ -320,29 +321,16 @@
 </section>
 
 
-<!-- WHY CONVENTIONAL DLE FAILS — callout block -->
-<section style="padding:5rem 1.5rem; background:var(--bg);">
+<!-- DCM INTEGRATION -->
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
-    <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:12px; padding:3rem; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;">
-      <div>
-        <span class="eyebrow">Why Conventional DLE Fails Here</span>
-        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; letter-spacing:-0.02em; color:var(--text); margin-bottom:1.25rem; line-height:1.2;">Two constraints that eliminate every competing technology.</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75;">The geothermal context is not simply a variation on the salar brine challenge — it presents two hard constraints that existing DLE products cannot satisfy simultaneously.</p>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:1.25rem;">
-        <div style="background:var(--surface-3); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Temperature constraint</p>
-          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Geothermal plants must re-inject water at ≥60°C. Conventional DLE operates below 40°C. The gap requires cooling + reheating — destroying the energy economics of any extraction attempt.</p>
-        </div>
-        <div style="background:var(--surface-3); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Concentration constraint</p>
-          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">Low-concentration assets (under 200 ppm) fall outside the economic operating window of conventional DLE products. At high throughput, M.L.E. reaches 20 ppm — opening the entire groundwater asset class.</p>
-        </div>
-      </div>
+    <div style="background:rgba(232,168,58,0.05); border:1px solid rgba(232,168,58,0.2); border-radius:10px; padding:2.5rem;">
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.875rem;">D.C.M. Integration Available</h3>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:1.25rem;">Operators who process lithium through M.L.E. can optionally integrate D.C.M. to convert purified lithium directly into battery-ready cathode material on-site, capturing additional margin across the supply chain.</p>
+      <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:var(--amber,#E8A83A); text-decoration:none; letter-spacing:0.03em;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Learn about D.C.M. →</a>
     </div>
   </div>
 </section>
-
 
 <!-- CTA -->
 <section style="padding:9rem 1.5rem; text-align:center; background:radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%), var(--bg);">
