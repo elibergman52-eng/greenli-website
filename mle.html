@@ -15,7 +15,7 @@
       --border: #1F2820; --border-hi: #2A3828;
       --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
       --amber: #E8A83A;
-      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
@@ -117,11 +117,21 @@
       <div class="nav-dropdown">
         <a href="./technology.html" class="nav-link nav-active" data-page="technology" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item nav-active">M.L.E.</a>
           <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
         </div>
       </div>
-      <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Groundwater</a>
+        </div>
+      </div>
       <a href="./team.html" class="nav-link" data-page="team">About Us</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
       <a href="./contact.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
@@ -166,13 +176,13 @@
           Membrane Lithium Extraction.
         </h1>
         <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.125rem); font-weight:300; color:var(--muted); max-width:56ch; line-height:1.75; margin-bottom:2.5rem;">
-          A proprietary spiral-wound membrane separates lithium from competing ions at any concentration, from 0.17 ppm seawater to 30,000 ppm refinery brine. Continuous operation. No evaporation. No batch chemistry.
+          Separate lithium from competing ions at any concentration, from 0.17 ppm seawater to 30,000 ppm refinery brine. Continuous operation. No evaporation. No batch chemistry.
         </p>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
           <a href="./contact.html" class="btn-primary">Model my feedstock</a>
           <a href="./technology.html" class="btn-outline">← Back to Overview</a>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Tell us about your feed. We send back exactly what's recoverable.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Tell us about your feedstock. We respond within one business day.</p>
       </div>
 
       <!-- Quick stats column -->
@@ -225,7 +235,7 @@
 
     </div>
     <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); line-height:1.6; max-width:72ch; margin-top:2rem;">
-      Figures based on internal modelling and bench-scale validation against salar brine processing baselines. Pilot data will be published on the Insights page as studies complete.
+      Figures based on internal modelling and bench-scale validation against salar brine processing baselines.
     </p>
   </div>
 </section>
@@ -297,7 +307,7 @@
       M.L.E. operates as a continuous flow process. Feed water enters the system, passes through stacked membrane modules, and exits with lithium concentrated on the permeate side. Competing ions (sodium, magnesium, calcium, boron) are rejected.
     </p>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:3rem;">
-      The membrane is a spiral-wound, lithium-selective design developed at Tel Aviv University. It is the only product of its kind on the market outside of LG. It manufactures through established desalination supply chains, which means scale-up does not depend on a new factory.
+      The membrane is developed at Tel Aviv University and manufactures through established desalination supply chains, which means scale-up does not depend on a new factory. Separate lithium from competing ions at any concentration, from 0.17 ppm seawater to 30,000 ppm refinery brine.
     </p>
 
     <img src="./mle-flow.png" alt="M.L.E. process flow: Raw Brine → Salar Extraction → Solar evaporation → Semi-processed Brine → M.L.E. purification cascade → Purified Brine → Product Precipitation → Re-injection into aquifer" style="width:100%; border-radius:8px; display:block;">
@@ -308,7 +318,7 @@
 <!-- ══════════════════════════════════════════
      WHY IT MATTERS
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section style="padding:5rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">The Throughput Advantage</span>
     <h2 class="section-heading" style="margin-bottom:1.5rem;">Throughput-bound, not concentration-bound.</h2>
@@ -405,7 +415,7 @@
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Specifications</span>
     <h2 class="section-heading" style="margin-bottom:3rem;">Key operating parameters.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:900px;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; max-width:1000px;">
       <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
         <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Operation</p>
         <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Continuous, 24/7</p>
@@ -421,14 +431,6 @@
       <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
         <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Form Factor</p>
         <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Modular skid</p>
-      </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">TRL</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">4 to 6</p>
-      </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Pilot Ready</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Q4 2026</p>
       </div>
     </div>
   </div>
@@ -713,8 +715,9 @@
         <p class="footer-heading">Applications</p>
         <a href="./applications.html#brine" class="footer-link">Salar Brine</a>
         <a href="./applications.html#hard-rock" class="footer-link">Refinery Wastewater</a>
-        <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
-        <a href="./applications.html#produced-water" class="footer-link">Produced Water</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
+        <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
+        <a href="./app-produced-water.html" class="footer-link">Produced Water</a>
         <a href="./contact.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
       </div>
     </div>

@@ -15,7 +15,7 @@
       --border: #1F2820; --border-hi: #2A3828;
       --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
       --amber: #E8A83A; --amber-dim: #C48C28; --amber-muted: rgba(232,168,58,0.12);
-      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
@@ -98,11 +98,21 @@
       <div class="nav-dropdown">
         <a href="./technology.html" class="nav-link nav-active" data-page="technology" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
           <a href="./dcm.html" class="nav-dropdown-item active-dcm">D.C.M.</a>
         </div>
       </div>
-      <a href="./applications.html" class="nav-link" data-page="applications">Applications</a>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Groundwater</a>
+        </div>
+      </div>
       <a href="./team.html" class="nav-link" data-page="team">About Us</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
       <a href="./contact.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
@@ -153,7 +163,7 @@
           <a href="./contact.html" class="btn-amber">Model my feedstock</a>
           <a href="./technology.html" class="btn-outline-amber">← Back to Overview</a>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:56ch;">We model whether your feed is a candidate for Membrane Lithium Extraction (M.L.E.) only or M.L.E. plus Direct Cathode Manufacture (D.C.M.).</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:56ch;">Tell us about your feedstock. We respond within one business day.</p>
       </div>
 
       <!-- Key facts column -->
@@ -179,7 +189,7 @@
 <!-- ══════════════════════════════════════════
      VALUE MULTIPLICATION CHAIN
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">The D.C.M. Opportunity</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">Multiply the value of every Li atom.</h2>
@@ -277,7 +287,7 @@
 <!-- ══════════════════════════════════════════
      WHY IT EXISTS
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section style="padding:5rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">The Supply Chain Problem</span>
     <h2 class="section-heading" style="margin-bottom:1.5rem;">The supply chain leaves money on the table.</h2>
@@ -294,12 +304,12 @@
 <!-- ══════════════════════════════════════════
      PROCESS FLOW — VISUAL PLACEHOLDER
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">How It Works</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">Two proprietary steps.</h2>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:1.5rem;">
-      <strong style="color:var(--text); font-weight:600;">Step 1: Solid-phase capture.</strong> Purified lithium from M.L.E. is concentrated onto a proprietary solid-phase capture material. This material is the bridge between the aqueous separation step and the solid cathode product.
+      <strong style="color:var(--text); font-weight:600;">Step 1: Solid-phase capture.</strong> Purified lithium from any aqueous feed is concentrated onto a proprietary solid-phase capture material. This material is the bridge between the aqueous separation step and the solid cathode product. Note: M.L.E. and D.C.M. can be deployed independently or together — the feed source is not a determining factor. Both technologies are agnostic to chemistry and feed type.
     </p>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:3rem;">
       <strong style="color:var(--text); font-weight:600;">Step 2: Cathode transfer.</strong> The captured lithium is transferred directly onto cathode precursor material. The output is a battery-ready cathode powder, chemistry-matched to the customer's specification. There is no intermediate salt, no transport to a refiner, no conversion plant.
@@ -313,7 +323,7 @@
 <!-- ══════════════════════════════════════════
      WHY IT MATTERS
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">The Vertical Integration Case</span>
     <h2 class="section-heading" style="margin-bottom:1.5rem;">Vertical integration without a refinery.</h2>
@@ -328,7 +338,7 @@
       </div>
       <div style="display:flex; gap:1rem; align-items:flex-start;">
         <div style="width:6px; height:6px; background:var(--amber); border-radius:50%; flex-shrink:0; margin-top:0.5rem;"></div>
-        <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;"><strong style="color:var(--text); font-weight:600;">Optionality:</strong> switch cathode chemistries without rebuilding</p>
+        <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;"><strong style="color:var(--text); font-weight:600;">Chemistry Agnostic:</strong> M.L.E. and D.C.M. are both agnostic to feed chemistry — switch cathode chemistries without rebuilding, and deploy on any aqueous lithium source</p>
       </div>
       <div style="display:flex; gap:1rem; align-items:flex-start;">
         <div style="width:6px; height:6px; background:var(--amber); border-radius:50%; flex-shrink:0; margin-top:0.5rem;"></div>
@@ -354,7 +364,7 @@
 <!-- ══════════════════════════════════════════
      KEY DIFFERENTIATORS
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Unique Benefits</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">What D.C.M. delivers.</h2>
@@ -405,7 +415,7 @@
 <!-- ══════════════════════════════════════════
      COMPETITIVE LANDSCAPE
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section style="padding:5rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
     <div>
       <span class="eyebrow">Market Position</span>
@@ -416,7 +426,6 @@
       <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; margin-bottom:2.5rem;">
         D.C.M. collapses this chain, allowing Li asset owners to control output quality, timing, and chemistry specification independently of external refining capacity.
       </p>
-      <a href="./contact.html" class="btn-amber">Model my feedstock</a>
     </div>
     <div style="display:flex; flex-direction:column; gap:1.25rem;">
       <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:1.5rem;">
@@ -428,9 +437,9 @@
           <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h11M7 1l3 3-3 3" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim);">LiOH</span>
           <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h11M7 1l3 3-3 3" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim);">pCAM</span>
+          <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim);">pCAM (precursor Cathode Active Material)</span>
           <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h11M7 1l3 3-3 3" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim);">CAM</span>
+          <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim);">CAM (Cathode Active Material)</span>
         </div>
         <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:0.75rem; line-height:1.5;">4–6 distinct industrial actors. 18–36 months supply lead time. Fixed chemistry output per refinery.</p>
       </div>
@@ -439,7 +448,7 @@
         <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
           <span style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted);">Purified brine</span>
           <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h11M7 1l3 3-3 3" stroke="#E8A83A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--amber);">Battery-ready CAM</span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--amber);">Battery-ready CAM (Cathode Active Material)</span>
         </div>
         <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.75rem; line-height:1.5;">1 system. On-site. Configurable to any cathode chemistry. Open market or captive supply.</p>
       </div>
@@ -451,7 +460,7 @@
 <!-- ══════════════════════════════════════════
      DEVELOPMENT TIMELINE
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section style="padding:5rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Development Timeline</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">D.C.M. from proof to commercial scale.</h2>
@@ -516,7 +525,7 @@
 <!-- ══════════════════════════════════════════
      IP
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section style="padding:5rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Intellectual Property</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">Protected at every step.</h2>
@@ -601,8 +610,9 @@
         <p class="footer-heading">Applications</p>
         <a href="./applications.html#brine" class="footer-link">Salar Brine</a>
         <a href="./applications.html#hard-rock" class="footer-link">Refinery Wastewater</a>
-        <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
-        <a href="./applications.html#produced-water" class="footer-link">Produced Water</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
+        <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
+        <a href="./app-produced-water.html" class="footer-link">Produced Water</a>
         <a href="./contact.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
       </div>
     </div>

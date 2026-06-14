@@ -16,7 +16,7 @@
       --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
       --amber: #E8A83A; --amber-dim: #C48C28; --amber-muted: rgba(232,168,58,0.12);
       --blue-muted: rgba(58,168,232,0.10);
-      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
@@ -96,6 +96,7 @@
       <div class="nav-dropdown">
         <a href="./technology.html" class="nav-link nav-active" data-page="technology" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
           <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
         </div>
@@ -145,6 +146,7 @@
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
       <a href="./contact.html" class="btn-primary">Model my feedstock</a>
       <a href="./mle.html" class="btn-outline">Explore M.L.E.</a>
+      <a href="./dcm.html" class="btn-outline" style="color:var(--amber); border-color:rgba(232,168,58,0.5);">Explore D.C.M.</a>
     </div>
     <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">A free simulation based on your actual feed data. No commitment.</p>
   </div>
@@ -245,7 +247,7 @@
           <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <div>
               <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--green); letter-spacing:0.06em;">M.L.E.</p>
-              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Purifies any aqueous Li source into battery-grade permeate.</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Purifies any aqueous Li source into high value permeate.</p>
             </div>
             <a href="./mle.html" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--green); text-decoration:none; white-space:nowrap; letter-spacing:0.04em;">Explore M.L.E. →</a>
           </div>
@@ -265,7 +267,6 @@
       </div>
 
     </div>
-    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1rem; line-height:1.6;">Conventional lithium supply chain. The greenLi platform extends operator reach from raw extraction through to cathode manufacture.</p>
   </div>
 </section>
 
@@ -308,15 +309,10 @@
             <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
             <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Continuous operation, no evaporation</span>
           </div>
-          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
-            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Pilot-ready Q4 2026</span>
-          </div>
         </div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
           <a href="./mle.html" class="btn-primary" style="font-size:0.875rem; padding:0.6875rem 1.5rem;">Deep Dive: M.L.E. →</a>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">TRL 4 → 6 · Q3 2026</span>
         </div>
       </div>
 
@@ -348,15 +344,10 @@
             <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
             <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Vertical integration without a refinery</span>
           </div>
-          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
-            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Pilot-ready Q2 2027</span>
-          </div>
         </div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
           <a href="./dcm.html" style="display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--amber); padding:0.6875rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease;" onmouseover="this.style.background='#C48C28'" onmouseout="this.style.background='var(--amber)'">Deep Dive: D.C.M. →</a>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim);">TRL 3 → 5 · Q3 2026</span>
         </div>
       </div>
 
@@ -460,7 +451,8 @@
         <p class="footer-heading">Applications</p>
         <a href="./applications.html#brine" class="footer-link">Salar Brine</a>
         <a href="./applications.html#hard-rock" class="footer-link">Refinery Wastewater</a>
-        <a href="./applications.html#geothermal" class="footer-link">Geothermal &amp; Oilfield</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
+        <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
         <a href="./applications.html#produced-water" class="footer-link">Produced Water</a>
         <a href="./contact.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
       </div>

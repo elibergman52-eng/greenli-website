@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request an Extraction Simulation — greenLi</title>
+  <meta name="description" content="Share your water chemistry. We model lithium recovery potential before any lab work or commitment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.875rem; display:block; }
+    .section-heading { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.15; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
+    .btn-outline { display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.04em; color:var(--green); border:1px solid rgba(58,232,122,0.4); padding:0.625rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease,border-color 0.2s ease; }
+    .btn-outline:hover { background:rgba(58,232,122,0.1); border-color:var(--green); }
+    .btn-outline:active { transform:scale(0.97); }
+
+    #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
+    #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-link:hover { color:var(--text); }
+    .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
+    #mobile-menu.open { display:flex; }
+    #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
+    #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
+
+    .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:100; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
+    .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.05em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; display:block; }
+    .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; }
+    .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
+
+    .routing-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:border-color 0.2s ease,box-shadow 0.2s ease; }
+    .routing-card:hover { border-color:var(--border-hi); box-shadow:0 4px 16px rgba(0,0,0,0.3),0 0 40px rgba(58,232,122,0.05); }
+    .routing-icon { width:48px; height:48px; background:rgba(58,232,122,0.08); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; border:1px solid rgba(58,232,122,0.15); }
+
+    .form-label { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.04em; color:var(--muted); display:block; margin-bottom:0.5rem; }
+    .form-input, .form-select, .form-textarea { width:100%; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.75rem 1rem; outline:none; transition:border-color 0.2s ease,box-shadow 0.2s ease; appearance:none; -webkit-appearance:none; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--dim); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(58,232,122,0.12); }
+    .form-input.error, .form-select.error, .form-textarea.error { border-color:var(--error); }
+    .form-group { margin-bottom:1.375rem; }
+
+    .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
+    .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
+    .footer-link:hover { color:var(--text); }
+
+    @media (max-width:768px) {
+      .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
+      .routing-grid { grid-template-columns:1fr !important; }
+      .footer-grid { grid-template-columns:1fr 1fr !important; }
+      #contact-form [style*="padding:3rem"] { padding: 1.5rem !important; }
+    }
+    @media (max-width:480px) { .footer-grid { grid-template-columns:1fr !important; } }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" style="display:flex;align-items:center;">Applications <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Groundwater</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link">About Us</a>
+      <a href="./insights.html" class="nav-link">Insights</a>
+      <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop nav-active" style="letter-spacing:0.04em;">Request a Simulation</a>
+    </div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="./index.html" class="nav-link">Home</a>
+    <a href="./technology.html" class="nav-link">Technology</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link">Applications</a>
+    <a href="./team.html" class="nav-link">About Us</a>
+    <a href="./insights.html" class="nav-link">Insights</a>
+    <a href="./contact-simulation.html" class="nav-link nav-active">Contact</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="min-height:52vh; display:flex; align-items:center; padding-top:120px; padding-bottom:72px;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 50%, rgba(58,232,122,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 85% 80%, rgba(58,232,122,0.04) 0%, transparent 50%),
+    var(--bg);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
+    <span class="eyebrow">Extraction Simulation</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); margin-bottom:1.5rem;">
+      See what your water is worth.
+    </h1>
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75;">
+      Share your water chemistry. We model lithium recovery, capacity, and revenue potential, specific to your feed. No lab work at this stage. No NDA. No commitment.
+    </p>
+  </div>
+</section>
+
+
+<!-- THREE TILES -->
+<section style="padding:5rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div class="routing-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+      <div class="routing-card">
+        <div class="routing-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3a8 8 0 100 16A8 8 0 0011 3z" stroke="#3AE87A" stroke-width="1.5"/><path d="M11 7v4l3 3" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Specific to your feed</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">We model recovery rates, output volume, and economics using your actual water chemistry data. Not industry averages.</p>
+      </div>
+      <div class="routing-card">
+        <div class="routing-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11l5 5L18 4" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Quick turnaround</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">A simulation, not a lab study. We turn it around quickly and send back a clear answer.</p>
+      </div>
+      <div class="routing-card">
+        <div class="routing-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 11h18M3 6h18M3 16h12" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">No commitment</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">No NDA, no contract, no obligation. If the numbers look promising, we discuss next steps. If they don't, we tell you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SIMULATION FORM -->
+<section id="contact-form" style="padding:8rem 1.5rem; background:var(--bg);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:700px; margin:0 auto;">
+      <span class="eyebrow" style="text-align:center; display:block;">Request your simulation.</span>
+      <h2 class="section-heading" style="text-align:center; margin-bottom:3rem;">Tell us about your feed.</h2>
+
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:3rem; box-shadow:0 4px 16px rgba(0,0,0,0.3),0 0 60px rgba(58,232,122,0.05);">
+
+        <form id="contact-form-el" novalidate>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="c-name">Full Name *</label>
+              <input type="text" id="c-name" name="name" required class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-company">Company *</label>
+              <input type="text" id="c-company" name="company" required class="form-input" placeholder="Your company">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-email">Email *</label>
+            <input type="email" id="c-email" name="email" required class="form-input" placeholder="you@company.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-asset">Asset category *</label>
+            <div style="position:relative;">
+              <select id="c-asset" name="asset_category" required class="form-select" style="padding-right:2.5rem;">
+                <option value="">Select asset category</option>
+                <option value="salar">Salar brine</option>
+                <option value="hard-rock">Hard rock refinery</option>
+                <option value="produced-water">Oil &amp; gas produced water</option>
+                <option value="geothermal">Geothermal</option>
+                <option value="groundwater">Groundwater</option>
+                <option value="other">Other</option>
+              </select>
+              <div style="position:absolute; right:1rem; top:50%; transform:translateY(-50%); pointer-events:none;">
+                <svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1l5 5 5-5" stroke="#8A9E8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="c-title">Job title (optional)</label>
+              <input type="text" id="c-title" name="job_title" class="form-input" placeholder="VP Operations">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-phone">Phone (optional)</label>
+              <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="+1 555 000 0000">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="c-volume">Feed volume (m³/day, if known)</label>
+              <input type="text" id="c-volume" name="feed_volume" class="form-input" placeholder="e.g. 500">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-conc">Lithium concentration (ppm, if known)</label>
+              <input type="text" id="c-conc" name="li_concentration" class="form-input" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-temp">Temperature (°C, if known)</label>
+            <input type="text" id="c-temp" name="temperature" class="form-input" placeholder="e.g. 60">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-upload">Water chemistry data, optional (PDF, CSV, XLSX)</label>
+            <input type="file" id="c-upload" name="chemistry_file" accept=".pdf,.csv,.xlsx,.xls" class="form-input" style="padding:0.5rem 1rem; cursor:pointer;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-message">Anything else we should know (optional)</label>
+            <textarea id="c-message" name="message" class="form-textarea" rows="4" style="resize:vertical; min-height:100px;" placeholder="Additional context about your asset or project..."></textarea>
+          </div>
+
+          <button type="submit" id="contact-submit" class="btn-primary" style="width:100%; height:52px; display:flex; align-items:center; justify-content:center; gap:0.75rem;">
+            <span id="contact-submit-text">Send simulation request</span>
+            <span id="contact-spinner" style="display:none; width:18px; height:18px; border:2px solid rgba(10,12,11,0.3); border-top-color:#0A0C0B; border-radius:50%; animation:spin 0.7s linear infinite;"></span>
+          </button>
+
+          <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-align:center; margin-top:1.25rem; line-height:1.6;">We typically respond within five business days. By submitting, you agree to be contacted about your inquiry. We do not share your data.</p>
+        </form>
+
+        <div id="contact-success" style="display:none; text-align:center; padding:3rem 1rem; animation:fadeIn 0.4s ease;">
+          <div style="width:56px; height:56px; background:rgba(58,232,122,0.1); border:2px solid rgba(58,232,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#3AE87A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Request received.</h3>
+          <p id="contact-success-msg" style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.7;">We will review your inputs and run an extraction simulation. Expect to hear back within five business days. If your feed is a clear fit, we will propose a discovery call to walk through the results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div>
+        <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">we extract lithium, efficiently, affordably, and greenLi</p>
+      </div>
+      <div>
+        <p class="footer-heading">Company</p>
+        <a href="./team.html" class="footer-link">About Us</a>
+        <a href="./insights.html" class="footer-link">Insights</a>
+        <a href="./contact.html" class="footer-link">Contact</a>
+      </div>
+      <div>
+        <p class="footer-heading">Technology</p>
+        <a href="./technology.html" class="footer-link">Overview</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
+        <a href="./technology.html#ip" class="footer-link">Intellectual Property</a>
+      </div>
+      <div>
+        <p class="footer-heading">Applications</p>
+        <a href="./app-brine.html" class="footer-link">Salar Brine</a>
+        <a href="./app-hard-rock.html" class="footer-link">Refinery Wastewater</a>
+        <a href="./app-produced-water.html" class="footer-link">Oil &amp; Gas</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
+        <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
+        <a href="./contact-simulation.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">&copy; 2026 greenLi. All rights reserved.</p>
+      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    const isOpen = m.classList.toggle('open');
+    document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
+  });
+
+  // Form submit
+  document.getElementById('contact-form-el').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let valid = true;
+    this.querySelectorAll('[required]').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      else { el.classList.remove('error'); }
+    });
+    if (!valid) { this.querySelector('.error')?.focus(); return; }
+
+    document.getElementById('contact-submit-text').style.display = 'none';
+    document.getElementById('contact-spinner').style.display = 'inline-block';
+    document.getElementById('contact-submit').disabled = true;
+
+    await new Promise(r => setTimeout(r, 1200));
+
+    const form = document.getElementById('contact-form-el');
+    form.style.opacity = '0';
+    form.style.transition = 'opacity 0.35s ease';
+    setTimeout(() => {
+      form.style.display = 'none';
+      const success = document.getElementById('contact-success');
+      success.style.display = 'block';
+    }, 380);
+  });
+
+  // Clear error on input
+  document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+</script>
+<script src="./greenli-animations.js" defer></script>
+</body>
+</html>

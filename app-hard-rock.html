@@ -14,7 +14,7 @@
       --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
       --border: #1F2820; --border-hi: #2A3828;
       --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
-      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
@@ -46,7 +46,7 @@
     #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
 
     .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
-    .nav-dropdown-menu { display:none; position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:100; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:100; }
     .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
     .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.05em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; display:block; }
     .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
@@ -88,6 +88,7 @@
       <div class="nav-dropdown">
         <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;">Technology <span class="nav-caret">▾</span></a>
         <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
           <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
         </div>
@@ -98,7 +99,8 @@
           <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
           <a href="./app-hard-rock.html" class="nav-dropdown-item active">Refinery Wastewater</a>
           <a href="./app-produced-water.html" class="nav-dropdown-item">Oil &amp; Gas</a>
-          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal &amp; Groundwater</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Groundwater</a>
         </div>
       </div>
       <a href="./team.html" class="nav-link">About Us</a>
@@ -119,6 +121,7 @@
     <a href="./app-hard-rock.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--green);">— Refinery Wastewater</a>
     <a href="./app-produced-water.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Oil &amp; Gas</a>
     <a href="./app-geothermal.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Geothermal</a>
+    <a href="./app-groundwater.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Groundwater</a>
     <a href="./team.html" class="nav-link">About Us</a>
     <a href="./insights.html" class="nav-link">Insights</a>
     <a href="./contact.html" class="nav-link">Contact</a>
@@ -143,7 +146,7 @@
       The 20 percent you are currently throwing away.
     </h1>
     <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75; margin-bottom:2.5rem;">
-      Only about 4% of the lithium present in spodumene refinery wastewater is currently captured. M.L.E. bolts on to existing wastewater handling and converts the rest from an environmental liability into a revenue line.
+      Hard rock spodumene refiners lose approximately 20% of all available lithium to process wastewater — and industry-wide, only about 4% of that wastewater lithium is currently captured. M.L.E. bolts on to existing wastewater handling and converts the remainder from an environmental liability into a revenue line.
     </p>
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
       <a href="./contact.html" class="btn-primary">Get my recovery estimate</a>
@@ -245,7 +248,7 @@
     <div class="content-grid" style="display:grid; grid-template-columns:5fr 4fr; gap:5rem; align-items:start;">
 
       <div>
-        <span class="eyebrow">What M.L.E. Does Here</span>
+        <span class="eyebrow">Measurable Outcomes</span>
         <h2 class="section-heading" style="margin-bottom:2.5rem;">Turn a disposal cost into a margin line.</h2>
 
         <div>
@@ -342,7 +345,8 @@
         <a href="./app-brine.html" class="footer-link">Salar Brine</a>
         <a href="./app-hard-rock.html" class="footer-link" style="color:var(--green);">Refinery Wastewater</a>
         <a href="./app-produced-water.html" class="footer-link">Oil &amp; Gas</a>
-        <a href="./app-geothermal.html" class="footer-link">Geothermal &amp; Groundwater</a>
+        <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
+        <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
         <a href="./contact.html" class="footer-link" style="color:var(--green); margin-top:0.5rem;">Request a Simulation</a>
       </div>
     </div>
