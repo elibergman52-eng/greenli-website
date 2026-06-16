@@ -81,6 +81,9 @@
     .compare-col-mle { background:rgba(58,232,122,0.05); border-left:2px solid rgba(58,232,122,0.25); border-right:2px solid rgba(58,232,122,0.25); }
     .compare-col-mle-top { border-top:2px solid rgba(58,232,122,0.25); border-radius:6px 6px 0 0; }
     .compare-col-mle-bot { border-bottom:2px solid rgba(58,232,122,0.25); border-radius:0 0 6px 6px; }
+    .compare-table td.val { font-size: 0.85rem; line-height: 1.35; white-space: normal; }
+    .compare-table td.val-con { color: var(--dim); font-weight: 400; }
+    .compare-table td.val-hi  { color: var(--green); font-weight: 600; }
     .check-yes { display:inline-flex; align-items:center; justify-content:center; }
     .check-no { display:inline-flex; align-items:center; justify-content:center; }
     .check-partial { display:inline-flex; align-items:center; justify-content:center; }
@@ -111,6 +114,35 @@
     body::after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.028;
       background-image:url("data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E"); background-size:220px 220px; }
     section[style*="background:var(--bg)"], section[style*="background: var(--bg)"] { background:transparent !important; }
+  
+    /* ── Ambient depth pass: hero blobs / glass photos / patterns / raised ── */
+    @keyframes blobPulse {
+      0%,100% { transform: scale(1) translate(0,0); opacity:0.5; }
+      50%     { transform: scale(1.18) translate(-14px,12px); opacity:0.85; }
+    }
+    .hero-blobs { position:absolute; top:-120px; right:-100px; width:540px; height:540px; z-index:2; pointer-events:none;
+      background: radial-gradient(circle at 55% 45%, rgba(127,255,184,0.16) 0%, transparent 62%); }
+    .hero-blobs::before, .hero-blobs::after { content:''; position:absolute; border-radius:50%; filter:blur(72px); will-change:transform,opacity; }
+    .hero-blobs::before { top:24px; right:110px; width:300px; height:300px; background:radial-gradient(circle, rgba(58,232,122,0.55) 0%, transparent 70%); animation:blobPulse 9s ease-in-out infinite; }
+    .hero-blobs::after  { top:150px; right:-30px; width:250px; height:250px; background:radial-gradient(circle, rgba(232,168,58,0.42) 0%, transparent 70%); animation:blobPulse 11.5s ease-in-out infinite 1.6s; }
+
+    .glass-photo { position:relative; background:rgba(255,255,255,0.045); backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%);
+      border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:10px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 24px rgba(0,0,0,0.45), 0 24px 60px rgba(0,0,0,0.35), 0 0 50px rgba(58,232,122,0.06);
+      transition:transform 0.3s ease, box-shadow 0.3s ease; }
+    .glass-photo img { border-radius:8px; display:block; }
+
+    .bg-dots, .bg-grid { position:relative; }
+    .bg-dots > *, .bg-grid > * { position:relative; z-index:1; }
+    .bg-dots::before, .bg-grid::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%);
+              mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%); }
+    .bg-dots::before { background-image:radial-gradient(rgba(240,244,241,0.05) 1px, transparent 1.6px); background-size:22px 22px; }
+    .bg-grid::before { background-image:linear-gradient(rgba(240,244,241,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(240,244,241,0.025) 1px, transparent 1px); background-size:44px 44px; }
+
+    .raised { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(58,232,122,0.05) !important; }
+    .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
+    @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
 </head>
 <body>
@@ -218,7 +250,7 @@
 <!-- ══════════════════════════════════════════
      PERFORMANCE STATS
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section class="bg-dots" style="padding:7rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Performance</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">Compared to conventional salar brine processing.</h2>
@@ -254,7 +286,7 @@
 <!-- ══════════════════════════════════════════
      SOURCE AGNOSTIC
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section class="bg-grid" style="padding:7rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
     <div>
       <span class="eyebrow">Feed Flexibility</span>
@@ -309,7 +341,7 @@
 <!-- ══════════════════════════════════════════
      PROCESS FLOW — VISUAL PLACEHOLDER
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section class="bg-dots" style="padding:7rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">How It Works</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">A continuous separation platform.</h2>
@@ -321,7 +353,7 @@
     </p>
 
     <!-- MLE Flow Diagram — reverted to image per review -->
-    <img src="./mle-flow.png" alt="M.L.E. process flow diagram" style="width:100%; display:block; border-radius:12px;">
+    <img src="./mle-flow.png" class="raised" alt="M.L.E. process flow diagram" style="width:100%; display:block; border-radius:12px;">
   </div>
 </section>
 
@@ -329,7 +361,7 @@
 <!-- ══════════════════════════════════════════
      WHY IT MATTERS
 ══════════════════════════════════════════ -->
-<section style="padding:5rem 1.5rem; background:var(--bg);">
+<section class="bg-grid" style="padding:5rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">The Throughput Advantage</span>
     <h2 class="section-heading" style="margin-bottom:1.5rem;">Throughput-bound, not concentration-bound.</h2>
@@ -361,7 +393,7 @@
 <!-- ══════════════════════════════════════════
      DLE COMPARISON TABLE
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
+<section class="bg-dots" style="padding:7rem 1.5rem; background:var(--bg);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Competitive Comparison</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">M.L.E. vs. other D.L.E. methods.</h2>
@@ -369,79 +401,56 @@
       Most D.L.E. methods rely on ion-exchange resins, which run in batch cycles and depend on chemical regenerants. M.L.E. replaces that approach with a continuous membrane platform that outperforms across the criteria that matter for commercial deployment.
     </p>
 
-    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.3);">
+    <div class="raised" style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.3);">
       <div style="overflow-x:auto;">
-      <table class="compare-table" style="min-width:480px;">
+      <table class="compare-table" style="min-width:520px;">
         <thead>
           <tr style="background:var(--surface-3); border-bottom:1px solid var(--border-hi);">
-            <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:50%;">Capability</th>
-            <th style="color:var(--dim); padding:1.25rem 1rem; width:25%;">Ion Exchange<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--muted);">(organic adsorption)</span></th>
-            <th class="compare-col-mle compare-col-mle-top" style="color:var(--green); padding:1.25rem 1rem; width:25%;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--green); opacity:0.8;">(greenLi)</span></th>
+            <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:34%;">Criterion</th>
+            <th style="color:var(--dim); padding:1.25rem 1rem; width:33%;">Ion Exchange<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--muted);">(conventional D.L.E.)</span></th>
+            <th class="compare-col-mle compare-col-mle-top" style="color:var(--green); padding:1.25rem 1rem; width:33%;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--green); opacity:0.8;">(greenLi)</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Continuous operation, no batch cycles</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Lithium recovery rate</td>
+            <td class="val val-con">60–85% (varies by method)</td>
+            <td class="val val-hi compare-col-mle">&gt;80% demonstrated; cascadable to &gt;90%</td>
           </tr>
           <tr>
-            <td>No chemical regenerants required</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Processing mode &amp; speed</td>
+            <td class="val val-con">Batch cycles; days to weeks</td>
+            <td class="val val-hi compare-col-mle">Continuous; hours to first product</td>
           </tr>
           <tr>
-            <td>Works on ultra-dilute sources, e.g. seawater</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Minimum feed concentration</td>
+            <td class="val val-con">&gt;100–200 ppm</td>
+            <td class="val val-hi compare-col-mle">Demonstrated at 3.5 mg/L (&lt;10 ppm)</td>
           </tr>
           <tr>
-            <td>Low energy footprint</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Li selectivity vs Na / K / Ca / Mg</td>
+            <td class="val val-con">Moderate; pretreatment often needed</td>
+            <td class="val val-hi compare-col-mle">18–28× in a single pass</td>
           </tr>
           <tr>
-            <td>No acid / base waste streams</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Chemical regenerants</td>
+            <td class="val val-con">Acidic eluents required for regeneration</td>
+            <td class="val val-hi compare-col-mle">None; ~95% lower reagent use</td>
           </tr>
           <tr>
-            <td>Direct integration with cathode production</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Water consumption</td>
+            <td class="val val-con">High (regeneration flush water)</td>
+            <td class="val val-hi compare-col-mle">Low (RO-style permeate/concentrate split)</td>
           </tr>
           <tr>
-            <td>COTS scale-up path (proven manufacturing)</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td class="compare-col-mle compare-col-mle-bot" style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
+            <td>Operating cost per m³ feed</td>
+            <td class="val val-con">+10–30% (complex regeneration)</td>
+            <td class="val val-hi compare-col-mle">−39% vs conventional (demonstrated)</td>
+          </tr>
+          <tr>
+            <td>Scale-up path</td>
+            <td class="val val-con">Custom columns; 6–18 months</td>
+            <td class="val val-hi compare-col-mle compare-col-mle-bot">COTS RO skids; modular, 2–6 months</td>
           </tr>
         </tbody>
       </table>
@@ -455,7 +464,7 @@
 <!-- ══════════════════════════════════════════
      DEVELOPMENT TIMELINE
 ══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
+<section class="bg-grid" style="padding:7rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Development Timeline</span>
     <h2 class="section-heading" style="margin-bottom:3.5rem;">M.L.E. from lab to commercial scale.</h2>
