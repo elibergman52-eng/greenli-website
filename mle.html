@@ -102,6 +102,15 @@
       .footer-grid { grid-template-columns:1fr !important; }
       .timeline-grid { grid-template-columns:1fr !important; }
     }
+  
+    /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
+    body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(ellipse 72% 55% at 12% 6%, rgba(58,232,122,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 62% 50% at 88% 94%, rgba(232,168,58,0.05) 0%, transparent 55%); }
+    body::after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.028;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E"); background-size:220px 220px; }
+    section[style*="background:var(--bg)"], section[style*="background: var(--bg)"] { background:transparent !important; }
   </style>
 </head>
 <body>
@@ -135,7 +144,7 @@
       </div>
       <a href="./team.html" class="nav-link" data-page="team">About Us</a>
       <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
-      <a href="./contact.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
+      <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
@@ -180,10 +189,10 @@
           Separate lithium from competing ions at any concentration, from 0.17 ppm seawater to 30,000 ppm refinery brine. Continuous operation. No evaporation. No batch chemistry.
         </p>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-          <a href="./contact.html" class="btn-primary">Model my feedstock</a>
+          <a href="./contact-simulation.html" class="btn-primary">Request a Simulation</a>
           <a href="./technology.html" class="btn-outline">← Back to Overview</a>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Tell us about your feedstock. We respond within one business day.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">We respond within one business day. No NDA, no commitment.</p>
       </div>
 
       <!-- Quick stats column -->
@@ -311,153 +320,8 @@
       The membrane is developed at Tel Aviv University and manufactures through established desalination supply chains, which means scale-up does not depend on a new factory. Separate lithium from competing ions at any concentration, from 0.17 ppm seawater to 30,000 ppm refinery brine.
     </p>
 
-    <!-- MLE Flow Diagram — inline SVG -->
-    <div style="background:#fff; border-radius:12px; overflow:hidden; padding:1.5rem 1rem;">
-    <svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;" aria-label="M.L.E. process flow diagram">
-      <defs>
-        <marker id="mle-arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#888"/></marker>
-        <marker id="mle-arrow-blue" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#7BB8D8"/></marker>
-        <marker id="mle-arrow-blue-down" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#7BB8D8"/></marker>
-      </defs>
-      <!-- White background -->
-      <rect width="1400" height="700" fill="white"/>
-
-      <!-- ═══ SALAR EXTRACTION BOX ═══ -->
-      <rect x="215" y="18" width="885" height="330" rx="16" fill="white" stroke="#C8C8C8" stroke-width="2.5"/>
-      <text x="658" y="58" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#1a1a1a" text-anchor="middle">Salar Extraction</text>
-      <!-- purification cycles curved label + arc -->
-      <path d="M480,46 Q575,14 668,46" stroke="#A0A0A0" stroke-width="1.5" fill="none" marker-end="url(#mle-arrow-gray)"/>
-      <text x="575" y="28" font-family="Arial,sans-serif" font-size="12" fill="#777" text-anchor="middle">Purification cycles</text>
-
-      <!-- ─── Step 1: Solar Evaporation ─── x≈270 -->
-      <!-- salt pan ground -->
-      <rect x="248" y="220" width="108" height="12" rx="2" fill="#2a2a2a"/>
-      <!-- salt crystals -->
-      <ellipse cx="268" cy="218" rx="9" ry="5" fill="#2a2a2a"/>
-      <ellipse cx="294" cy="215" rx="12" ry="6" fill="#2a2a2a"/>
-      <ellipse cx="324" cy="217" rx="10" ry="5" fill="#2a2a2a"/>
-      <ellipse cx="348" cy="218" rx="7" ry="4" fill="#2a2a2a"/>
-      <!-- evaporation arrows up -->
-      <line x1="270" y1="212" x2="270" y2="158" stroke="#2a2a2a" stroke-width="2.5"/>
-      <polygon points="264,164 270,148 276,164" fill="#2a2a2a"/>
-      <line x1="302" y1="208" x2="302" y2="152" stroke="#2a2a2a" stroke-width="2.5"/>
-      <polygon points="296,158 302,142 308,158" fill="#2a2a2a"/>
-      <line x1="334" y1="212" x2="334" y2="158" stroke="#2a2a2a" stroke-width="2.5"/>
-      <polygon points="328,164 334,148 340,164" fill="#2a2a2a"/>
-      <text x="302" y="266" font-family="Arial,sans-serif" font-size="13" fill="#444" text-anchor="middle">Solar</text>
-      <text x="302" y="281" font-family="Arial,sans-serif" font-size="13" fill="#444" text-anchor="middle">evaporation</text>
-
-      <!-- arrow 1→2 -->
-      <line x1="365" y1="188" x2="408" y2="188" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-
-      <!-- ─── Step 2: Semi-processed Brine ─── x≈415 -->
-      <path d="M415,165 Q427,153 439,165 Q451,177 463,165 Q475,153 487,165 Q499,177 511,165" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <path d="M415,185 Q427,173 439,185 Q451,197 463,185 Q475,173 487,185 Q499,197 511,185" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <path d="M415,205 Q427,193 439,205 Q451,217 463,205 Q475,193 487,205 Q499,217 511,205" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <!-- impurity dots -->
-      <circle cx="430" cy="170" r="4.5" fill="#555"/>
-      <circle cx="468" cy="188" r="4" fill="#555"/>
-      <circle cx="502" cy="172" r="3.5" fill="#555"/>
-      <text x="463" y="255" font-family="Arial,sans-serif" font-size="12.5" fill="#444" text-anchor="middle">Semi-processed</text>
-      <text x="463" y="270" font-family="Arial,sans-serif" font-size="12.5" fill="#444" text-anchor="middle">Brine</text>
-
-      <!-- arrow 2→3 -->
-      <line x1="516" y1="188" x2="558" y2="188" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-
-      <!-- ─── Step 3: Purification cylinder ─── x≈565 -->
-      <ellipse cx="610" cy="148" rx="40" ry="11" fill="#ddd" stroke="#888" stroke-width="1.5"/>
-      <rect x="570" y="148" width="80" height="100" fill="#e8e8e8" stroke="#888" stroke-width="1.5"/>
-      <ellipse cx="610" cy="248" rx="40" ry="11" fill="#d0d0d0" stroke="#888" stroke-width="1.5"/>
-      <!-- bands -->
-      <line x1="570" y1="175" x2="650" y2="175" stroke="#aaa" stroke-width="1.5"/>
-      <line x1="570" y1="200" x2="650" y2="200" stroke="#aaa" stroke-width="1.5"/>
-      <line x1="570" y1="225" x2="650" y2="225" stroke="#aaa" stroke-width="1.5"/>
-      <!-- side pipes -->
-      <rect x="554" y="168" width="16" height="10" rx="2" fill="#aaa"/>
-      <rect x="650" y="168" width="16" height="10" rx="2" fill="#aaa"/>
-
-      <!-- arrow 3→4 -->
-      <line x1="668" y1="188" x2="710" y2="188" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-
-      <!-- ─── Step 4: Purified Brine ─── x≈718 -->
-      <path d="M718,165 Q730,153 742,165 Q754,177 766,165 Q778,153 790,165 Q802,177 814,165" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <path d="M718,185 Q730,173 742,185 Q754,197 766,185 Q778,173 790,185 Q802,197 814,185" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <path d="M718,205 Q730,193 742,205 Q754,217 766,205 Q778,193 790,205 Q802,217 814,205" stroke="#2a2a2a" stroke-width="2.8" fill="none"/>
-      <text x="766" y="255" font-family="Arial,sans-serif" font-size="13" fill="#444" text-anchor="middle">Purified</text>
-      <text x="766" y="270" font-family="Arial,sans-serif" font-size="13" fill="#444" text-anchor="middle">Brine</text>
-
-      <!-- arrow 4→5 -->
-      <line x1="820" y1="188" x2="862" y2="188" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-
-      <!-- ─── Step 5: Product Precipitation cylinder ─── x≈870 -->
-      <ellipse cx="916" cy="148" rx="40" ry="11" fill="#ddd" stroke="#888" stroke-width="1.5"/>
-      <rect x="876" y="148" width="80" height="100" fill="#e8e8e8" stroke="#888" stroke-width="1.5"/>
-      <ellipse cx="916" cy="248" rx="40" ry="11" fill="#d0d0d0" stroke="#888" stroke-width="1.5"/>
-      <line x1="876" y1="175" x2="956" y2="175" stroke="#aaa" stroke-width="1.5"/>
-      <line x1="876" y1="200" x2="956" y2="200" stroke="#aaa" stroke-width="1.5"/>
-      <line x1="876" y1="225" x2="956" y2="225" stroke="#aaa" stroke-width="1.5"/>
-      <rect x="860" y="168" width="16" height="10" rx="2" fill="#aaa"/>
-      <rect x="956" y="168" width="16" height="10" rx="2" fill="#aaa"/>
-      <text x="916" y="285" font-family="Arial,sans-serif" font-size="12.5" fill="#444" text-anchor="middle">Product</text>
-      <text x="916" y="300" font-family="Arial,sans-serif" font-size="12.5" fill="#444" text-anchor="middle">Precipitation</text>
-
-      <!-- ═══ RAW BRINE (left of Salar box) ═══ -->
-      <!-- salar cliff icon -->
-      <path d="M55,180 L55,148 L68,118 L80,138 L95,98 L112,122 L126,88 L142,115 L156,100 L168,128 L174,110 L180,145 L180,180 Z" fill="#1a1a1a"/>
-      <!-- water at base -->
-      <path d="M38,195 Q62,184 86,195 Q110,206 134,195 Q158,184 182,195" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
-      <path d="M38,210 Q62,199 86,210 Q110,221 134,210 Q158,199 182,210" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
-      <text x="110" y="248" font-family="Arial,sans-serif" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Raw Brine</text>
-      <!-- arrow from Raw Brine into Salar box -->
-      <line x1="185" y1="188" x2="213" y2="188" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-
-      <!-- ═══ Li₂CO₃ PILE (right of Salar box) ═══ -->
-      <!-- arrow from Salar box to pile -->
-      <line x1="1100" y1="188" x2="1112" y2="188" stroke="#888" stroke-width="2.5"/>
-      <line x1="1112" y1="188" x2="1112" y2="235" stroke="#888" stroke-width="2.5"/>
-      <line x1="1112" y1="235" x2="1138" y2="235" stroke="#888" stroke-width="2.5" marker-end="url(#mle-arrow-gray)"/>
-      <!-- pile shadow -->
-      <ellipse cx="1255" cy="320" rx="85" ry="18" fill="#d0d0d0"/>
-      <!-- pile body -->
-      <path d="M1172,318 Q1185,270 1210,238 Q1232,210 1258,198 Q1284,210 1306,238 Q1330,270 1342,318 Z" fill="#2a2a2a"/>
-      <text x="1258" y="268" font-family="Georgia,serif" font-size="19" fill="white" text-anchor="middle" font-weight="700">Li₂CO₃</text>
-
-      <!-- ═══ BLUE MLE BAND (from far left) ═══ -->
-      <!-- wide blue band entering from left -->
-      <rect x="0" y="435" width="215" height="130" fill="#AECFE0"/>
-      <!-- rightward arrowhead into MLE box -->
-      <polygon points="215,420 255,500 215,580" fill="#AECFE0"/>
-
-      <!-- ═══ MLE BOX ═══ -->
-      <rect x="255" y="428" width="340" height="150" rx="14" fill="#D6EAF6" stroke="#5A9CBF" stroke-width="2.5"/>
-      <!-- M.L.E. label -->
-      <text x="345" y="520" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#1a2c3c" letter-spacing="2">M.L.E.</text>
-      <!-- greenLi battery logo (simplified) -->
-      <g transform="translate(468,438)">
-        <rect x="3" y="13" width="32" height="50" rx="5" fill="#8FBDCE" stroke="#1a2c3c" stroke-width="1.8"/>
-        <rect x="11" y="6" width="16" height="7" rx="2" fill="#1a2c3c"/>
-        <path d="M19,55 Q13,43 19,31 Q25,43 19,55" fill="#1a2c3c"/>
-        <text x="19" y="29" font-family="Georgia,serif" font-size="11" fill="#1a2c3c" text-anchor="middle" font-weight="700">Li</text>
-        <text x="19" y="12" font-family="Arial,sans-serif" font-size="6.5" fill="#1a2c3c" text-anchor="middle" font-weight="700">green</text>
-      </g>
-
-      <!-- ═══ BLUE ARROW: MLE box → Purified Brine point in Salar box ═══ -->
-      <!-- horizontal right from MLE box right edge, then up into salar box -->
-      <path d="M595,503 L1050,503 L1050,352" stroke="#AECFE0" stroke-width="28" fill="none" stroke-linejoin="miter" stroke-linecap="butt"/>
-      <polygon points="1037,357 1050,335 1063,357" fill="#AECFE0"/>
-
-      <!-- ═══ BLUE ARROW: MLE box → Reinjection (downward) ═══ -->
-      <line x1="425" y1="578" x2="425" y2="628" stroke="#AECFE0" stroke-width="22" stroke-linecap="round"/>
-      <polygon points="414,624 425,645 436,624" fill="#AECFE0"/>
-
-      <!-- Reinjection label and benefits -->
-      <text x="570" y="600" font-family="Arial,sans-serif" font-size="15" fill="#1a1a1a" font-weight="700">Reinjection into aquifer</text>
-      <line x1="570" y1="606" x2="1040" y2="606" stroke="#d0d0d0" stroke-width="1"/>
-      <text x="570" y="628" font-family="Arial,sans-serif" font-size="13.5" fill="#555">&#8226; Protects ecosystem and surrounding geology</text>
-      <text x="570" y="650" font-family="Arial,sans-serif" font-size="13.5" fill="#555">&#8226; Increases long-term extraction capacity</text>
-      <text x="570" y="672" font-family="Arial,sans-serif" font-size="13.5" fill="#555">&#8226; Enables brine fracturing for low-permeability formations</text>
-    </svg>
-    </div>
+    <!-- MLE Flow Diagram — reverted to image per review -->
+    <img src="./mle-flow.png" alt="M.L.E. process flow diagram" style="width:100%; display:block; border-radius:12px;">
   </div>
 </section>
 
@@ -486,100 +350,10 @@
       </div>
       <div style="display:flex; gap:1rem; align-items:flex-start;">
         <div style="width:6px; height:6px; background:var(--green); border-radius:50%; flex-shrink:0; margin-top:0.5rem;"></div>
-        <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;">High-volume assets gain capacity. The same brine resource yields more lithium per year because there is no 18-month evaporation cycle in the way.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75;">High-volume assets gain capacity. By recovering over 80 percent of available lithium, versus the 25 to 50 percent typical of evaporation, and running continuously rather than through an 18-month cycle, the same brine resource yields meaningfully more lithium per year.</p>
       </div>
     </div>
 
-    <!-- Operating window chart -->
-    <div style="margin-top:3rem; overflow-x:auto;">
-      <svg viewBox="0 0 720 368" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;border-radius:10px;overflow:hidden;">
-        <rect width="720" height="368" fill="#141814" rx="10"/>
-        <!-- chart plot area -->
-        <rect x="70" y="30" width="620" height="280" rx="4" fill="#0A0C0B"/>
-        <!-- horizontal grid lines -->
-        <line x1="70" y1="248" x2="690" y2="248" stroke="#141814" stroke-width="1"/>
-        <line x1="70" y1="186" x2="690" y2="186" stroke="#141814" stroke-width="1"/>
-        <line x1="70" y1="123" x2="690" y2="123" stroke="#141814" stroke-width="1"/>
-        <line x1="70" y1="61"  x2="690" y2="61"  stroke="#141814" stroke-width="1"/>
-        <!-- vertical grid lines -->
-        <line x1="155" y1="30" x2="155" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="280" y1="30" x2="280" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="400" y1="30" x2="400" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="510" y1="30" x2="510" y2="310" stroke="#141814" stroke-width="1" stroke-dasharray="3 4"/>
-        <!-- MLE operating window (0.17–30,000+ ppm, 0–80°C) -->
-        <rect x="70" y="61" width="620" height="249" rx="4" fill="rgba(58,232,122,0.07)" stroke="rgba(58,232,122,0.3)" stroke-width="1.5"/>
-        <!-- Conventional DLE window (200–5,000 ppm, 0–40°C) -->
-        <rect x="280" y="186" width="230" height="124" rx="4" fill="rgba(232,74,58,0.1)" stroke="rgba(232,74,58,0.4)" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <!-- Y-axis -->
-        <line x1="70" y1="30" x2="70" y2="310" stroke="#2A3828" stroke-width="1.5"/>
-        <!-- X-axis -->
-        <line x1="70" y1="310" x2="690" y2="310" stroke="#2A3828" stroke-width="1.5"/>
-        <!-- Y-axis ticks -->
-        <line x1="64" y1="310" x2="70" y2="310" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="64" y1="248" x2="70" y2="248" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="64" y1="186" x2="70" y2="186" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="64" y1="123" x2="70" y2="123" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="64" y1="61"  x2="70" y2="61"  stroke="#2A3828" stroke-width="1.5"/>
-        <!-- Y-axis labels -->
-        <text x="57" y="314" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">0°C</text>
-        <text x="57" y="252" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">20°C</text>
-        <text x="57" y="190" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">40°C</text>
-        <text x="57" y="127" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">60°C</text>
-        <text x="57" y="65"  text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#4A5E50">80°C</text>
-        <!-- X-axis ticks -->
-        <line x1="70"  y1="310" x2="70"  y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="155" y1="310" x2="155" y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="280" y1="310" x2="280" y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="400" y1="310" x2="400" y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="510" y1="310" x2="510" y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="690" y1="310" x2="690" y2="316" stroke="#2A3828" stroke-width="1.5"/>
-        <!-- X-axis labels -->
-        <text x="70"  y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">0.17</text>
-        <text x="155" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">20</text>
-        <text x="280" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">200</text>
-        <text x="400" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">1,000</text>
-        <text x="510" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">5,000</text>
-        <text x="690" y="330" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A5E50">30,000+</text>
-        <!-- Axis labels -->
-        <text x="380" y="350" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.06em" fill="#4A5E50">Li CONCENTRATION (ppm), logarithmic scale</text>
-        <text x="16" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.06em" fill="#4A5E50" transform="rotate(-90, 16, 170)">TEMPERATURE (°C)</text>
-        <!-- MLE window label -->
-        <text x="86" y="80" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.09em" fill="#3AE87A">M.L.E. OPERATING WINDOW</text>
-        <text x="86" y="95" font-family="Inter, sans-serif" font-size="9.5" fill="rgba(58,232,122,0.55)">0.17 ppm → 30,000+ ppm · Ambient → 80°C</text>
-        <!-- Conventional DLE window label -->
-        <text x="292" y="208" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.07em" fill="rgba(232,74,58,0.9)">CONVENTIONAL DLE</text>
-        <text x="292" y="223" font-family="Inter, sans-serif" font-size="9" fill="rgba(232,74,58,0.65)">200–5,000 ppm · 0–40°C</text>
-      </svg>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     SPECIFICATIONS
-══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--surface);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Specifications</span>
-    <h2 class="section-heading" style="margin-bottom:3rem;">Key operating parameters.</h2>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; max-width:1000px;">
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Operation</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Continuous, 24/7</p>
-      </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Temperature</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Ambient to 80°C</p>
-      </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Concentration</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">0.17 to 30,000+ ppm</p>
-      </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Form Factor</p>
-        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text);">Modular skid</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -592,19 +366,17 @@
     <span class="eyebrow">Competitive Comparison</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">M.L.E. vs. other D.L.E. methods.</h2>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:3.5rem;">
-      D.L.E. technologies fall into three categories: organic adsorption (ion exchange resins), inorganic adsorption (lithium-ion sieves), and membrane-assisted processes (membrane distillation or electrodialysis). M.L.E. outperforms all three across the criteria that matter for commercial deployment.
+      Most D.L.E. methods rely on ion-exchange resins, which run in batch cycles and depend on chemical regenerants. M.L.E. replaces that approach with a continuous membrane platform that outperforms across the criteria that matter for commercial deployment.
     </p>
 
     <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.3);">
       <div style="overflow-x:auto;">
-      <table class="compare-table" style="min-width:680px;">
+      <table class="compare-table" style="min-width:480px;">
         <thead>
           <tr style="background:var(--surface-3); border-bottom:1px solid var(--border-hi);">
-            <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:38%;">Capability</th>
-            <th style="color:var(--dim); padding:1.25rem 1rem; width:15.5%;">Ion Exchange<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; color:var(--dim); opacity:0.7;">(organic adsorption)</span></th>
-            <th style="color:var(--dim); padding:1.25rem 1rem; width:15.5%;">Li-ion Sieve<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; color:var(--dim); opacity:0.7;">(inorganic adsorption)</span></th>
-            <th style="color:var(--dim); padding:1.25rem 1rem; width:15.5%;">MD / ED<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; color:var(--dim); opacity:0.7;">(membrane-assisted)</span></th>
-            <th class="compare-col-mle compare-col-mle-top" style="color:var(--green); padding:1.25rem 1rem; width:15.5%;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.6875rem; opacity:0.7;">(greenLi)</span></th>
+            <th style="text-align:left; color:var(--dim); padding:1.25rem 1.5rem; width:50%;">Capability</th>
+            <th style="color:var(--dim); padding:1.25rem 1rem; width:25%;">Ion Exchange<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--muted);">(organic adsorption)</span></th>
+            <th class="compare-col-mle compare-col-mle-top" style="color:var(--green); padding:1.25rem 1rem; width:25%;">M.L.E.<br><span style="font-weight:400; text-transform:none; letter-spacing:0; font-size:0.75rem; color:var(--green); opacity:0.8;">(greenLi)</span></th>
           </tr>
         </thead>
         <tbody>
@@ -612,12 +384,6 @@
             <td>Continuous operation, no batch cycles</td>
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
             <td class="compare-col-mle" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -628,27 +394,14 @@
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
             </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
             <td class="compare-col-mle" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
           </tr>
           <tr>
-            <td>Works on ultra-dilute sources (seawater)</td>
+            <td>Works on ultra-dilute sources, e.g. seawater</td>
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <!-- Partial -->
-              <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); font-weight:500;">Partial</span>
-            </td>
-            <td style="text-align:center;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); font-weight:500;">Partial</span>
             </td>
             <td class="compare-col-mle" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -659,12 +412,6 @@
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
             <td class="compare-col-mle" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
@@ -674,24 +421,12 @@
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
             </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.1)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </td>
             <td class="compare-col-mle" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
           </tr>
           <tr>
             <td>Direct integration with cathode production</td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
             </td>
@@ -704,12 +439,6 @@
             <td style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
             </td>
-            <td style="text-align:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(232,74,58,0.1)"/><path d="M7 7l6 6M13 7l-6 6" stroke="#E84A3A" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </td>
-            <td style="text-align:center;">
-              <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim); font-weight:500;">Partial</span>
-            </td>
             <td class="compare-col-mle compare-col-mle-bot" style="text-align:center;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(58,232,122,0.15)"/><path d="M6 10l3 3 5-5" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </td>
@@ -718,7 +447,7 @@
       </table>
       </div>
     </div>
-    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1rem; line-height:1.6;">MD = Membrane Distillation. ED = Electrodialysis. COTS = Commercial-Off-The-Shelf.</p>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1rem; line-height:1.6;">COTS = Commercial-Off-The-Shelf.</p>
   </div>
 </section>
 
@@ -779,31 +508,6 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     IP
-══════════════════════════════════════════ -->
-<section style="padding:7rem 1.5rem; background:var(--bg);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow">Intellectual Property</span>
-    <h2 class="section-heading" style="margin-bottom:3.5rem;">Protected at the core.</h2>
-
-    <div style="max-width:600px;">
-      <div style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.2); border-radius:8px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.25),0 0 40px rgba(58,232,122,0.06);">
-        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-          <div style="width:44px; height:44px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="10" rx="2" stroke="#3AE87A" stroke-width="1.5"/><path d="M7 9V6a3 3 0 116 0v3" stroke="#3AE87A" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em;">Li-selective Membrane</h3>
-            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--green); margin-top:0.2rem; font-weight:500; letter-spacing:0.04em; text-transform:uppercase;">Patent Pending · Tel Aviv University</p>
-          </div>
-        </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">The only spiral-wound, lithium-selective separation product on the market outside of LG. Protected and ready for scale-up via established desalination manufacturing supply chains. Developed in partnership with Prof. Hadas Mamane's laboratory at Tel Aviv University.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ══════════════════════════════════════════
      CTA
@@ -819,10 +523,10 @@
       Share your water chemistry. We model expected recovery and capacity before any lab work.
     </p>
     <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
-      <a href="./contact.html" class="btn-primary">Model my feedstock</a>
+      <a href="./contact-simulation.html" class="btn-primary">Request a Simulation</a>
       <a href="./dcm.html" class="btn-outline">Explore D.C.M. →</a>
     </div>
-    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem;">Tell us about your feed. We send back exactly what's recoverable.</p>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem;">We respond within one business day. No NDA, no commitment.</p>
   </div>
 </section>
 
@@ -856,7 +560,6 @@
         <a href="./technology.html" class="footer-link">Overview</a>
         <a href="./mle.html" class="footer-link" style="color:var(--green);">M.L.E.</a>
         <a href="./dcm.html" class="footer-link">D.C.M.</a>
-        <a href="./technology.html#ip" class="footer-link">Intellectual Property</a>
       </div>
       <div>
         <p class="footer-heading">Applications</p>
@@ -865,7 +568,7 @@
         <a href="./app-geothermal.html" class="footer-link">Geothermal</a>
         <a href="./app-groundwater.html" class="footer-link">Groundwater</a>
         <a href="./app-produced-water.html" class="footer-link">Produced Water</a>
-        <a href="./contact.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
+        <a href="./contact-simulation.html" class="footer-link" style="color:var(--green);">Request a Simulation</a>
       </div>
     </div>
     <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
