@@ -263,6 +263,22 @@
       border-color: var(--green); color: var(--green);
       background: rgba(58,232,122,0.08);
     }
+    .gl-site-card {
+      background: var(--surface-2); border: 1px solid var(--border-hi);
+      border-radius: 10px; padding: 1.75rem;
+    }
+    .gl-site-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .gl-site-heading {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1875rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.75rem;
+    }
+    .gl-site-body {
+      font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--muted); line-height: 1.7;
+    }
     @media (max-width: 768px) {
       .gl-map-grid { grid-template-columns: 1fr !important; }
       #gl-map { height: 300px !important; }
@@ -287,6 +303,15 @@
       opacity:0; transform:scale(0.45); transform-origin:72% 32%;
       transition:opacity 1.4s ease-out, transform 1.6s cubic-bezier(0.16,1,0.3,1); }
     .hero-blobs.revealed { opacity:1; transform:scale(1); }
+
+    /* ── Hero scroll-down cue ── */
+    @keyframes scrollCue { 0%,100% { transform:translate(-50%,0); opacity:0.5; } 50% { transform:translate(-50%,8px); opacity:1; } }
+    .hero-scroll-cue { position:absolute; bottom:1.5rem; left:50%; z-index:4; display:flex; align-items:center; justify-content:center;
+      background:none; border:none; padding:0.5rem; color:#F0F4F1; cursor:pointer; animation:scrollCue 2.4s ease-in-out infinite;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,0.55)); }
+    .hero-scroll-cue:hover { color:var(--green); }
+    .hero-scroll-cue:focus-visible { outline:2px solid var(--green); outline-offset:4px; border-radius:6px; }
+    @media (prefers-reduced-motion: reduce) { .hero-scroll-cue { animation:none; transform:translateX(-50%); } }
     .hero-blobs::before, .hero-blobs::after { content:''; position:absolute; border-radius:50%; filter:blur(72px); will-change:transform,opacity; }
     .hero-blobs::before { top:24px; right:110px; width:300px; height:300px; background:radial-gradient(circle, rgba(58,232,122,0.55) 0%, transparent 70%); animation:blobPulse 9s ease-in-out infinite; }
     .hero-blobs::after  { top:150px; right:-30px; width:250px; height:250px; background:radial-gradient(circle, rgba(232,168,58,0.42) 0%, transparent 70%); animation:blobPulse 11.5s ease-in-out infinite 1.6s; }
@@ -333,7 +358,7 @@
     <div class="nav-links">
       <a href="./index.html" class="nav-link nav-active" data-page="home">Home</a>
       <div class="nav-dropdown">
-        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
@@ -341,7 +366,7 @@
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span style="text-decoration:underline;text-underline-offset:3px;" class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./applications.html" class="nav-dropdown-item">Applications Overview</a>
           <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
@@ -412,54 +437,58 @@
               font-size:clamp(1rem, 1.8vw, 1.2rem);
               font-weight:300; color:#D0DACE; max-width:56ch; line-height:1.75; margin-bottom:2.75rem;
               text-shadow:0 1px 12px rgba(0,0,0,0.5);">
-      At greenLi, two complementary technologies (<a href="./mle.html" style="color:var(--green);text-decoration:underline;">MLE</a> &amp; <a href="./dcm.html" style="color:var(--amber);text-decoration:underline;">DCM</a>) deploy independently or in tandem to extract aqueous lithium and manufacture LIB cathode materials on-site. Our 'brine-to-battery' system installs as a containerized, bolt-on solution, letting operators capture margin across the full supply chain.
+      At greenLi, two complementary technologies (<a href="./mle.html" style="color:var(--green);text-decoration:underline;">MLE</a> &amp; <a href="./dcm.html" style="color:var(--amber);text-decoration:underline;">DCM</a>) deploy independently or in tandem to extract aqueous lithium and manufacture lithium-ion battery cathode materials on-site. Our 'brine-to-battery' system installs as a containerized, bolt-on solution, letting operators capture margin across the full supply chain.
     </p>
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="./contact-simulation.html" class="btn-primary">Request an Extraction Simulation</a>
       <a href="./technology.html" class="btn-secondary">Learn more about greenLi's technology</a>
+    </div>
+
+    <div style="margin-top:3rem; padding-top:1.75rem; border-top:1px solid rgba(255,255,255,0.12); max-width:820px;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#9DB0A4; margin-bottom:1.125rem;">Backed By &amp; In Partnership With</p>
+      <div style="display:flex; align-items:center; flex-wrap:wrap; gap:1rem 2.75rem;">
+        <a href="https://mamanelab.sites.tau.ac.il/" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">Tel Aviv University</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Academic Origin</p>
+        </a>
+        <a href="https://www.earthandbeyond.ventures/portfolio" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">Earth &amp; Beyond Ventures</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Lead Investor</p>
+        </a>
+        <a href="https://www.sum.vc/portfolio/" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">SUM Ventures</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Co-Investor</p>
+        </a>
+      </div>
     </div>
   </div>
 
   <div style="position:absolute; bottom:0; left:0; right:0; height:180px; z-index:2;
     background: linear-gradient(to bottom, transparent, var(--bg));"></div>
-</section>
 
-
-<!-- ══════════════════════════════════════════
-     BACKED BY — auto-loop ticker
-══════════════════════════════════════════ -->
-<section style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:2.75rem 0;">
-  <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600;
-            letter-spacing:0.12em; text-transform:uppercase; color:var(--dim);
-            margin-bottom:1.75rem; text-align:center; padding:0 1.5rem;">Backed By &amp; In Partnership With</p>
-  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:3rem;">
-    <a href="https://mamanelab.sites.tau.ac.il/" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
-      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Tel Aviv University</p>
-      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Academic Origin</p>
-    </a>
-    <a href="https://www.earthandbeyond.ventures/portfolio" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
-      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Earth &amp; Beyond Ventures</p>
-      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Lead Investor</p>
-    </a>
-    <a href="https://www.sum.vc/portfolio/" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">
-      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">SUM Ventures</p>
-      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Co-Investor</p>
-    </a>
-  </div>
+  <button class="hero-scroll-cue" aria-label="Scroll down" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 </section>
 
 
 <!-- ══════════════════════════════════════════
      THE PROBLEM
 ══════════════════════════════════════════ -->
-<section style="background:var(--surface); padding:8rem 1.5rem;">
+<section class="bg-dots" style="position:relative; padding:8rem 1.5rem;
+  background:
+    radial-gradient(ellipse 75% 60% at 12% 16%, rgba(58,232,122,0.08) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 65% at 88% 90%, rgba(232,168,58,0.07) 0%, transparent 60%),
+    var(--surface);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div style="max-width:720px; margin:0 auto; text-align:center;">
+    <span style="display:inline-block; width:48px; height:3px; border-radius:2px; margin-bottom:2.25rem;
+      background:linear-gradient(90deg, var(--green), var(--amber));"></span>
     <p style="font-family:'Inter',sans-serif; font-size:1.125rem; color:var(--muted); line-height:1.85;">
       The lithium supply chain faces structural constraints that limit the industry's ability to meet growing demand. Conventional lithium extraction methods recover just 25-50% of available lithium in a given source. The inefficacy of current methodologies is compounded by the associated costs and time: salar evaporation cycles stretch 18 months; hard-rock refining loses significant lithium capacity to process wastewater; and geographically isolated refining infrastructure causes supply chain bottlenecks, with EV &amp; battery manufacturers absorbing those costs.
     </p>
     <p style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:600;
               color:var(--text); margin-top:2.25rem; letter-spacing:-0.02em; line-height:1.3;">
-      Demand is rapidly outpacing supply, but the solution is not finding new sources of lithium; it is enabling the ability to recover previously inaccessible lithium from existing resources. Without an efficient and sustainable brine-to-battery solution, the EV revolution will not sustain its growth.
+      Demand is rapidly outpacing supply, but the solution is not finding new sources of lithium; it is enabling the ability to <span style="color:var(--green);">recover previously inaccessible lithium from existing resources</span>. Without an efficient and sustainable brine-to-battery solution, the EV revolution will not sustain its growth.
     </p>
   </div>
 </section>
@@ -566,36 +595,24 @@
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow" style="text-align:left;">The greenLi Approach</span>
 
-    <div style="display:flex; flex-wrap:wrap; gap:0.625rem; margin:0.25rem 0 2.25rem;">
-      <span style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; color:var(--text); background:var(--surface-2); border:1px solid var(--border-hi); border-radius:100px; padding:0.4375rem 1rem;"><span style="width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 8px rgba(58,232,122,0.5);"></span>Any aqueous feedstock</span>
-      <span style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; color:var(--text); background:var(--surface-2); border:1px solid var(--border-hi); border-radius:100px; padding:0.4375rem 1rem;"><span style="width:6px; height:6px; background:var(--amber); border-radius:50%; box-shadow:0 0 8px rgba(232,168,58,0.5);"></span>Cathode chemistry agnostic</span>
-      <span style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; color:var(--text); background:var(--surface-2); border:1px solid var(--border-hi); border-radius:100px; padding:0.4375rem 1rem;"><span style="width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 8px rgba(58,232,122,0.5);"></span>Integrated · Onsite · Scalable</span>
-    </div>
-
-    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
-
-      <a href="./mle.html" style="text-decoration:none;" class="stat-card">
-        <div class="stat-number">
-          <span data-counter data-target="80">80</span><span style="font-size:0.55em; letter-spacing:0;">%+</span>
-        </div>
-        <h3 class="stat-title">Capture more lithium.</h3>
-        <p class="stat-body">Recovery above 80 percent on existing salar feeds. Over 19 percent capacity uplift on the same brine volume.</p>
-      </a>
-
-      <a href="./mle.html" style="text-decoration:none;" class="stat-card">
-        <div class="stat-number">
-          <span style="font-size:0.7em; letter-spacing:0; vertical-align:middle;">~</span><span data-counter data-target="39">39</span><span style="font-size:0.55em; letter-spacing:0;">%</span>
-        </div>
-        <h3 class="stat-title">OpEx Reduction.</h3>
-        <p class="stat-body">Approximately 39 percent OpEx reduction per cubic meter of feed by replacing evaporation cycles with continuous membrane separation.</p>
-      </a>
+    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.25rem;">
 
       <a href="./applications.html" style="text-decoration:none;" class="stat-card">
-        <div class="stat-number" style="font-size:clamp(2.5rem,4.5vw,4rem);">
-          4<span style="font-family:'Inter',sans-serif; font-size:0.45em; font-weight:500; letter-spacing:0.02em; color:var(--muted); margin-left:0.3em;">sources</span>
-        </div>
-        <h3 class="stat-title">Open new sources.</h3>
-        <p class="stat-body">The same platform unlocks lithium from refinery wastewater, produced water, geothermal brine, and low-concentration groundwater, sources that were not previously economical to extract.</p>
+        <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Any aqueous feedstock.</h3>
+        <p class="stat-body">One membrane platform runs on salar brine, produced water, geothermal fluid, refinery wastewater, and low-concentration groundwater. If a source carries lithium, greenLi recovers it, at any concentration.</p>
+      </a>
+
+      <a href="./dcm.html" style="text-decoration:none;" class="stat-card">
+        <span style="display:block; width:10px; height:10px; background:var(--amber); border-radius:50%; box-shadow:0 0 12px rgba(232,168,58,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Cathode chemistry agnostic.</h3>
+        <p class="stat-body">DCM builds battery-ready cathode materials to the chemistry each offtaker needs, from LFP to NMC. The same line adapts as battery roadmaps shift, keeping output aligned with market demand.</p>
+      </a>
+
+      <a href="./technology.html" style="text-decoration:none;" class="stat-card">
+        <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Integrated, onsite, scalable.</h3>
+        <p class="stat-body">Containerized skids bolt onto infrastructure already in operation and scale by adding modules. Extraction and cathode manufacture run on site, capturing margin across the full value chain.</p>
       </a>
 
     </div>
@@ -773,7 +790,7 @@
     <span class="eyebrow">Global Deployment</span>
     <h2 class="section-heading" style="margin-bottom:0.75rem;">Where we deploy.</h2>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:56ch; margin-bottom:2rem;">
-      Five deployment-ready sites. One platform. Select a location to see the feed we target.
+      Deployment-ready sites around the world. One platform. Select a region to see the sites we target.
     </p>
 
     <!-- Region pills -->
@@ -784,11 +801,7 @@
 
       <div id="gl-map" class="raised" style="height:440px; border-radius:10px; border:1px solid var(--border); overflow:hidden;"></div>
 
-      <div id="gl-map-panel" style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:10px; padding:2rem; min-height:240px;">
-        <p id="gl-panel-eyebrow" style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.875rem;"></p>
-        <h3 id="gl-panel-heading" style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; line-height:1.2; margin-bottom:0.875rem;"></h3>
-        <p id="gl-panel-body" style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75;"></p>
-      </div>
+      <div id="gl-map-panel" style="display:flex; flex-direction:column; gap:1rem; min-height:240px;"></div>
 
     </div>
   </div>
@@ -964,44 +977,96 @@
 (function () {
   var GL_REGIONS = [
     {
-      id: 'argentina',
-      label: 'Argentina',
-      coords: [-23.5, -66.7],
-      eyebrow: 'Salta · Jujuy · Lithium Triangle',
-      heading: 'Argentina — Salar Brine',
-      body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
+      id: 'south-america',
+      label: 'South America',
+      coords: [-24, -67],
+      sites: [
+        {
+          eyebrow: 'Salta · Jujuy · Lithium Triangle',
+          heading: 'Argentina — Salar Brine',
+          body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
+        },
+        {
+          eyebrow: 'Atacama · Lithium Triangle',
+          heading: 'Atacama — Salar Brine',
+          body: 'The Atacama holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
+        }
+      ]
     },
     {
-      id: 'botswana',
-      label: 'Botswana',
-      coords: [-20.7, 25.5],
-      eyebrow: 'Makgadikgadi Pans',
-      heading: 'Botswana — Salar Brine',
-      body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
+      id: 'north-america',
+      label: 'North America',
+      coords: [34, -108],
+      sites: [
+        {
+          eyebrow: 'Imperial Valley · California',
+          heading: 'Salton Sea — Geothermal Brine',
+          body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
+        },
+        {
+          eyebrow: 'Permian Basin · Texas',
+          heading: 'Permian — Produced Water',
+          body: 'Permian operators produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.'
+        }
+      ]
     },
     {
-      id: 'salton-sea',
-      label: 'Salton Sea, CA',
-      coords: [33.3, -115.8],
-      eyebrow: 'Imperial Valley · California',
-      heading: 'Salton Sea — Salar Brine',
-      body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
+      id: 'europe',
+      label: 'Europe',
+      coords: [47, 3],
+      sites: [
+        {
+          eyebrow: 'Northern Portugal',
+          heading: 'Portugal — Spodumene Mine',
+          body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
+        },
+        {
+          eyebrow: 'German Automotive Corridor',
+          heading: 'Central Europe — Domestic Battery Supply',
+          body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.'
+        }
+      ]
     },
     {
-      id: 'portugal',
-      label: 'Portugal',
-      coords: [41.5, -7.3],
-      eyebrow: 'Northern Portugal',
-      heading: 'Portugal — Spodumene Mine',
-      body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
+      id: 'africa',
+      label: 'Africa',
+      coords: [-20, 28.5],
+      sites: [
+        {
+          eyebrow: 'Makgadikgadi Pans',
+          heading: 'Botswana — Salar Brine',
+          body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
+        },
+        {
+          eyebrow: 'Bikita · Goromonzi',
+          heading: 'Zimbabwe — Spodumene Mine',
+          body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
+        }
+      ]
     },
     {
-      id: 'zimbabwe',
-      label: 'Zimbabwe',
-      coords: [-18.9, 31.6],
-      eyebrow: 'Bikita · Goromonzi',
-      heading: 'Zimbabwe — Spodumene Mine',
-      body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
+      id: 'australia',
+      label: 'Australia',
+      coords: [-22.5, 118.0],
+      sites: [
+        {
+          eyebrow: 'Pilbara · Kalgoorlie',
+          heading: 'Australia — Refinery Wastewater',
+          body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.'
+        }
+      ]
+    },
+    {
+      id: 'middle-east',
+      label: 'Middle East',
+      coords: [24.5, 54.5],
+      sites: [
+        {
+          eyebrow: 'UAE · Saudi Arabia · Qatar',
+          heading: 'The Gulf — Desalination Infrastructure',
+          body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.'
+        }
+      ]
     }
   ];
 
@@ -1019,9 +1084,14 @@
       d.classList.toggle('gl-map-dot--active', d.dataset.id === id);
     });
 
-    document.getElementById('gl-panel-eyebrow').textContent = region.eyebrow;
-    document.getElementById('gl-panel-heading').textContent = region.heading;
-    document.getElementById('gl-panel-body').textContent = region.body;
+    var panel = document.getElementById('gl-map-panel');
+    panel.innerHTML = region.sites.map(function (s) {
+      return '<div class="gl-site-card">' +
+        '<p class="gl-site-eyebrow">' + s.eyebrow + '</p>' +
+        '<h3 class="gl-site-heading">' + s.heading + '</h3>' +
+        '<p class="gl-site-body">' + s.body + '</p>' +
+        '</div>';
+    }).join('');
   }
 
   function glInitMap() {
@@ -1065,7 +1135,7 @@
       pillContainer.appendChild(pill);
     });
 
-    glSelectRegion('argentina');
+    glSelectRegion('south-america');
   }
 
   window.addEventListener('load', function () {
