@@ -35,6 +35,42 @@
   h1 { word-break: break-word; overflow-wrap: anywhere; }
 }
 
+/* ── Wide diagrams / tables: make them fit the phone instead of forcing a
+   horizontal scroll that hides half the content. ── */
+@media (max-width: 760px) {
+  /* Horizontal flow / value-chain / bracket rows -> stack vertically. */
+  [style*="min-width:720px"], [style*="min-width:820px"], [style*="min-width:700px"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    min-width: 0 !important;
+    gap: 0.5rem !important;
+  }
+  [style*="min-width:720px"] > div, [style*="min-width:820px"] > div, [style*="min-width:700px"] > div {
+    width: 100% !important;
+    text-align: center;
+  }
+  /* Connector arrows point downward once the steps are stacked. */
+  [style*="min-width:720px"] > div:has(> svg),
+  [style*="min-width:820px"] > div:has(> svg) {
+    padding: 0.15rem 0 !important;
+  }
+  [style*="min-width:720px"] > div > svg,
+  [style*="min-width:820px"] > div > svg {
+    transform: rotate(90deg);
+    display: inline-block;
+  }
+
+  /* Supply-chain SVG diagram: scale to the container width (vector stays crisp). */
+  .raised svg[viewBox="0 0 760 540"] { min-width: 0 !important; width: 100% !important; }
+
+  /* Comparison table: shrink so all columns fit without side-scrolling. */
+  .compare-table { min-width: 0 !important; font-size: 0.72rem !important; }
+  .compare-table th, .compare-table td { padding: 0.5rem 0.45rem !important; }
+
+  /* Map: a touch shorter on phones. */
+  #gl-map { min-height: 300px !important; }
+}
+
 /* Very small phones: single-column safety net for any remaining 2-up grids. */
 @media (max-width: 460px) {
   .stats-grid, .three-col, .two-col, .benefits-grid, .timeline-grid,

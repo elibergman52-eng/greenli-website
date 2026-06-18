@@ -1056,7 +1056,11 @@
     }
   ];
 
-  var glMap, glMarkers = {}, glSiteRegion = {}, glSiteById = {};
+  var glMap, glMarkers = {}, glSiteRegion = {}, glSiteById = {}, glAllBounds = null;
+
+  function glFit() {
+    if (glMap && glAllBounds) glMap.fitBounds(glAllBounds, { padding: [26, 26] });
+  }
   GL_REGIONS.forEach(function (r) {
     r.sites.forEach(function (s) { glSiteRegion[s.id] = r; glSiteById[s.id] = s; });
   });
@@ -1157,12 +1161,25 @@
       });
     });
 
+    // Fit the view to every deployment dot so the whole set is visible at any
+    // screen width (no fixed zoom that cuts off continents on mobile).
+    var pts = [];
+    GL_REGIONS.forEach(function (r) { r.sites.forEach(function (s) { pts.push(s.coords); }); });
+    glAllBounds = L.latLngBounds(pts);
+    glFit();
+
     glSelectRegion('south-america');
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { if (glMap) { glMap.invalidateSize(); glFit(); } }, 200);
+    });
   }
 
   window.addEventListener('load', function () {
     glInitMap();
-    setTimeout(function () { if (glMap) glMap.invalidateSize(); }, 300);
+    setTimeout(function () { if (glMap) { glMap.invalidateSize(); glFit(); } }, 300);
   });
 })();
 </script>
