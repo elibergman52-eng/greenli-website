@@ -3,6 +3,26 @@
    override the generous inline section padding so phones don't scroll through
    huge empty gaps. */
 
+/* ── Home hero (the only full-height 100vh section) ── */
+@media (max-width: 768px) {
+  /* Top-align and let it grow so the centered content never rides up under the
+     fixed nav on shorter viewports (h1 was covering the logo / hamburger). */
+  section[style*="height:100vh"] {
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    align-items: flex-start !important;
+  }
+  /* Clear the 64px fixed nav and leave room at the bottom for the partner row. */
+  section[style*="height:100vh"] > div[style*="padding-top:80px"] {
+    padding-top: 92px !important;
+    padding-bottom: 3rem !important;
+  }
+  /* The scroll-down chevron overlapped the "Backed by / partners" row — hide it
+     on touch screens where it isn't needed. */
+  .hero-scroll-cue { display: none !important; }
+}
+
 @media (max-width: 640px) {
   /* Tame the large inline section padding (8rem / 9rem / 10rem) on phones. */
   section[style*="padding:8rem"],  section[style*="padding: 8rem"],
