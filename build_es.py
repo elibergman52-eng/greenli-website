@@ -13,6 +13,7 @@ EN = json.load(open(os.path.join(ROOT, "es/_en_strings.json"), encoding="utf-8")
 ES = json.load(open(os.path.join(ROOT, "es/_es_strings.json"), encoding="utf-8"))
 TR = {e: s for e, s in zip(EN, ES)}
 TR.update(json.load(open(os.path.join(ROOT, "es/_svg_es.json"), encoding="utf-8")))
+TR.update(json.load(open(os.path.join(ROOT, "es/_extra_es.json"), encoding="utf-8")))
 
 PAGES = [f for f in os.listdir(ROOT)
          if f.endswith(".html") and os.path.isfile(os.path.join(ROOT, f))]

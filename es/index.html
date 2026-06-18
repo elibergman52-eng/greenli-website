@@ -274,6 +274,8 @@
       border-color: var(--green); color: var(--green);
       background: rgba(58,232,122,0.08);
     }
+    .gl-site-pill { font-size: 0.75rem; padding: 0.3125rem 0.8125rem; opacity: 0.95; }
+    #gl-site-pills:empty { display: none !important; }
     .gl-site-card {
       background: var(--surface-2); border: 1px solid var(--border-hi);
       border-radius: 10px; padding: 1.75rem;
@@ -698,7 +700,7 @@
         <defs>
           <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3A4A40"/></marker>
           <marker id="ah-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="rgba(232,168,58,0.7)"/></marker>
-          <marker id="ah-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3AE87A"/></marker>
+          <marker id="ah-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E8A83A"/></marker>
         </defs>
         <rect width="760" height="540" fill="#141814" rx="10"/>
 
@@ -759,8 +761,8 @@
         <!-- ===== both paths converge on a single salable product ===== -->
         <path d="M178 390 L178 416 L300 416 L300 436" fill="none" stroke="#3A4A40" stroke-width="1.5" marker-end="url(#ah-green)"/>
         <path d="M586 390 L586 416 L462 416 L462 436" fill="none" stroke="rgba(232,168,58,0.55)" stroke-width="1.5" marker-end="url(#ah-green)"/>
-        <rect x="190" y="438" width="380" height="74" rx="8" fill="rgba(58,232,122,0.08)" stroke="rgba(58,232,122,0.45)"/>
-        <text x="380" y="467" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#3AE87A">Vender al productor de VE / cliente</text>
+        <rect x="190" y="438" width="380" height="74" rx="8" fill="rgba(232,168,58,0.1)" stroke="rgba(232,168,58,0.45)"/>
+        <text x="380" y="467" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#E8A83A">Vender al productor de VE / cliente</text>
         <text x="380" y="487" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">Un producto vendible que cierra la cadena de suministro.</text>
         <text x="380" y="503" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">Margen completo, en el sitio. Sin intermediarios, sin transporte.</text>
       </svg>
@@ -784,7 +786,6 @@
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Operaciones de Salmuera</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">La plataforma de greenLi se despliega directamente en operaciones de salar y permisos de prospección de salmuera, recuperando sustancialmente más litio del mismo volumen de reserva. Los operadores obtienen más salida de los activos existentes sin ampliar su huella.</p>
         <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Operadores de Salar / Salmuera</p>
           <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Solicitar una simulación de rendimiento →</a>
         </div>
       </div>
@@ -793,7 +794,6 @@
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Aguas Residuales de Refinería de Roca Dura</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Para refinerías de espodumeno, M.L.E. captura el 20 por ciento del litio que actualmente se pierde en las aguas residuales de proceso. Un nuevo flujo de ingresos recuperado de lo que antes era un costo de eliminación, sin interrupción de las operaciones existentes.</p>
         <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Refinerías de Roca Dura</p>
           <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Recupere valor de sus aguas residuales →</a>
         </div>
       </div>
@@ -802,7 +802,6 @@
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Agua Producida de Petróleo y Gas</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Los operadores de petróleo y gas que producen agua de formaciones con litio pueden capturar litio como coproducto en lugar de pagar por su eliminación. Un nuevo y significativo flujo de ingresos sumado a una operación existente, sin cambios en el negocio principal.</p>
         <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Operadores de Petróleo y Gas</p>
           <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Modele ingresos del agua producida →</a>
         </div>
       </div>
@@ -811,7 +810,6 @@
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Geotermia y Aguas Subterráneas</h3>
         <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Las plantas geotérmicas y los activos de aguas subterráneas de baja concentración pueden desbloquear la recuperación de litio por primera vez. M.L.E. es la única tecnología de extracción compatible con agua de retorno a 60 grados Celsius y concentraciones por debajo de 50 ppm.</p>
         <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
-          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Plantas Geotérmicas</p>
           <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Vea si sus condiciones califican →</a>
         </div>
       </div>
@@ -832,8 +830,10 @@
       Sitios listos para despliegue en todo el mundo. Una plataforma. Seleccione una región para ver los sitios que tenemos como objetivo.
     </p>
 
-    <!-- Region pills -->
-    <div id="gl-region-pills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;"></div>
+    <!-- Continent pills -->
+    <div id="gl-region-pills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;"></div>
+    <!-- Site sub-selector (shown when a continent has multiple sites) -->
+    <div id="gl-site-pills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;"></div>
 
     <!-- Map + panel -->
     <div class="gl-map-grid" style="display:grid; grid-template-columns:1fr 340px; gap:1.5rem; align-items:stretch;">
@@ -990,115 +990,129 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
-  // Each deployable site is its own dot on the map, and only one asset shows
-  // in the panel at a time.
-  var GL_SITES = [
+  // Continent pills (one type). Every site keeps its own dot on the map. When a
+  // continent has more than one site, a sub-selector lets you pick between them,
+  // and only one asset shows in the panel at a time.
+  var GL_REGIONS = [
     {
-      id: 'argentina',
-      label: 'Argentina',
-      coords: [-24.2, -66.3],
-      eyebrow: 'Salta · Jujuy · Lithium Triangle',
-      heading: 'Argentina — Salar Brine',
-      body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
+      id: 'south-america', label: 'South America',
+      sites: [
+        { id: 'argentina', label: 'Argentina', coords: [-24.2, -66.3],
+          eyebrow: 'Salta · Jujuy · Lithium Triangle', heading: 'Argentina — Salar Brine',
+          body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.' },
+        { id: 'atacama', label: 'Atacama', coords: [-23.5, -68.2],
+          eyebrow: 'Atacama Desert · Lithium Triangle', heading: 'Chile — Salar Brine',
+          body: 'The Atacama Desert holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering more lithium from the same reserve volume without expanding the existing footprint.' }
+      ]
     },
     {
-      id: 'atacama',
-      label: 'Atacama',
-      coords: [-23.5, -68.2],
-      eyebrow: 'Atacama Desert · Lithium Triangle',
-      heading: 'Chile — Salar Brine',
-      body: 'The Atacama Desert holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering more lithium from the same reserve volume without expanding the existing footprint.'
+      id: 'north-america', label: 'North America',
+      sites: [
+        { id: 'salton-sea', label: 'Salton Sea', coords: [33.3, -115.85],
+          eyebrow: 'Imperial Valley · California', heading: 'Salton Sea — Geothermal Brine',
+          body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.' },
+        { id: 'permian', label: 'Permian Basin', coords: [31.9, -102.3],
+          eyebrow: 'Permian Basin · Texas', heading: 'Permian Basin — Produced Water',
+          body: 'Operators in the Permian Basin produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.' }
+      ]
     },
     {
-      id: 'salton-sea',
-      label: 'Salton Sea',
-      coords: [33.3, -115.85],
-      eyebrow: 'Imperial Valley · California',
-      heading: 'Salton Sea — Geothermal Brine',
-      body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
+      id: 'europe', label: 'Europe',
+      sites: [
+        { id: 'portugal', label: 'Portugal', coords: [41.4, -7.4],
+          eyebrow: 'Northern Portugal', heading: 'Portugal — Spodumene Mine',
+          body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.' },
+        { id: 'central-europe', label: 'Central Europe', coords: [50.0, 9.0],
+          eyebrow: 'German Automotive Corridor', heading: 'Central Europe — Domestic Battery Supply',
+          body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.' }
+      ]
     },
     {
-      id: 'permian',
-      label: 'Permian Basin',
-      coords: [31.9, -102.3],
-      eyebrow: 'Permian Basin · Texas',
-      heading: 'Permian Basin — Produced Water',
-      body: 'Operators in the Permian Basin produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.'
+      id: 'africa', label: 'Africa',
+      sites: [
+        { id: 'botswana', label: 'Botswana', coords: [-20.7, 25.5],
+          eyebrow: 'Makgadikgadi Pans', heading: 'Botswana — Salar Brine',
+          body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.' },
+        { id: 'zimbabwe', label: 'Zimbabwe', coords: [-20.0, 31.6],
+          eyebrow: 'Bikita · Goromonzi', heading: 'Zimbabwe — Spodumene Mine',
+          body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.' }
+      ]
     },
     {
-      id: 'portugal',
-      label: 'Portugal',
-      coords: [41.4, -7.4],
-      eyebrow: 'Northern Portugal',
-      heading: 'Portugal — Spodumene Mine',
-      body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
+      id: 'asia', label: 'Asia',
+      sites: [
+        { id: 'gulf', label: 'The Gulf', coords: [24.5, 54.5],
+          eyebrow: 'UAE · Saudi Arabia · Qatar', heading: 'The Gulf — Desalination Infrastructure',
+          body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.' }
+      ]
     },
     {
-      id: 'central-europe',
-      label: 'Central Europe',
-      coords: [50.0, 9.0],
-      eyebrow: 'German Automotive Corridor',
-      heading: 'Central Europe — Domestic Battery Supply',
-      body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.'
-    },
-    {
-      id: 'botswana',
-      label: 'Botswana',
-      coords: [-20.7, 25.5],
-      eyebrow: 'Makgadikgadi Pans',
-      heading: 'Botswana — Salar Brine',
-      body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
-    },
-    {
-      id: 'zimbabwe',
-      label: 'Zimbabwe',
-      coords: [-20.0, 31.6],
-      eyebrow: 'Bikita · Goromonzi',
-      heading: 'Zimbabwe — Spodumene Mine',
-      body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
-    },
-    {
-      id: 'australia',
-      label: 'Australia',
-      coords: [-22.0, 118.6],
-      eyebrow: 'Pilbara · Kalgoorlie',
-      heading: 'Australia — Refinery Wastewater',
-      body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.'
-    },
-    {
-      id: 'gulf',
-      label: 'The Gulf',
-      coords: [24.5, 54.5],
-      eyebrow: 'UAE · Saudi Arabia · Qatar',
-      heading: 'The Gulf — Desalination Infrastructure',
-      body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.'
+      id: 'australia', label: 'Australia',
+      sites: [
+        { id: 'australia', label: 'Pilbara', coords: [-22.0, 118.6],
+          eyebrow: 'Pilbara · Kalgoorlie', heading: 'Australia — Refinery Wastewater',
+          body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.' }
+      ]
     }
   ];
 
-  var glMap, glMarkers = {}, glActive = null;
+  var glMap, glMarkers = {}, glSiteRegion = {}, glSiteById = {};
+  GL_REGIONS.forEach(function (r) {
+    r.sites.forEach(function (s) { glSiteRegion[s.id] = r; glSiteById[s.id] = s; });
+  });
 
-  function glSelectSite(id) {
-    var site = GL_SITES.find(function (s) { return s.id === id; });
-    if (!site) return;
-    glActive = id;
+  function renderSitePills(region) {
+    var c = document.getElementById('gl-site-pills');
+    c.innerHTML = '';
+    if (region.sites.length < 2) return;          // single-site continent: no sub-selector
+    region.sites.forEach(function (s) {
+      var b = document.createElement('button');
+      b.className = 'gl-region-pill gl-site-pill';
+      b.dataset.site = s.id;
+      b.textContent = s.label;
+      b.addEventListener('click', function () { glSelectSite(s.id); });
+      c.appendChild(b);
+    });
+  }
 
-    document.querySelectorAll('.gl-region-pill').forEach(function (p) {
-      p.classList.toggle('gl-region-pill--active', p.dataset.id === id);
+  function glSelectRegion(regionId) {
+    var region = GL_REGIONS.find(function (r) { return r.id === regionId; });
+    if (!region) return;
+    renderSitePills(region);
+    glSelectSite(region.sites[0].id);
+  }
+
+  function glSelectSite(siteId) {
+    var site = glSiteById[siteId];
+    var region = glSiteRegion[siteId];
+    if (!site || !region) return;
+
+    // Make sure the sub-selector matches this site's continent.
+    var subC = document.getElementById('gl-site-pills');
+    if (region.sites.length > 1 && !subC.querySelector('[data-site="' + siteId + '"]')) {
+      renderSitePills(region);
+    } else if (region.sites.length < 2) {
+      subC.innerHTML = '';
+    }
+
+    document.querySelectorAll('.gl-region-pill[data-region]').forEach(function (p) {
+      p.classList.toggle('gl-region-pill--active', p.dataset.region === region.id);
+    });
+    document.querySelectorAll('.gl-site-pill').forEach(function (p) {
+      p.classList.toggle('gl-region-pill--active', p.dataset.site === siteId);
     });
     document.querySelectorAll('.gl-map-dot').forEach(function (d) {
-      d.classList.toggle('gl-map-dot--active', d.dataset.id === id);
+      d.classList.toggle('gl-map-dot--active', d.dataset.id === siteId);
     });
 
     // Only one asset shows in the panel at a time.
-    var panel = document.getElementById('gl-map-panel');
-    panel.innerHTML =
+    document.getElementById('gl-map-panel').innerHTML =
       '<div class="gl-site-card">' +
         '<p class="gl-site-eyebrow">' + site.eyebrow + '</p>' +
         '<h3 class="gl-site-heading">' + site.heading + '</h3>' +
         '<p class="gl-site-body">' + site.body + '</p>' +
       '</div>';
 
-    // The map cell stretches to match the card height; tell Leaflet to re-fit.
     if (glMap) {
       requestAnimationFrame(function () {
         glMap.invalidateSize();
@@ -1111,44 +1125,39 @@
     if (!document.getElementById('gl-map') || typeof L === 'undefined') return;
 
     glMap = L.map('gl-map', {
-      center: [15, -10],
-      zoom: 2,
-      zoomControl: false,
-      attributionControl: true,
-      scrollWheelZoom: false,
-      minZoom: 1,
-      maxZoom: 8
+      center: [15, -10], zoom: 2, zoomControl: false, attributionControl: true,
+      scrollWheelZoom: false, minZoom: 1, maxZoom: 8
     });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
+      subdomains: 'abcd', maxZoom: 19
     }).addTo(glMap);
 
     var pillContainer = document.getElementById('gl-region-pills');
 
-    GL_SITES.forEach(function (site) {
-      var icon = L.divIcon({
-        className: '',
-        html: '<div class="gl-map-dot" data-id="' + site.id + '"></div>',
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
-      });
-
-      var marker = L.marker(site.coords, { icon: icon }).addTo(glMap);
-      marker.on('click', function () { glSelectSite(site.id); });
-      glMarkers[site.id] = marker;
-
+    GL_REGIONS.forEach(function (region) {
       var pill = document.createElement('button');
       pill.className = 'gl-region-pill';
-      pill.dataset.id = site.id;
-      pill.textContent = site.label;
-      pill.addEventListener('click', function () { glSelectSite(site.id); });
+      pill.dataset.region = region.id;
+      pill.textContent = region.label;
+      pill.addEventListener('click', function () { glSelectRegion(region.id); });
       pillContainer.appendChild(pill);
+
+      // Retain every site as an individual dot on the map.
+      region.sites.forEach(function (site) {
+        var icon = L.divIcon({
+          className: '',
+          html: '<div class="gl-map-dot" data-id="' + site.id + '"></div>',
+          iconSize: [14, 14], iconAnchor: [7, 7]
+        });
+        var marker = L.marker(site.coords, { icon: icon }).addTo(glMap);
+        marker.on('click', function () { glSelectSite(site.id); });
+        glMarkers[site.id] = marker;
+      });
     });
 
-    glSelectSite('argentina');
+    glSelectRegion('south-america');
   }
 
   window.addEventListener('load', function () {
