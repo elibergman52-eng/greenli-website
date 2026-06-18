@@ -117,13 +117,14 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="./mobile.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" style="flex-shrink:0;"><img src="./logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
@@ -321,7 +322,7 @@
   <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
     <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
       <div>
-        <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <img src="./logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
         <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">we extract lithium, efficiently, affordably, and greenLi</p>
       </div>
       <div>
@@ -394,5 +395,6 @@
   });
 </script>
 <script src="./greenli-animations.js" defer></script>
+  <script src="./lang-toggle.js" defer></script>
 </body>
 </html>

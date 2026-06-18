@@ -63,6 +63,7 @@
       .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
       .use-case-card { flex-direction:column; }
       .footer-grid { grid-template-columns:1fr 1fr !important; }
+      .dcm-app-grid { grid-template-columns:1fr !important; }
     }
     @media (max-width:480px) { .footer-grid { grid-template-columns:1fr !important; } }
     @keyframes spin { to { transform:rotate(360deg); } }
@@ -106,13 +107,14 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="./mobile.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" style="flex-shrink:0;"><img src="./logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Home</a>
       <div id="tech-nav-wrapper" style="position:relative; display:inline-flex; align-items:center;">
@@ -329,8 +331,48 @@
         </div>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:700; color:var(--text); letter-spacing:-0.02em;">D.C.M. Applications</h3>
       </div>
-      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem;">Direct Cathode Manufacture converts extracted lithium into battery-ready cathode material on-site, eliminating the need for centralized refiners and capturing additional supply-chain margin at the source facility. D.C.M. pairs with M.L.E. to deliver a complete brine-to-battery platform.</p>
-      <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:#E8A83A; text-decoration:none; letter-spacing:0.03em;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Explore D.C.M. →</a>
+      <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--text); line-height:1.75; margin-bottom:1rem; max-width:74ch;">Direct Cathode Manufacture is our step-change innovation. It converts purified lithium directly into battery-ready cathode powder on site, with no intermediate salts, no refinery, and no cathode chemistry lock-in. It multiplies the value of every lithium atom recovered.</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:2.25rem; max-width:74ch;">D.C.M. pairs with M.L.E. for a complete brine-to-battery platform, but it stands on its own. It bolts onto any purified lithium stream, so operators who already extract lithium can vertically integrate without rebuilding upstream. Certified cathode sells at roughly $655k per ton equivalent, against about $28k for raw Li₂CO₃.</p>
+
+      <!-- Who DCM serves on its own -->
+      <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); margin-bottom:1.25rem;">Where D.C.M. deploys, independent of M.L.E.</p>
+      <div class="dcm-app-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-bottom:2.25rem;">
+        <div style="background:rgba(232,168,58,0.04); border:1px solid rgba(232,168,58,0.16); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.01em; margin-bottom:0.5rem;">Existing DLE &amp; brine operators</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.65;">Already producing purified lithium with your own DLE or evaporation process? D.C.M. plugs into that stream and turns carbonate-grade output into battery-ready cathode, capturing the refining margin in-house.</p>
+        </div>
+        <div style="background:rgba(232,168,58,0.04); border:1px solid rgba(232,168,58,0.16); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.01em; margin-bottom:0.5rem;">Hard-rock &amp; spodumene refiners</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.65;">Refiners producing lithium hydroxide or carbonate can add a cathode line on site, moving up the value chain instead of shipping salts to a downstream cathode maker.</p>
+        </div>
+        <div style="background:rgba(232,168,58,0.04); border:1px solid rgba(232,168,58,0.16); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.01em; margin-bottom:0.5rem;">Carbonate &amp; hydroxide producers</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.65;">Producers selling into a compressed refining market can convert that same output into a certified cathode product and sell directly to cell manufacturers worldwide.</p>
+        </div>
+        <div style="background:rgba(232,168,58,0.04); border:1px solid rgba(232,168,58,0.16); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.01em; margin-bottom:0.5rem;">OEMs &amp; battery manufacturers</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.65;">OEMs committed to domestic battery supply can secure cathode-grade output close to home, without building or contracting a centralized refinery.</p>
+        </div>
+      </div>
+
+      <!-- What DCM delivers -->
+      <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); margin-bottom:1.25rem;">What D.C.M. delivers</p>
+      <div class="dcm-app-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2.25rem;">
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Chemistry agnostic</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">NMC, LFP, LMFP, NCA, and emerging chemistries. The client or open market dictates the cathode spec.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Vertical integration</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Go from lithium to battery-ready cathode on site, capturing value that conventional chains spread across many intermediaries.</p>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Open market access</h4>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65;">Certified cathode material sells directly to battery manufacturers worldwide, no centralized refiner required.</p>
+        </div>
+      </div>
+
+      <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:#E8A83A; text-decoration:none; letter-spacing:0.03em;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Explore D.C.M. in depth →</a>
     </div>
 
   </div>
@@ -371,7 +413,7 @@
 
     <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
       <div>
-        <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <img src="./logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
         <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">we extract lithium, efficiently, affordably, and greenLi</p>
       </div>
       <div>
@@ -414,5 +456,6 @@
   (function(){ var w=document.getElementById('app-nav-wrapper'); var d=w&&w.querySelector('.app-dropdown-menu'); if(!w||!d)return; w.addEventListener('mouseenter',function(){d.style.display='flex';}); w.addEventListener('mouseleave',function(){d.style.display='none';}); })();
 </script>
 <script src="./greenli-animations.js" defer></script>
+  <script src="./lang-toggle.js" defer></script>
 </body>
 </html>

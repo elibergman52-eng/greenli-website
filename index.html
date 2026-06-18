@@ -343,6 +343,7 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="./mobile.css">
 </head>
 <body>
 
@@ -362,7 +363,7 @@
 <nav id="main-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
-      <img src="./logo.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
+      <img src="./logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
     </a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link nav-active" data-page="home">Home</a>
@@ -609,19 +610,19 @@
       <a href="./applications.html" style="text-decoration:none;" class="stat-card">
         <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
         <h3 class="stat-title">Any aqueous feedstock.</h3>
-        <p class="stat-body">One membrane platform runs on salar brine, produced water, geothermal fluid, refinery wastewater, and low-concentration groundwater. If a source carries lithium, greenLi recovers it, at any concentration.</p>
+        <p class="stat-body">One membrane platform runs on salar brine, produced water, geothermal fluid, refinery wastewater, and low-concentration groundwater. If an aqueous source carries lithium, greenLi recovers it, at any concentration.</p>
       </a>
 
       <a href="./dcm.html" style="text-decoration:none;" class="stat-card">
         <span style="display:block; width:10px; height:10px; background:var(--amber); border-radius:50%; box-shadow:0 0 12px rgba(232,168,58,0.6); margin-bottom:1.5rem;"></span>
         <h3 class="stat-title">Cathode chemistry agnostic.</h3>
-        <p class="stat-body">DCM builds battery-ready cathode materials to the chemistry each offtaker needs, from LFP to NMC. The same line adapts as battery roadmaps shift, keeping output aligned with market demand.</p>
+        <p class="stat-body">DCM builds battery-ready cathode materials, agnostic with any battery chemistry desired by manufacturers or consumers. As battery roadmaps shift, greenLi can shift with it, keeping our output aligned with market demand.</p>
       </a>
 
       <a href="./technology.html" style="text-decoration:none;" class="stat-card">
         <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
         <h3 class="stat-title">Integrated, onsite, scalable.</h3>
-        <p class="stat-body">Containerized skids bolt onto infrastructure already in operation and scale by adding modules. Extraction and cathode manufacture run on site, capturing margin across the full value chain.</p>
+        <p class="stat-body">Containerized skids bolt on to existing operation infrastructure, deploying modularly using COTS parts. Extraction and cathode manufacture run on site, capturing margin across the full value chain.</p>
       </a>
 
     </div>
@@ -656,7 +657,7 @@
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="6" height="10" rx="1.5" stroke="#3AE87A" stroke-width="1.5"/><rect x="10" y="2" width="6" height="14" rx="1.5" stroke="#3AE87A" stroke-width="1.5"/></svg>
         </div>
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Modular Deployability</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">The platform ships as containerized skids that bolt onto existing infrastructure. Deploy at a salar, an oilfield, a geothermal facility, or a hard-rock refinery. No new factory required, no site-specific engineering from scratch.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">The platform ships in containerized skids that bolt onto existing infrastructure. Deploy at a salar, an oilfield, a geothermal facility, or a hard-rock refinery. No new factory required, no site-specific engineering from scratch.</p>
       </div>
 
       <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2rem;">
@@ -688,72 +689,78 @@
       Direct Cathode Manufacture (D.C.M.) is different. It converts purified lithium directly into battery-ready cathode powder on site, with no intermediate salts, no transport to a refiner, and no cathode chemistry lock-in. Operators capture the margin that today flows to cell manufacturers.
     </p>
 
-    <!-- DCM two-paths diagram -->
+    <!-- DCM two-paths diagram: conventional steps map onto greenLi's MLE + DCM,
+         and both paths converge on one salable product that closes the supply chain. -->
     <div class="raised" style="margin-bottom:2.5rem; overflow-x:auto; border-radius:10px;">
-      <svg viewBox="0 0 760 552" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:560px;display:block;border-radius:10px;overflow:hidden;">
-        <rect width="760" height="552" fill="#141814" rx="10"/>
-        <!-- center divider -->
-        <line x1="380" y1="78" x2="380" y2="546" stroke="#1F2820" stroke-width="1" stroke-dasharray="4 4"/>
-        <!-- top shared box -->
-        <rect x="220" y="18" width="320" height="48" rx="6" fill="#1C2219" stroke="#2A3828"/>
-        <text x="380" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.1em" fill="#C0CCC2">LITHIUM BRINE FEED</text>
-        <text x="380" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A9E8F">your aqueous lithium source</text>
-        <!-- fork lines -->
-        <line x1="380" y1="66" x2="380" y2="78" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="178" y1="78" x2="582" y2="78" stroke="#2A3828" stroke-width="1"/>
-        <line x1="178" y1="78" x2="178" y2="86" stroke="#2A3828" stroke-width="1.5"/>
-        <line x1="582" y1="78" x2="582" y2="86" stroke="rgba(232,168,58,0.55)" stroke-width="1.5"/>
+      <svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;display:block;border-radius:10px;overflow:hidden;">
+        <defs>
+          <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3A4A40"/></marker>
+          <marker id="ah-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="rgba(232,168,58,0.7)"/></marker>
+          <marker id="ah-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3AE87A"/></marker>
+        </defs>
+        <rect width="760" height="540" fill="#141814" rx="10"/>
+
+        <!-- top shared feed box -->
+        <rect x="230" y="14" width="300" height="46" rx="6" fill="#1C2219" stroke="#2A3828"/>
+        <text x="380" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.1em" fill="#C0CCC2">LITHIUM BRINE FEED</text>
+        <text x="380" y="49" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A9E8F">your aqueous lithium source</text>
+        <!-- fork -->
+        <path d="M380 60 L380 72 L178 72 L178 82" fill="none" stroke="#2A3828" stroke-width="1.5"/>
+        <path d="M380 72 L582 72 L582 82" fill="none" stroke="rgba(232,168,58,0.5)" stroke-width="1.5"/>
+
         <!-- column headers -->
-        <text x="178" y="99" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#748C80">CONVENTIONAL SUPPLY CHAIN · 6 STEPS</text>
-        <text x="582" y="99" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#E8A83A">greenLi · 2 STEPS, ON SITE</text>
+        <text x="178" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#748C80">CONVENTIONAL SUPPLY CHAIN</text>
+        <text x="582" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#E8A83A">greenLi · ON SITE, 2 STEPS</text>
 
-        <!-- LEFT step 1 -->
-        <rect x="28" y="106" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="131" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Concentrate &amp; evaporate</text>
-        <text x="178" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">18-month solar evaporation ponds.</text>
-        <line x1="178" y1="164" x2="178" y2="176" stroke="#2A3828" stroke-width="1.5"/><polygon points="173,174 183,174 178,180" fill="#2A3828"/>
-        <!-- LEFT step 2 (purify) -->
-        <rect x="28" y="178" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="203" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Purify brine</text>
-        <text x="178" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Strip Mg, Ca, and B impurities.</text>
-        <line x1="178" y1="236" x2="178" y2="248" stroke="#2A3828" stroke-width="1.5"/><polygon points="173,246 183,246 178,252" fill="#2A3828"/>
-        <!-- LEFT step 3 (refine) -->
-        <rect x="28" y="250" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="275" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Refine to Li₂CO₃ / LiOH</text>
-        <text x="178" y="294" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Chemical precipitation. Partial recovery.</text>
-        <line x1="178" y1="308" x2="178" y2="320" stroke="#2A3828" stroke-width="1.5"/><polygon points="173,318 183,318 178,324" fill="#2A3828"/>
-        <!-- LEFT step 4 -->
-        <rect x="28" y="322" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="347" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Ship to centralized refinery</text>
-        <text x="178" y="366" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Logistics cost, lead time, lost margin.</text>
-        <line x1="178" y1="380" x2="178" y2="392" stroke="#2A3828" stroke-width="1.5"/><polygon points="173,390 183,390 178,396" fill="#2A3828"/>
-        <!-- LEFT step 5 -->
-        <rect x="28" y="394" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="419" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Off-site cathode manufacture</text>
-        <text x="178" y="438" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">Built around purchased lithium input.</text>
-        <line x1="178" y1="452" x2="178" y2="464" stroke="#2A3828" stroke-width="1.5"/><polygon points="173,462 183,462 178,468" fill="#2A3828"/>
-        <!-- LEFT step 6 -->
-        <rect x="28" y="466" width="300" height="58" rx="6" fill="#0F1210" stroke="#2A3828"/>
-        <text x="178" y="491" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Sold to battery manufacturer</text>
-        <text x="178" y="510" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#8A9E8F">You stop at the bottom of the chain.</text>
+        <!-- ===== LEFT cluster 1 (extraction) -> maps to MLE ===== -->
+        <rect x="24" y="110" width="308" height="46" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="130" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Concentrate &amp; evaporate</text>
+        <text x="178" y="147" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">18-month solar evaporation ponds.</text>
+        <line x1="178" y1="156" x2="178" y2="166" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="168" width="308" height="46" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="188" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Purify brine</text>
+        <text x="178" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Strip Mg, Ca, and B impurities.</text>
+        <line x1="178" y1="214" x2="178" y2="232" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
 
-        <!-- RIGHT step 1 -->
-        <rect x="432" y="106" width="300" height="58" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.25)"/>
-        <text x="582" y="129" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#E8A83A">M.L.E. purification, on site</text>
-        <text x="582" y="146" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">80%+ Li recovery from raw feed.</text>
-        <text x="582" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Continuous. No evaporation.</text>
-        <line x1="582" y1="164" x2="582" y2="284" stroke="rgba(232,168,58,0.45)" stroke-width="1.5"/><polygon points="577,282 587,282 582,290" fill="rgba(232,168,58,0.6)"/>
-        <!-- RIGHT step 2 -->
-        <rect x="432" y="292" width="300" height="58" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.25)"/>
-        <text x="582" y="315" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#E8A83A">D.C.M. synthesis, on site</text>
-        <text x="582" y="332" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Cathode powder synthesized</text>
-        <text x="582" y="346" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">directly from purified brine.</text>
-        <line x1="582" y1="350" x2="582" y2="464" stroke="rgba(232,168,58,0.45)" stroke-width="1.5"/><polygon points="577,462 587,462 582,470" fill="rgba(232,168,58,0.6)"/>
-        <!-- RIGHT step 3 -->
-        <rect x="432" y="466" width="300" height="58" rx="6" fill="rgba(232,168,58,0.1)" stroke="rgba(232,168,58,0.45)"/>
-        <text x="582" y="489" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">Battery-ready cathode</text>
-        <text x="582" y="506" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#D8C9A0">Full supply-chain margin captured</text>
-        <text x="582" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#D8C9A0">at your facility. No middlemen.</text>
+        <!-- ===== LEFT cluster 2 (refine + ship + manufacture) -> maps to DCM ===== -->
+        <rect x="24" y="234" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="253" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Refine to Li₂CO₃ / LiOH</text>
+        <text x="178" y="269" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Chemical precipitation. Partial recovery.</text>
+        <line x1="178" y1="278" x2="178" y2="288" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="290" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="309" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Ship to centralized refinery</text>
+        <text x="178" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Logistics cost, lead time, lost margin.</text>
+        <line x1="178" y1="334" x2="178" y2="344" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="346" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="365" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Off-site cathode manufacture</text>
+        <text x="178" y="381" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Built around purchased lithium input.</text>
+
+        <!-- ===== RIGHT: MLE (aligned to cluster 1) ===== -->
+        <rect x="436" y="110" width="300" height="104" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.3)"/>
+        <text x="586" y="150" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">M.L.E. purification, on site</text>
+        <text x="586" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">80%+ Li recovery from raw feed.</text>
+        <text x="586" y="186" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Continuous. No evaporation ponds.</text>
+        <line x1="586" y1="214" x2="586" y2="232" stroke="rgba(232,168,58,0.5)" stroke-width="1.5" marker-end="url(#ah-amber)"/>
+
+        <!-- ===== RIGHT: DCM (aligned to cluster 2) ===== -->
+        <rect x="436" y="234" width="300" height="156" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.3)"/>
+        <text x="586" y="298" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">D.C.M. synthesis, on site</text>
+        <text x="586" y="318" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Battery-ready cathode powder,</text>
+        <text x="586" y="334" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">synthesized directly from purified brine.</text>
+
+        <!-- ===== cross-mapping arrows: left clusters fold into greenLi steps ===== -->
+        <path d="M332 163 L436 163" fill="none" stroke="rgba(232,168,58,0.45)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah-amber)"/>
+        <text x="384" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.08em" fill="#9A8550">becomes</text>
+        <path d="M332 312 L436 312" fill="none" stroke="rgba(232,168,58,0.45)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah-amber)"/>
+        <text x="384" y="307" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.08em" fill="#9A8550">becomes</text>
+
+        <!-- ===== both paths converge on a single salable product ===== -->
+        <path d="M178 390 L178 416 L300 416 L300 436" fill="none" stroke="#3A4A40" stroke-width="1.5" marker-end="url(#ah-green)"/>
+        <path d="M586 390 L586 416 L462 416 L462 436" fill="none" stroke="rgba(232,168,58,0.55)" stroke-width="1.5" marker-end="url(#ah-green)"/>
+        <rect x="190" y="438" width="380" height="74" rx="8" fill="rgba(58,232,122,0.08)" stroke="rgba(58,232,122,0.45)"/>
+        <text x="380" y="467" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#3AE87A">Sell to EV producer / customer</text>
+        <text x="380" y="487" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">A salable product that closes the supply chain.</text>
+        <text x="380" y="503" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">Full margin, on site. No middlemen, no transport.</text>
       </svg>
     </div>
 
@@ -768,24 +775,45 @@
 <section class="bg-grid" style="padding:8rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Where the platform deploys</span>
-    <h2 class="section-heading" style="margin-bottom:3.5rem;">Four categories of lithium assets.</h2>
+    <h2 class="section-heading" style="margin-bottom:3.5rem;">Four categories of Lithium Assets. Understand yours.</h2>
     <div class="stats-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;">
-      <a href="./app-brine.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Brine Operations</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">greenLi's platform deploys directly on salar operations and brine prospecting permits, recovering substantially more lithium from the same reserve volume. Operators gain more output from existing assets without expanding their footprint.</p>
-      </a>
-      <a href="./app-hard-rock.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">greenLi's platform deploys directly on salar operations and brine prospecting permits, recovering substantially more lithium from the same reserve volume. Operators gain more output from existing assets without expanding their footprint.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">For Salar / Brine Operators</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Request a yield simulation →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Hard Rock Refinery Wastewater</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">For spodumene refiners, M.L.E. captures the 20 percent of lithium currently lost to process wastewater. A new revenue stream recovered from what was previously a disposal cost, with no disruption to existing operations.</p>
-      </a>
-      <a href="./app-produced-water.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">For spodumene refiners, M.L.E. captures the 20 percent of lithium currently lost to process wastewater. A new revenue stream recovered from what was previously a disposal cost, with no disruption to existing operations.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">For Hard Rock Refiners</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Recover value from your wastewater →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Oil &amp; Gas Produced Water</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Oil and gas operators producing water from lithium-bearing formations can capture lithium as a co-product rather than paying for disposal. A meaningful new revenue stream added to an existing operation, without changes to the core business.</p>
-      </a>
-      <a href="./app-geothermal.html" style="text-decoration:none; display:block; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Oil and gas operators producing water from lithium-bearing formations can capture lithium as a co-product rather than paying for disposal. A meaningful new revenue stream added to an existing operation, without changes to the core business.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">For Oil &amp; Gas Operators</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Model revenue from produced water →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Geothermal &amp; Groundwater</h3>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Geothermal plants and low-concentration groundwater assets can unlock lithium recovery for the first time. M.L.E. is the only extraction technology compatible with 60-degree Celsius return water and sub-50 ppm concentrations.</p>
-      </a>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Geothermal plants and low-concentration groundwater assets can unlock lithium recovery for the first time. M.L.E. is the only extraction technology compatible with 60-degree Celsius return water and sub-50 ppm concentrations.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">For Geothermal Plants</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">See if your conditions qualify →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -797,7 +825,7 @@
 <section class="bg-dots" id="where-we-deploy" style="padding:8rem 1.5rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
     <span class="eyebrow">Global Deployment</span>
-    <h2 class="section-heading" style="margin-bottom:0.75rem;">Where we deploy.</h2>
+    <h2 class="section-heading" style="margin-bottom:0.75rem;">Where we can deploy.</h2>
     <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:56ch; margin-bottom:2rem;">
       Deployment-ready sites around the world. One platform. Select a region to see the sites we target.
     </p>
@@ -816,30 +844,6 @@
   </div>
 </section>
 
-
-<section style="padding:4rem 1.5rem; background:var(--surface);">
-  <div style="max-width:1280px; margin:0 auto;">
-    <span class="eyebrow" style="display:block; width:fit-content; margin-left:auto; margin-right:auto; text-align:center;">Explore Your Asset</span>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
-      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
-        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Salar / Brine Operators</p>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Operate a salar or brine facility? Request a simulation to understand your recoverable lithium yield.</p>
-      </a>
-      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
-        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Oil &amp; Gas Operators</p>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Produce water at a lithium-bearing formation? Model the additional revenue from your existing output.</p>
-      </a>
-      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
-        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Geothermal Plants</p>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Re-inject at temperature? M.L.E. is the only platform designed to operate at your conditions.</p>
-      </a>
-      <a href="./contact-simulation.html" style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-decoration:none; display:block; transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='var(--border-hi)'" onmouseout="this.style.borderColor='var(--border)'">
-        <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.5rem;">Hard Rock Refiners</p>
-        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65;">Losing lithium to wastewater? Understand the recoverable value from streams you already manage.</p>
-      </a>
-    </div>
-  </div>
-</section>
 
 
 <!-- ══════════════════════════════════════════
@@ -883,7 +887,7 @@
     <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
 
       <div>
-        <img src="./logo.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); margin-bottom:1.25rem;">
+        <img src="./logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); margin-bottom:1.25rem;">
         <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">
           we extract lithium, efficiently, affordably, and greenLi
         </p>
@@ -984,106 +988,96 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
-  var GL_REGIONS = [
+  // Each deployable site is its own dot on the map, and only one asset shows
+  // in the panel at a time.
+  var GL_SITES = [
     {
-      id: 'south-america',
-      label: 'South America',
-      coords: [-24, -67],
-      sites: [
-        {
-          eyebrow: 'Salta · Jujuy · Lithium Triangle',
-          heading: 'Argentina — Salar Brine',
-          body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
-        },
-        {
-          eyebrow: 'Atacama · Lithium Triangle',
-          heading: 'Atacama — Salar Brine',
-          body: 'The Atacama holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
-        }
-      ]
+      id: 'argentina',
+      label: 'Argentina',
+      coords: [-24.2, -66.3],
+      eyebrow: 'Salta · Jujuy · Lithium Triangle',
+      heading: 'Argentina — Salar Brine',
+      body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
     },
     {
-      id: 'north-america',
-      label: 'North America',
-      coords: [34, -108],
-      sites: [
-        {
-          eyebrow: 'Imperial Valley · California',
-          heading: 'Salton Sea — Geothermal Brine',
-          body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
-        },
-        {
-          eyebrow: 'Permian Basin · Texas',
-          heading: 'Permian — Produced Water',
-          body: 'Permian operators produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.'
-        }
-      ]
+      id: 'atacama',
+      label: 'Atacama',
+      coords: [-23.5, -68.2],
+      eyebrow: 'Atacama Desert · Lithium Triangle',
+      heading: 'Chile — Salar Brine',
+      body: 'The Atacama Desert holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering more lithium from the same reserve volume without expanding the existing footprint.'
     },
     {
-      id: 'europe',
-      label: 'Europe',
-      coords: [47, 3],
-      sites: [
-        {
-          eyebrow: 'Northern Portugal',
-          heading: 'Portugal — Spodumene Mine',
-          body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
-        },
-        {
-          eyebrow: 'German Automotive Corridor',
-          heading: 'Central Europe — Domestic Battery Supply',
-          body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.'
-        }
-      ]
+      id: 'salton-sea',
+      label: 'Salton Sea',
+      coords: [33.3, -115.85],
+      eyebrow: 'Imperial Valley · California',
+      heading: 'Salton Sea — Geothermal Brine',
+      body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
     },
     {
-      id: 'africa',
-      label: 'Africa',
-      coords: [-20, 28.5],
-      sites: [
-        {
-          eyebrow: 'Makgadikgadi Pans',
-          heading: 'Botswana — Salar Brine',
-          body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
-        },
-        {
-          eyebrow: 'Bikita · Goromonzi',
-          heading: 'Zimbabwe — Spodumene Mine',
-          body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
-        }
-      ]
+      id: 'permian',
+      label: 'Permian Basin',
+      coords: [31.9, -102.3],
+      eyebrow: 'Permian Basin · Texas',
+      heading: 'Permian Basin — Produced Water',
+      body: 'Operators in the Permian Basin produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.'
+    },
+    {
+      id: 'portugal',
+      label: 'Portugal',
+      coords: [41.4, -7.4],
+      eyebrow: 'Northern Portugal',
+      heading: 'Portugal — Spodumene Mine',
+      body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
+    },
+    {
+      id: 'central-europe',
+      label: 'Central Europe',
+      coords: [50.0, 9.0],
+      eyebrow: 'German Automotive Corridor',
+      heading: 'Central Europe — Domestic Battery Supply',
+      body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.'
+    },
+    {
+      id: 'botswana',
+      label: 'Botswana',
+      coords: [-20.7, 25.5],
+      eyebrow: 'Makgadikgadi Pans',
+      heading: 'Botswana — Salar Brine',
+      body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
+    },
+    {
+      id: 'zimbabwe',
+      label: 'Zimbabwe',
+      coords: [-20.0, 31.6],
+      eyebrow: 'Bikita · Goromonzi',
+      heading: 'Zimbabwe — Spodumene Mine',
+      body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
     },
     {
       id: 'australia',
       label: 'Australia',
-      coords: [-22.5, 118.0],
-      sites: [
-        {
-          eyebrow: 'Pilbara · Kalgoorlie',
-          heading: 'Australia — Refinery Wastewater',
-          body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.'
-        }
-      ]
+      coords: [-22.0, 118.6],
+      eyebrow: 'Pilbara · Kalgoorlie',
+      heading: 'Australia — Refinery Wastewater',
+      body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.'
     },
     {
-      id: 'middle-east',
-      label: 'Middle East',
+      id: 'gulf',
+      label: 'The Gulf',
       coords: [24.5, 54.5],
-      sites: [
-        {
-          eyebrow: 'UAE · Saudi Arabia · Qatar',
-          heading: 'The Gulf — Desalination Infrastructure',
-          body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.'
-        }
-      ]
+      eyebrow: 'UAE · Saudi Arabia · Qatar',
+      heading: 'The Gulf — Desalination Infrastructure',
+      body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.'
     }
   ];
 
   var glMap, glMarkers = {}, glActive = null;
 
-  function glSelectRegion(id) {
-    var region = GL_REGIONS.find(function (r) { return r.id === id; });
-    if (!region) return;
+  function glSelectSite(id) {
+    var site = GL_SITES.find(function (s) { return s.id === id; });
+    if (!site) return;
     glActive = id;
 
     document.querySelectorAll('.gl-region-pill').forEach(function (p) {
@@ -1093,16 +1087,16 @@
       d.classList.toggle('gl-map-dot--active', d.dataset.id === id);
     });
 
+    // Only one asset shows in the panel at a time.
     var panel = document.getElementById('gl-map-panel');
-    panel.innerHTML = region.sites.map(function (s) {
-      return '<div class="gl-site-card">' +
-        '<p class="gl-site-eyebrow">' + s.eyebrow + '</p>' +
-        '<h3 class="gl-site-heading">' + s.heading + '</h3>' +
-        '<p class="gl-site-body">' + s.body + '</p>' +
-        '</div>';
-    }).join('');
+    panel.innerHTML =
+      '<div class="gl-site-card">' +
+        '<p class="gl-site-eyebrow">' + site.eyebrow + '</p>' +
+        '<h3 class="gl-site-heading">' + site.heading + '</h3>' +
+        '<p class="gl-site-body">' + site.body + '</p>' +
+      '</div>';
 
-    // The map cell stretches to match the cards' height; tell Leaflet to re-fit.
+    // The map cell stretches to match the card height; tell Leaflet to re-fit.
     if (glMap) {
       requestAnimationFrame(function () {
         glMap.invalidateSize();
@@ -1132,27 +1126,27 @@
 
     var pillContainer = document.getElementById('gl-region-pills');
 
-    GL_REGIONS.forEach(function (region) {
+    GL_SITES.forEach(function (site) {
       var icon = L.divIcon({
         className: '',
-        html: '<div class="gl-map-dot" data-id="' + region.id + '"></div>',
+        html: '<div class="gl-map-dot" data-id="' + site.id + '"></div>',
         iconSize: [14, 14],
         iconAnchor: [7, 7]
       });
 
-      var marker = L.marker(region.coords, { icon: icon }).addTo(glMap);
-      marker.on('click', function () { glSelectRegion(region.id); });
-      glMarkers[region.id] = marker;
+      var marker = L.marker(site.coords, { icon: icon }).addTo(glMap);
+      marker.on('click', function () { glSelectSite(site.id); });
+      glMarkers[site.id] = marker;
 
       var pill = document.createElement('button');
       pill.className = 'gl-region-pill';
-      pill.dataset.id = region.id;
-      pill.textContent = region.label;
-      pill.addEventListener('click', function () { glSelectRegion(region.id); });
+      pill.dataset.id = site.id;
+      pill.textContent = site.label;
+      pill.addEventListener('click', function () { glSelectSite(site.id); });
       pillContainer.appendChild(pill);
     });
 
-    glSelectRegion('south-america');
+    glSelectSite('argentina');
   }
 
   window.addEventListener('load', function () {
@@ -1161,5 +1155,6 @@
   });
 })();
 </script>
+  <script src="./lang-toggle.js" defer></script>
 </body>
 </html>

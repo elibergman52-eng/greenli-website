@@ -110,13 +110,14 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="./mobile.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="./logo.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" style="flex-shrink:0;"><img src="./logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Home</a>
       <div id="tech-nav-wrapper" style="position:relative; display:inline-flex; align-items:center;">
@@ -166,180 +167,19 @@
 </section>
 
 
-<!-- NEWSLETTER PROMINENT -->
-<section style="padding:5rem 1.5rem; background:var(--surface); border-bottom:1px solid var(--border);">
-  <div style="max-width:540px; margin:0 auto; text-align:center;">
-    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:0.75rem;">Get the monthly briefing.</h2>
-    <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; margin-bottom:2rem;">One email a month. Unsubscribe any time.</p>
-    <div id="hero-nl-wrap">
-      <form id="hero-nl-form" novalidate style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
-        <input type="email" id="hero-nl-email" required class="form-input" placeholder="Email address" style="flex:1; min-width:220px; max-width:320px;">
-        <button type="submit" class="btn-primary" id="hero-nl-submit" style="flex-shrink:0;">Subscribe</button>
-      </form>
-    </div>
-    <div id="hero-nl-success" style="display:none; animation:fadeIn 0.4s ease;">
-      <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:600; color:var(--green);">Subscribed.</p>
-      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); margin-top:0.5rem;">First issue coming next month.</p>
-    </div>
-  </div>
-</section>
-
-
 <!-- ══════════════════════════════════════════
-     FILTER TABS + BLOG GRID
+     INSIGHTS — COMING SOON
 ══════════════════════════════════════════ -->
 <section style="padding:6rem 1.5rem 8rem; background:var(--surface);">
   <div style="max-width:1280px; margin:0 auto;">
 
-    <!-- Filter tabs -->
-    <div role="tablist" style="display:flex; flex-wrap:wrap; border-bottom:1px solid var(--border); margin-bottom:3.5rem; gap:0;">
-      <button role="tab" class="filter-tab active" data-filter="all">All</button>
-      <button role="tab" class="filter-tab" data-filter="technology">Technology</button>
-      <button role="tab" class="filter-tab" data-filter="economics">Economics</button>
-      <button role="tab" class="filter-tab" data-filter="supply-chain">Supply Chain</button>
-      <button role="tab" class="filter-tab" data-filter="field-notes">Field Notes</button>
+    <!-- Coming soon sign -->
+    <div style="max-width:640px; margin:0 auto; text-align:center; padding:3rem 1.5rem;">
+      <span style="display:inline-block; font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.25); padding:0.4rem 0.9rem; border-radius:4px; margin-bottom:1.75rem;">Coming Soon</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,4vw,2.75rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.1; margin-bottom:1.25rem;">Our first briefings are on the way.</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; margin-bottom:2.25rem;">We are putting together our first set of insights on extraction technology, project economics, and the shifts reshaping the lithium supply chain. Subscribe below and we will send the first issue straight to your inbox.</p>
+      <a href="#newsletter" class="btn-primary" onclick="document.getElementById('newsletter')?.scrollIntoView({behavior:'smooth',block:'center'}); return false;">Get notified at launch</a>
     </div>
-
-    <!-- Blog grid -->
-    <div class="blog-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;" id="blog-grid">
-
-      <!-- Card 1: Technology -->
-      <div class="blog-card" data-category="technology">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 70% 80% at 20% 50%, rgba(58,232,122,0.14) 0%, var(--surface-2) 65%),
-                      radial-gradient(ellipse 60% 60% at 85% 20%, rgba(58,232,122,0.06) 0%, transparent 55%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green); background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); padding:0.25rem 0.625rem; border-radius:3px;">Technical</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">8 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Why we chose membranes over adsorption</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">A breakdown of the four dominant Direct Lithium Extraction approaches and where each one breaks down at scale.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2: Economics -->
-      <div class="blog-card" data-category="economics">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 80% 70% at 75% 40%, rgba(58,232,122,0.12) 0%, var(--surface-2) 60%),
-                      radial-gradient(ellipse 50% 80% at 15% 75%, rgba(58,232,122,0.05) 0%, transparent 60%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#A8D8FF; background:rgba(168,216,255,0.08); border:1px solid rgba(168,216,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Market Analysis</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">12 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Inside the Atacama brine economics</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">How a 39 percent OpEx reduction reshapes the unit economics of the world's largest salar brine operation.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Field Notes -->
-      <div class="blog-card" data-category="field-notes">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 65% 90% at 45% 20%, rgba(58,232,122,0.16) 0%, var(--surface-2) 65%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#FFD580; background:rgba(255,213,128,0.08); border:1px solid rgba(255,213,128,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Pilot Studies</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">6 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Pilot update: refinery wastewater at 10 m³/day</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Early findings from our first refinery wastewater pilot, including recovery rates and contaminant handling.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4: Technology -->
-      <div class="blog-card" data-category="technology">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 75% 60% at 55% 80%, rgba(58,232,122,0.11) 0%, var(--surface-2) 60%),
-                      radial-gradient(ellipse 40% 70% at 10% 20%, rgba(58,232,122,0.07) 0%, transparent 55%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green); background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); padding:0.25rem 0.625rem; border-radius:3px;">Technical</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">10 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">The case for on-site cathode manufacture</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Why the future of lithium supply is decentralized, and what that means for OEMs and battery producers.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5: Supply Chain -->
-      <div class="blog-card" data-category="supply-chain">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 60% 75% at 30% 60%, rgba(58,232,122,0.09) 0%, var(--surface-2) 65%),
-                      radial-gradient(ellipse 70% 50% at 80% 15%, rgba(58,232,122,0.06) 0%, transparent 55%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#C4A8FF; background:rgba(196,168,255,0.08); border:1px solid rgba(196,168,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Press</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">3 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">greenLi raises seed round led by Earth &amp; Beyond Ventures</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Funding announcement and what we are doing with the capital.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6: Economics -->
-      <div class="blog-card" data-category="economics">
-        <div style="height:175px; position:relative; overflow:hidden;
-          background: radial-gradient(ellipse 80% 65% at 60% 50%, rgba(58,232,122,0.13) 0%, var(--surface-2) 60%);
-          display:flex; align-items:flex-end; padding:1rem;">
-          <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); background:var(--surface-3); border:1px solid var(--border-hi); padding:0.3rem 0.75rem; border-radius:3px;">Coming Soon</span>
-        </div>
-        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#A8D8FF; background:rgba(168,216,255,0.08); border:1px solid rgba(168,216,255,0.15); padding:0.25rem 0.625rem; border-radius:3px;">Market Analysis</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--dim);">14 min read</span>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; line-height:1.35; margin-bottom:0.625rem; flex:1;">Lithium from seawater is closer than you think</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">A realistic timeline for seawater lithium extraction at commercial scale, and what it would take to get there.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Coming 2026</span>
-            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">Notify me →</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Empty state (shown when filter has no results) -->
-    <div id="empty-state" style="display:none; text-align:center; padding:5rem 1.5rem;">
-      <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--dim);">No posts in this category yet. <a href="#" onclick="setFilter('all'); return false;" style="color:var(--green);">View all posts.</a></p>
-    </div>
-
   </div>
 </section>
 
@@ -360,7 +200,7 @@
 <!-- ══════════════════════════════════════════
      NEWSLETTER
 ══════════════════════════════════════════ -->
-<section style="padding:8rem 1.5rem; background:var(--bg);">
+<section id="newsletter" style="padding:8rem 1.5rem; background:var(--bg);">
   <div style="max-width:540px; margin:0 auto; text-align:center;">
     <span class="eyebrow" style="display:block; width:fit-content; margin-left:auto; margin-right:auto; text-align:center;">Newsletter</span>
     <h2 class="section-heading" style="margin-bottom:1rem;">Get the monthly briefing.</h2>
@@ -398,7 +238,7 @@
   <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
     <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
       <div>
-        <img src="./logo.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <img src="./logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
         <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">we extract lithium, efficiently, affordably, and greenLi</p>
       </div>
       <div>
@@ -439,32 +279,6 @@
   document.querySelector('[data-page="insights"]')?.classList.add('nav-active');
   (function(){ var w=document.getElementById('tech-nav-wrapper'); var d=w&&w.querySelector('.tech-dropdown-menu'); if(!w||!d)return; w.addEventListener('mouseenter',function(){d.style.display='flex';}); w.addEventListener('mouseleave',function(){d.style.display='none';}); })();
 
-  // Filter tabs
-  function setFilter(filter) {
-    document.querySelectorAll('.filter-tab').forEach(t => {
-      t.classList.toggle('active', t.dataset.filter === filter);
-    });
-    let anyVisible = false;
-    document.querySelectorAll('.blog-card').forEach(card => {
-      const show = filter === 'all' || card.dataset.category === filter;
-      card.style.display = show ? 'flex' : 'none';
-      if (show) anyVisible = true;
-    });
-    document.getElementById('empty-state').style.display = anyVisible ? 'none' : 'block';
-  }
-
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', () => setFilter(tab.dataset.filter));
-  });
-
-  // Hero newsletter form
-  document.getElementById('hero-nl-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var email = document.getElementById('hero-nl-email');
-    if (!email.value.trim()) { email.style.borderColor = '#E84A3A'; email.focus(); return; }
-    document.getElementById('hero-nl-wrap').style.display = 'none';
-    document.getElementById('hero-nl-success').style.display = 'block';
-  });
 
   // Newsletter
   document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
@@ -484,5 +298,6 @@
   });
 </script>
 <script src="./greenli-animations.js" defer></script>
+  <script src="./lang-toggle.js" defer></script>
 </body>
 </html>

@@ -1,19 +1,299 @@
 <!DOCTYPE html>
-<!-- TODO: translate -->
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio — greenLi</title>
   <link rel="alternate" hreflang="en" href="../index.html">
   <link rel="alternate" hreflang="es" href="./index.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>greenLi | Extracción de litio de cualquier fuente de agua</title>
+  <meta name="description" content="Two complementary technologies extract aqueous lithium and manufacture battery-ready cathode materials on-site, on demand. Capture margin across the full supply chain.">
+  <link rel="alternate" hreflang="en" href="./index.html">
+  <link rel="alternate" hreflang="es" href="./es/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
-    :root { --bg: #0A0C0B; --green: #3AE87A; --text: #F0F4F1; --muted: #8A9E8F; }
+    :root {
+      --bg: #0A0C0B;
+      --surface: #0F1210;
+      --surface-2: #141814;
+      --surface-3: #1C2219;
+      --border: #1F2820;
+      --border-hi: #2A3828;
+      --green: #3AE87A;
+      --green-dim: #28C45C;
+      --green-light: #7FFFB8;
+      --amber: #E8A83A;
+      --text: #F0F4F1;
+      --muted: #8A9E8F;
+      --dim: #748C80;
+      --error: #E84A3A;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--text); }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: linear-gradient(90deg, var(--green), var(--amber));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      margin-bottom: 0.875rem; display: inline-block;
+    }
+    .eyebrow--amber {
+      background: none; -webkit-text-fill-color: var(--amber); color: var(--amber);
+    }
+    .eyebrow--green {
+      background: none; -webkit-text-fill-color: var(--green); color: var(--green);
+    }
+
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--text); line-height: 1.15;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600;
+      letter-spacing: 0.03em; color: #0A0C0B;
+      background: var(--green); padding: 0.8125rem 1.875rem;
+      border-radius: 4px; text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover { background: var(--green-dim); }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-secondary {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 500;
+      letter-spacing: 0.03em; color: var(--text);
+      background: transparent; padding: 0.8125rem 1.875rem;
+      border-radius: 4px; text-decoration: none;
+      border: 1px solid var(--border-hi);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-secondary:hover { border-color: var(--muted); color: var(--text); }
+    .btn-secondary:active { transform: scale(0.97); }
+
+    .btn-outline {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--green);
+      border: 1px solid var(--green); padding: 0.625rem 1.5rem;
+      border-radius: 4px; text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-outline:hover { background: rgba(58,232,122,0.1); }
+    .btn-outline:active { transform: scale(0.97); }
+
+    .btn-primary-sm {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 600;
+      letter-spacing: 0.05em; color: #0A0C0B;
+      background: var(--green); padding: 0.5rem 1.25rem;
+      border-radius: 4px; text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary-sm:hover { background: var(--green-dim); }
+    .btn-primary-sm:active { transform: scale(0.97); }
+
+    /* ── Stat Cards ── */
+    .stat-card {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 2.5rem 2rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3), 0 0 40px rgba(58,232,122,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35), 0 0 60px rgba(58,232,122,0.09);
+    }
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 400;
+      color: var(--green); letter-spacing: -0.04em; line-height: 1; margin-bottom: 1rem;
+    }
+    .stat-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600;
+      color: var(--text); letter-spacing: -0.02em; margin-bottom: 0.75rem;
+    }
+    .stat-body {
+      font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── Nav ── */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: transparent;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #main-nav.scrolled {
+      background: rgba(10,12,11,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-link {
+      font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.07em; color: var(--muted);
+      text-decoration: none; text-transform: uppercase;
+      transition: color 0.2s ease;
+      padding-bottom: 2px; border-bottom: 2px solid transparent;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.nav-active { color: var(--green); border-bottom-color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+
+    /* Nav Dropdown */
+    .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: rgba(10,12,11,0.98); border: 1px solid var(--border-hi); border-radius: 6px;
+      padding: 0.375rem; padding-top: 0.625rem; min-width: 150px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); flex-direction: column;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: flex; }
+    .nav-dropdown-item {
+      font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.07em; color: var(--muted); text-decoration: none;
+      text-transform: uppercase; padding: 0.5625rem 0.875rem; border-radius: 4px;
+      transition: background 0.15s ease, color 0.15s ease; white-space: nowrap;
+    }
+    .nav-dropdown-item:hover { background: var(--surface-3); color: var(--text); }
+    .nav-caret { font-size: 0.55em; color: var(--dim); margin-left: 0.3em; transition: transform 0.2s ease; line-height: 1; text-decoration: none; display: inline-block; }
+    .nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+
+    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    #mobile-menu {
+      display: none; flex-direction: column; gap: 0;
+      background: rgba(10,12,11,0.98); border-top: 1px solid var(--border);
+      padding: 1rem 1.5rem 1.5rem;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu .nav-link {
+      padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.9375rem;
+    }
+    #mobile-menu .nav-link:last-of-type { border-bottom: none; }
+    #mobile-menu .btn-primary-sm { margin-top: 1rem; text-align: center; display: block; }
+
+    /* ── Footer ── */
+    .footer-heading {
+      font-family: 'Inter', sans-serif; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.25rem;
+    }
+    .footer-link {
+      display: block; font-family: 'Inter', sans-serif; font-size: 0.875rem;
+      color: var(--muted); text-decoration: none; margin-bottom: 0.625rem;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover { color: var(--text); }
+
+    /* ── Comparison Table ── */
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+    .compare-table th {
+      font-family: 'Inter', sans-serif; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 1.25rem; text-align: center;
+    }
+    .compare-table td {
+      font-family: 'Inter', sans-serif; font-size: 0.9rem; padding: 0.875rem 1.25rem;
+      vertical-align: middle; border-bottom: 1px solid var(--border);
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { text-align: left; color: var(--muted); }
+    .compare-table td:not(:first-child) { text-align: center; }
+    .compare-table td svg { display: block; margin: 0 auto; }
+    .compare-col-hi { background: rgba(58,232,122,0.05); border-left: 2px solid rgba(58,232,122,0.25); border-right: 2px solid rgba(58,232,122,0.25); }
+    .compare-col-hi-top { border-top: 2px solid rgba(58,232,122,0.25); border-radius: 6px 6px 0 0; }
+    .compare-col-hi-bot { border-bottom: 2px solid rgba(58,232,122,0.25); border-radius: 0 0 6px 6px; }
+    .compare-col-amber { background: rgba(232,168,58,0.05); border-left: 2px solid rgba(232,168,58,0.25); border-right: 2px solid rgba(232,168,58,0.25); }
+    .compare-col-amber-top { border-top: 2px solid rgba(232,168,58,0.25); border-radius: 6px 6px 0 0; }
+    .compare-col-amber-bot { border-bottom: 2px solid rgba(232,168,58,0.25); border-radius: 0 0 6px 6px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta-desktop { display: none; }
+      #nav-toggle { display: block; }
+      .stats-grid { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+      .two-col { grid-template-columns: 1fr !important; }
+      .three-col { grid-template-columns: 1fr !important; }
+      .compare-table { font-size: 0.8rem; }
+      .compare-table th, .compare-table td { padding: 0.75rem 0.625rem; }
+      .chain-row { flex-direction: column !important; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr !important; }
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    /* ── Leaflet map overrides ── */
+    .leaflet-container { background: #0A0C0B; font-family: 'Inter', sans-serif; }
+    .leaflet-attribution-flag { display: none !important; }
+    .leaflet-control-attribution { background: rgba(10,12,11,0.75) !important; color: #4A5E50 !important; font-size: 0.6875rem !important; padding: 2px 6px !important; border-radius: 3px !important; }
+    .leaflet-control-attribution a { color: #4A5E50 !important; }
+
+    /* ── Map markers & region pills ── */
+    .gl-map-dot {
+      width: 14px; height: 14px;
+      background: rgba(58,232,122,0.35);
+      border: 1.5px solid var(--green);
+      border-radius: 50%; cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 8px rgba(58,232,122,0.45);
+    }
+    .gl-map-dot:hover, .gl-map-dot--active {
+      background: var(--green); transform: scale(1.6);
+      box-shadow: 0 0 16px rgba(58,232,122,0.75);
+    }
+    .gl-region-pill {
+      font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.04em; color: var(--muted);
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.4375rem 1rem;
+      cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .gl-region-pill:hover { border-color: var(--border-hi); color: var(--text); }
+    .gl-region-pill--active {
+      border-color: var(--green); color: var(--green);
+      background: rgba(58,232,122,0.08);
+    }
+    .gl-site-card {
+      background: var(--surface-2); border: 1px solid var(--border-hi);
+      border-radius: 10px; padding: 1.75rem;
+    }
+    .gl-site-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .gl-site-heading {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1875rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.75rem;
+    }
+    .gl-site-body {
+      font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--muted); line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .gl-map-grid { grid-template-columns: 1fr !important; align-items: start !important; }
+      #gl-map { height: 320px !important; min-height: 0 !important; }
+    }
   
     /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
     body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -30,7 +310,19 @@
       50%     { transform: scale(1.18) translate(-14px,12px); opacity:0.85; }
     }
     .hero-blobs { position:absolute; top:-120px; right:-100px; width:540px; height:540px; z-index:2; pointer-events:none;
-      background: radial-gradient(circle at 55% 45%, rgba(127,255,184,0.16) 0%, transparent 62%); }
+      background: radial-gradient(circle at 55% 45%, rgba(127,255,184,0.16) 0%, transparent 62%);
+      opacity:0; transform:scale(0.45); transform-origin:72% 32%;
+      transition:opacity 1.4s ease-out, transform 1.6s cubic-bezier(0.16,1,0.3,1); }
+    .hero-blobs.revealed { opacity:1; transform:scale(1); }
+
+    /* ── Hero scroll-down cue ── */
+    @keyframes scrollCue { 0%,100% { transform:translate(-50%,0); opacity:0.5; } 50% { transform:translate(-50%,8px); opacity:1; } }
+    .hero-scroll-cue { position:absolute; bottom:1.5rem; left:50%; z-index:4; display:flex; align-items:center; justify-content:center;
+      background:none; border:none; padding:0.5rem; color:#F0F4F1; cursor:pointer; animation:scrollCue 2.4s ease-in-out infinite;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,0.55)); }
+    .hero-scroll-cue:hover { color:var(--green); }
+    .hero-scroll-cue:focus-visible { outline:2px solid var(--green); outline-offset:4px; border-radius:6px; }
+    @media (prefers-reduced-motion: reduce) { .hero-scroll-cue { animation:none; transform:translateX(-50%); } }
     .hero-blobs::before, .hero-blobs::after { content:''; position:absolute; border-radius:50%; filter:blur(72px); will-change:transform,opacity; }
     .hero-blobs::before { top:24px; right:110px; width:300px; height:300px; background:radial-gradient(circle, rgba(58,232,122,0.55) 0%, transparent 70%); animation:blobPulse 9s ease-in-out infinite; }
     .hero-blobs::after  { top:150px; right:-30px; width:250px; height:250px; background:radial-gradient(circle, rgba(232,168,58,0.42) 0%, transparent 70%); animation:blobPulse 11.5s ease-in-out infinite 1.6s; }
@@ -53,11 +345,818 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="../mobile.css">
 </head>
 <body>
-  <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:1rem;">greenLi · ES</p>
-  <h1 style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-0.03em; margin-bottom:1.25rem;">Versión en español próximamente.</h1>
-  <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:40ch; margin-bottom:2rem;">El contenido en español estará disponible próximamente. Por ahora, puede consultar la versión en inglés.</p>
-  <a href="../index.html" style="font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:#0A0C0B; background:var(--green); padding:0.75rem 1.75rem; border-radius:4px; text-decoration:none;">View in English</a>
+
+<!-- Hidden SVG noise filter -->
+<svg width="0" height="0" style="position:absolute; pointer-events:none;">
+  <defs>
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+      <feColorMatrix type="saturate" values="0" in="noiseOut" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
+      <img src="../logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
+    </a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link nav-active" data-page="home">Inicio</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
+          <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Aguas Residuales de Refinería</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link" data-page="about">Quiénes Somos</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Perspectivas</a>
+      <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Solicitar una Simulación</a>
+    </div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" role="menu">
+    <a href="./index.html" class="nav-link nav-active" role="menuitem">Inicio</a>
+    <a href="./technology.html" class="nav-link" role="menuitem">Tecnología</a>
+    <a href="./mle.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link" role="menuitem">Aplicaciones</a>
+    <a href="./team.html" class="nav-link" role="menuitem">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link" role="menuitem">Perspectivas</a>
+    <a href="./contact.html" class="nav-link" role="menuitem">Contacto</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section style="position:relative; height:100vh; min-height:640px; display:flex; align-items:center; overflow:hidden;">
+
+  <video id="hero-video" autoplay muted playsinline
+    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:opacity 1.5s ease;">
+    <source src="../1777153159096-mndzip0kiml.mp4" type="video/mp4">
+  </video>
+
+  <div style="position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(ellipse 80% 70% at 20% 65%, rgba(58,232,122,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 88% 10%, rgba(10,12,11,0.65) 0%, transparent 55%),
+      radial-gradient(ellipse 130% 60% at 0% 90%, rgba(10,12,11,0.88) 0%, transparent 65%),
+      linear-gradient(168deg, rgba(10,12,11,0.5) 0%, rgba(10,12,11,0.96) 100%);"></div>
+
+  <div style="position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0.045;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');
+    background-repeat: repeat; background-size: 200px 200px;"></div>
+
+  <div class="hero-blobs" aria-hidden="true"></div>
+
+  <div style="position:relative; z-index:3; max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%; padding-top:80px;">
+    <span class="eyebrow">Extraemos litio acuoso.</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif;
+               font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+               font-weight:700; letter-spacing:-0.03em; line-height:1.06;
+               color:#F0F4F1; max-width:22ch; margin-bottom:1.5rem;
+               text-shadow:0 2px 24px rgba(0,0,0,0.6);">
+      Monetice los activos de litio a lo largo de toda la cadena de valor.
+    </h1>
+    <p style="font-family:'Inter',sans-serif;
+              font-size:clamp(1rem, 1.8vw, 1.2rem);
+              font-weight:300; color:#D0DACE; max-width:56ch; line-height:1.75; margin-bottom:2.75rem;
+              text-shadow:0 1px 12px rgba(0,0,0,0.5);">
+      En greenLi, dos tecnologías complementarias (<a href="./mle.html" style="color:var(--green);text-decoration:underline;">MLE</a> &amp; <a href="./dcm.html" style="color:var(--amber);text-decoration:underline;">DCM</a>) se despliegan de forma independiente o en conjunto para extraer litio acuoso y fabricar materiales de cátodo para baterías de iones de litio en el sitio. Nuestro sistema de 'salmuera a batería' se instala como una solución contenedorizada y acoplable, permitiendo a los operadores capturar margen a lo largo de toda la cadena de suministro.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="./technology.html" class="btn-secondary">Conozca más sobre la tecnología de greenLi</a>
+    </div>
+
+    <div style="margin-top:3rem; padding-top:1.75rem; border-top:1px solid rgba(255,255,255,0.12); max-width:820px; margin-left:auto; margin-right:auto; text-align:center;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#9DB0A4; margin-bottom:1.125rem;">Respaldados Por y En Asociación Con</p>
+      <div style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:1rem 2.75rem;">
+        <a href="https://mamanelab.sites.tau.ac.il/" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">Universidad de Tel Aviv</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Origen Académico</p>
+        </a>
+        <a href="https://www.earthandbeyond.ventures/portfolio" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">Earth &amp; Beyond Ventures</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Inversor Principal</p>
+        </a>
+        <a href="https://www.sum.vc/portfolio/" target="_blank" rel="noopener" style="text-decoration:none;">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:#F0F4F1; line-height:1.2;">SUM Ventures</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; color:#9DB0A4; letter-spacing:0.06em; text-transform:uppercase;">Coinversor</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute; bottom:0; left:0; right:0; height:180px; z-index:2;
+    background: linear-gradient(to bottom, transparent, var(--bg));"></div>
+
+  <button class="hero-scroll-cue" aria-label="Scroll down" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     THE PROBLEM
+══════════════════════════════════════════ -->
+<section class="bg-dots" style="position:relative; padding:8rem 1.5rem;
+  background:
+    radial-gradient(ellipse 75% 60% at 12% 16%, rgba(58,232,122,0.08) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 65% at 88% 90%, rgba(232,168,58,0.07) 0%, transparent 60%),
+    var(--surface);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="max-width:720px; margin:0 auto; text-align:center;">
+    <span style="display:inline-block; width:48px; height:3px; border-radius:2px; margin-bottom:2.25rem;
+      background:linear-gradient(90deg, var(--green), var(--amber));"></span>
+    <p style="font-family:'Inter',sans-serif; font-size:1.125rem; color:var(--muted); line-height:1.85;">
+      La cadena de suministro de litio enfrenta restricciones estructurales que limitan la capacidad de la industria para satisfacer la creciente demanda. Los métodos convencionales de extracción de litio recuperan solo entre el 25 y el 50% del litio disponible en una fuente dada. La ineficacia de las metodologías actuales se agrava por los costos y el tiempo asociados: los ciclos de evaporación de salar se extienden 18 meses; la refinación de roca dura pierde una capacidad significativa de litio en las aguas residuales de proceso; y la infraestructura de refinación geográficamente aislada provoca cuellos de botella en la cadena de suministro, con los fabricantes de vehículos eléctricos y baterías absorbiendo esos costos.
+    </p>
+    <p style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:600;
+              color:var(--text); margin-top:2.25rem; letter-spacing:-0.02em; line-height:1.3;">
+      La demanda supera rápidamente a la oferta, pero la solución no es encontrar nuevas fuentes de litio; es habilitar la capacidad de <span style="background:linear-gradient(90deg,var(--green),var(--amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;">recuperar litio antes inaccesible de los recursos existentes</span>. Sin una solución eficiente y sostenible de salmuera a batería, la revolución de los vehículos eléctricos no sostendrá su crecimiento.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS — interactive chain diagram
+══════════════════════════════════════════ -->
+<section class="bg-dots" style="padding:6rem 1.5rem; background:var(--bg);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">Cómo Funciona</span>
+    <h2 class="section-heading" style="margin-bottom:3rem;">De su fuente de agua a una batería.</h2>
+
+    <div class="raised" style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:2.5rem; overflow-x:auto; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+
+      <!-- Chain steps row -->
+      <div style="display:flex; align-items:flex-start; gap:0; min-width:720px;">
+
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Salmuera en Bruto</p>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="flex:1.3; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Salmuera Semiprocesada</p>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.2); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--green); line-height:1.3;">Salmuera Purificada</p>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Sales Intermedias</p>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Cátodos en Bruto</p>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.25); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--amber); line-height:1.3;">Cátodo Listo para Batería</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Brackets row -->
+      <div style="display:flex; margin-top:1.5rem; gap:0.5rem; min-width:720px;">
+
+        <a href="./mle.html" style="flex:1; text-decoration:none; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.18); border-radius:6px; padding:1rem 1.25rem; display:block; transition:background 0.2s ease;" onmouseover="this.style.background='rgba(58,232,122,0.1)'" onmouseout="this.style.background='rgba(58,232,122,0.06)'">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:700; color:var(--green); letter-spacing:0.04em; margin-bottom:0.125rem;">M.L.E.</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; color:var(--green); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.5rem;">Extracción de Litio por Membrana</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.5; margin-bottom:0.875rem;">Purifica cualquier fuente acuosa de Li en permeado de grado batería.</p>
+          <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--green); letter-spacing:0.04em;">Explorar M.L.E. →</span>
+        </a>
+
+        <a href="./dcm.html" style="flex:1; text-decoration:none; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.18); border-radius:6px; padding:1rem 1.25rem; display:block; transition:background 0.2s ease;" onmouseover="this.style.background='rgba(232,168,58,0.1)'" onmouseout="this.style.background='rgba(232,168,58,0.06)'">
+          <p style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:700; color:var(--amber); letter-spacing:0.04em; margin-bottom:0.125rem;">D.C.M.</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; color:var(--amber); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.5rem;">Fabricación Directa de Cátodo</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.5; margin-bottom:0.875rem;">Genera materiales de cátodo listos para batería directamente de salmueras de Li purificadas.</p>
+          <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--amber); letter-spacing:0.04em;">Explorar D.C.M. →</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     THE GREENLI APPROACH (stat cards)
+══════════════════════════════════════════ -->
+<section class="bg-dots" style="padding:8rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow" style="text-align:left;">El Enfoque de greenLi</span>
+
+    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.25rem;">
+
+      <a href="./applications.html" style="text-decoration:none;" class="stat-card">
+        <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Cualquier materia prima acuosa.</h3>
+        <p class="stat-body">Una plataforma de membrana funciona con salmuera de salar, agua producida, fluido geotérmico, aguas residuales de refinería y aguas subterráneas de baja concentración. Si una fuente acuosa contiene litio, greenLi lo recupera, a cualquier concentración.</p>
+      </a>
+
+      <a href="./dcm.html" style="text-decoration:none;" class="stat-card">
+        <span style="display:block; width:10px; height:10px; background:var(--amber); border-radius:50%; box-shadow:0 0 12px rgba(232,168,58,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Agnóstico a la química del cátodo.</h3>
+        <p class="stat-body">DCM fabrica materiales de cátodo listos para batería, agnóstico a cualquier química de batería que deseen los fabricantes o consumidores. A medida que cambian las hojas de ruta de las baterías, greenLi puede cambiar con ellas, manteniendo nuestra salida alineada con la demanda del mercado.</p>
+      </a>
+
+      <a href="./technology.html" style="text-decoration:none;" class="stat-card">
+        <span style="display:block; width:10px; height:10px; background:var(--green); border-radius:50%; box-shadow:0 0 12px rgba(58,232,122,0.6); margin-bottom:1.5rem;"></span>
+        <h3 class="stat-title">Integrado, en el sitio, escalable.</h3>
+        <p class="stat-body">Los skids contenedorizados se acoplan a la infraestructura de operación existente, desplegándose de forma modular con piezas COTS. La extracción y la fabricación de cátodo operan en el sitio, capturando margen a lo largo de toda la cadena de valor.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     MLE SECTION
+══════════════════════════════════════════ -->
+<section class="bg-grid" style="padding:8rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow eyebrow--green">Extracción de Litio por Membrana</span>
+    <h2 class="section-heading" style="margin-bottom:0.75rem;">MLE: Trasladando la Desalinización por Ósmosis Inversa a la Extracción de Litio</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:60ch; margin-bottom:3.5rem;">
+      Agnóstico a la salmuera. Una plataforma de membrana continua que lleva la economía probada de la desalinización por ósmosis inversa a la extracción de litio, desplegable en cualquier fuente acuosa, a cualquier concentración.
+    </p>
+
+    <!-- Three pillars -->
+    <div class="three-col" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3.5rem;">
+
+      <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2rem;">
+        <div style="width:40px; height:40px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#3AE87A" stroke-width="1.75" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Operación Continua</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">A diferencia de las tecnologías DLE por lotes que ciclan entre fases de adsorción y desorción, M.L.E. funciona las 24 horas. Sin paradas para regeneración, sin ciclos de evaporación de 18 meses. Solo caudal continuo desde la alimentación hasta la salmuera purificada.</p>
+      </div>
+
+      <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2rem;">
+        <div style="width:40px; height:40px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="6" height="10" rx="1.5" stroke="#3AE87A" stroke-width="1.5"/><rect x="10" y="2" width="6" height="14" rx="1.5" stroke="#3AE87A" stroke-width="1.5"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Capacidad de Despliegue Modular</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">La plataforma se envía en skids contenedorizados que se acoplan a la infraestructura existente. Despliéguela en un salar, un campo petrolero, una instalación geotérmica o una refinería de roca dura. Sin nueva fábrica, sin ingeniería específica del sitio desde cero.</p>
+      </div>
+
+      <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2rem;">
+        <div style="width:40px; height:40px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#3AE87A" stroke-width="1.5"/><path d="M9 2C9 2 6 5.5 6 9s3 7 3 7" stroke="#3AE87A" stroke-width="1.5"/><path d="M9 2c0 0 3 3.5 3 7s-3 7-3 7" stroke="#3AE87A" stroke-width="1.5"/><path d="M2 9h14" stroke="#3AE87A" stroke-width="1.5"/></svg>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Aproveche la Cadena de Suministro Global</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted); line-height:1.7;">La membrana selectiva de Li se fabrica a través de cadenas de suministro de desalinización establecidas. El escalamiento no depende de fabricación propietaria. Aprovecha la capacidad global existente. El costo y los plazos siguen una curva de aprendizaje bien entendida.</p>
+      </div>
+
+    </div>
+
+    <a href="./mle.html" style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--green); text-decoration:none; letter-spacing:0.03em; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Conozca más sobre M.L.E. →</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     DCM SECTION
+══════════════════════════════════════════ -->
+<section class="bg-grid" style="padding:8rem 1.5rem; background:var(--bg);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow eyebrow--amber">Fabricación Directa de Cátodo</span>
+    <h2 class="section-heading" style="margin-bottom:1.5rem;">DCM: De materias primas a cátodo listo para batería, en el sitio, bajo demanda</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:68ch; margin-bottom:1.5rem;">
+      La mayoría de los operadores de activos de litio se detienen en el carbonato o el hidróxido, vendiendo en un mercado de refinación donde los márgenes se comprimen y las dependencias quedan fuera de su control. La fabricación tradicional de baterías construye estructuras de cátodo en torno al litio como insumo de refinerías centralizadas.
+    </p>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:68ch; margin-bottom:3rem;">
+      La Fabricación Directa de Cátodo (D.C.M.) es diferente. Convierte el litio purificado directamente en polvo de cátodo listo para batería en el sitio, sin sales intermedias, sin transporte a una refinería y sin bloqueo de química de cátodo. Los operadores capturan el margen que hoy fluye hacia los fabricantes de celdas.
+    </p>
+
+    <!-- DCM two-paths diagram: conventional steps map onto greenLi's MLE + DCM,
+         and both paths converge on one salable product that closes the supply chain. -->
+    <div class="raised" style="margin-bottom:2.5rem; overflow-x:auto; border-radius:10px;">
+      <svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;display:block;border-radius:10px;overflow:hidden;">
+        <defs>
+          <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3A4A40"/></marker>
+          <marker id="ah-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="rgba(232,168,58,0.7)"/></marker>
+          <marker id="ah-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3AE87A"/></marker>
+        </defs>
+        <rect width="760" height="540" fill="#141814" rx="10"/>
+
+        <!-- top shared feed box -->
+        <rect x="230" y="14" width="300" height="46" rx="6" fill="#1C2219" stroke="#2A3828"/>
+        <text x="380" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.1em" fill="#C0CCC2">ALIMENTACIÓN DE SALMUERA DE LITIO</text>
+        <text x="380" y="49" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A9E8F">su fuente acuosa de litio</text>
+        <!-- fork -->
+        <path d="M380 60 L380 72 L178 72 L178 82" fill="none" stroke="#2A3828" stroke-width="1.5"/>
+        <path d="M380 72 L582 72 L582 82" fill="none" stroke="rgba(232,168,58,0.5)" stroke-width="1.5"/>
+
+        <!-- column headers -->
+        <text x="178" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#748C80">CADENA DE SUMINISTRO CONVENCIONAL</text>
+        <text x="582" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#E8A83A">greenLi · EN EL SITIO, 2 PASOS</text>
+
+        <!-- ===== LEFT cluster 1 (extraction) -> maps to MLE ===== -->
+        <rect x="24" y="110" width="308" height="46" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="130" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Concentrar y evaporar</text>
+        <text x="178" y="147" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Piscinas de evaporación solar de 18 meses.</text>
+        <line x1="178" y1="156" x2="178" y2="166" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="168" width="308" height="46" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="188" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Purificar salmuera</text>
+        <text x="178" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Eliminar impurezas de Mg, Ca y B.</text>
+        <line x1="178" y1="214" x2="178" y2="232" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+
+        <!-- ===== LEFT cluster 2 (refine + ship + manufacture) -> maps to DCM ===== -->
+        <rect x="24" y="234" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="253" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Refinar a Li₂CO₃ / LiOH</text>
+        <text x="178" y="269" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Precipitación química. Recuperación parcial.</text>
+        <line x1="178" y1="278" x2="178" y2="288" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="290" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="309" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Enviar a refinería centralizada</text>
+        <text x="178" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Costo logístico, plazos, margen perdido.</text>
+        <line x1="178" y1="334" x2="178" y2="344" stroke="#2A3828" stroke-width="1.5" marker-end="url(#ah-gray)"/>
+        <rect x="24" y="346" width="308" height="44" rx="6" fill="#0F1210" stroke="#2A3828"/>
+        <text x="178" y="365" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#C0CCC2">Fabricación de cátodo fuera del sitio</text>
+        <text x="178" y="381" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8A9E8F">Construido en torno a litio comprado como insumo.</text>
+
+        <!-- ===== RIGHT: MLE (aligned to cluster 1) ===== -->
+        <rect x="436" y="110" width="300" height="104" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.3)"/>
+        <text x="586" y="150" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">Purificación M.L.E., en el sitio</text>
+        <text x="586" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Recuperación de Li superior al 80% de la alimentación bruta.</text>
+        <text x="586" y="186" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Continuo. Sin piscinas de evaporación.</text>
+        <line x1="586" y1="214" x2="586" y2="232" stroke="rgba(232,168,58,0.5)" stroke-width="1.5" marker-end="url(#ah-amber)"/>
+
+        <!-- ===== RIGHT: DCM (aligned to cluster 2) ===== -->
+        <rect x="436" y="234" width="300" height="156" rx="6" fill="rgba(232,168,58,0.05)" stroke="rgba(232,168,58,0.3)"/>
+        <text x="586" y="298" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#E8A83A">Síntesis D.C.M., en el sitio</text>
+        <text x="586" y="318" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">Polvo de cátodo listo para batería,</text>
+        <text x="586" y="334" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#CDBE96">sintetizado directamente de salmuera purificada.</text>
+
+        <!-- ===== cross-mapping arrows: left clusters fold into greenLi steps ===== -->
+        <path d="M332 163 L436 163" fill="none" stroke="rgba(232,168,58,0.45)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah-amber)"/>
+        <text x="384" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.08em" fill="#9A8550">se convierte en</text>
+        <path d="M332 312 L436 312" fill="none" stroke="rgba(232,168,58,0.45)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah-amber)"/>
+        <text x="384" y="307" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.08em" fill="#9A8550">se convierte en</text>
+
+        <!-- ===== both paths converge on a single salable product ===== -->
+        <path d="M178 390 L178 416 L300 416 L300 436" fill="none" stroke="#3A4A40" stroke-width="1.5" marker-end="url(#ah-green)"/>
+        <path d="M586 390 L586 416 L462 416 L462 436" fill="none" stroke="rgba(232,168,58,0.55)" stroke-width="1.5" marker-end="url(#ah-green)"/>
+        <rect x="190" y="438" width="380" height="74" rx="8" fill="rgba(58,232,122,0.08)" stroke="rgba(58,232,122,0.45)"/>
+        <text x="380" y="467" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#3AE87A">Vender al productor de VE / cliente</text>
+        <text x="380" y="487" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">Un producto vendible que cierra la cadena de suministro.</text>
+        <text x="380" y="503" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#9DB0A4">Margen completo, en el sitio. Sin intermediarios, sin transporte.</text>
+      </svg>
+    </div>
+
+    <a href="./dcm.html" style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--amber); text-decoration:none; letter-spacing:0.03em; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Conozca más sobre D.C.M. →</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     APPLICATIONS
+══════════════════════════════════════════ -->
+<section class="bg-grid" style="padding:8rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">Dónde se despliega la plataforma</span>
+    <h2 class="section-heading" style="margin-bottom:3.5rem;">Cuatro categorías de Activos de Litio. Conozca el suyo.</h2>
+    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;">
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Operaciones de Salmuera</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">La plataforma de greenLi se despliega directamente en operaciones de salar y permisos de prospección de salmuera, recuperando sustancialmente más litio del mismo volumen de reserva. Los operadores obtienen más salida de los activos existentes sin ampliar su huella.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Operadores de Salar / Salmuera</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Solicitar una simulación de rendimiento →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Aguas Residuales de Refinería de Roca Dura</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Para refinerías de espodumeno, M.L.E. captura el 20 por ciento del litio que actualmente se pierde en las aguas residuales de proceso. Un nuevo flujo de ingresos recuperado de lo que antes era un costo de eliminación, sin interrupción de las operaciones existentes.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Refinerías de Roca Dura</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Recupere valor de sus aguas residuales →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Agua Producida de Petróleo y Gas</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Los operadores de petróleo y gas que producen agua de formaciones con litio pueden capturar litio como coproducto en lugar de pagar por su eliminación. Un nuevo y significativo flujo de ingresos sumado a una operación existente, sin cambios en el negocio principal.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Operadores de Petróleo y Gas</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Modele ingresos del agua producida →</a>
+        </div>
+      </div>
+
+      <div class="asset-card" style="display:flex; flex-direction:column; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2rem; transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--border-hi)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Geotermia y Aguas Subterráneas</h3>
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; flex:1; margin-bottom:1.5rem;">Las plantas geotérmicas y los activos de aguas subterráneas de baja concentración pueden desbloquear la recuperación de litio por primera vez. M.L.E. es la única tecnología de extracción compatible con agua de retorno a 60 grados Celsius y concentraciones por debajo de 50 ppm.</p>
+        <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:0.625rem;">Para Plantas Geotérmicas</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Vea si sus condiciones califican →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     WHERE WE DEPLOY — interactive Leaflet map
+══════════════════════════════════════════ -->
+<section class="bg-dots" id="where-we-deploy" style="padding:8rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">Despliegue Global</span>
+    <h2 class="section-heading" style="margin-bottom:0.75rem;">Dónde podemos desplegar.</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:56ch; margin-bottom:2rem;">
+      Sitios listos para despliegue en todo el mundo. Una plataforma. Seleccione una región para ver los sitios que tenemos como objetivo.
+    </p>
+
+    <!-- Region pills -->
+    <div id="gl-region-pills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;"></div>
+
+    <!-- Map + panel -->
+    <div class="gl-map-grid" style="display:grid; grid-template-columns:1fr 340px; gap:1.5rem; align-items:stretch;">
+
+      <div id="gl-map" class="raised" style="min-height:440px; border-radius:10px; border:1px solid var(--border); overflow:hidden;"></div>
+
+      <div id="gl-map-panel" style="display:flex; flex-direction:column; gap:1rem; min-height:240px;"></div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══════════════════════════════════════════
+     CTA BLOCK
+══════════════════════════════════════════ -->
+<section style="padding:10rem 1.5rem; text-align:center;
+  background: radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%),
+              var(--bg);">
+  <div style="max-width:600px; margin:0 auto;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;
+               font-size:clamp(2rem,4vw,3.125rem);
+               font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:1.25rem; line-height:1.1;">
+      Póngase en contacto.
+    </h2>
+    <p style="font-family:'Inter',sans-serif; color:var(--muted); font-size:1.0625rem; line-height:1.75; margin-bottom:2.75rem;">
+      Inversionistas, operadores y socios estratégicos. Respondemos personalmente.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="./contact-simulation.html" class="btn-primary">Solicitar una Simulación de Extracción</a>
+      <a href="./contact.html" class="btn-secondary">CONTÁCTENOS</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+
+    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:3rem;">
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Manténgase al día sobre el litio y la fabricación de baterías.</h3>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; margin-bottom:1.5rem;">Suscríbase a nuestro boletín para recibir actualizaciones regulares de greenLi sobre lo que ocurre en las industrias del litio y la fabricación de baterías. Cancele en cualquier momento.</p>
+      <div id="footer-nl-wrap" style="display:flex; gap:0.75rem; flex-wrap:wrap; max-width:100%;">
+        <input type="email" id="footer-nl-email" placeholder="Email address" style="flex:1; min-width:200px; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.6875rem 1rem; outline:none; transition:border-color 0.2s ease; appearance:none;">
+        <button onclick="(function(){var e=document.getElementById('footer-nl-email');if(!e.value.trim()){e.style.borderColor='#E84A3A';return;}document.getElementById('footer-nl-wrap').innerHTML='<p style=\'font-family:Inter,sans-serif;font-size:0.9375rem;color:var(--green);font-weight:500;\'>Subscribed.</p>';})()" class="btn-primary-sm" style="flex-shrink:0;">Suscribirse</button>
+      </div>
+    </div>
+
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+
+      <div>
+        <img src="../logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">
+          extraemos litio, de forma eficiente, asequible y greenLi
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-heading">Empresa</p>
+        <a href="./team.html" class="footer-link">Quiénes Somos</a>
+        <a href="./insights.html" class="footer-link">Perspectivas</a>
+        <a href="./contact.html" class="footer-link">Contacto</a>
+      </div>
+
+      <div>
+        <p class="footer-heading">Tecnología</p>
+        <a href="./technology.html" class="footer-link">Resumen</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
+      </div>
+
+      <div>
+        <p class="footer-heading">Aplicaciones</p>
+        <a href="./app-brine.html" class="footer-link">Salmuera de Salar</a>
+        <a href="./app-hard-rock.html" class="footer-link">Aguas Residuales de Refinería</a>
+        <a href="./app-produced-water.html" class="footer-link">Petróleo y Gas</a>
+        <a href="./app-geothermal.html" class="footer-link">Geotermia</a>
+        <a href="./app-groundwater.html" class="footer-link">Aguas Subterráneas</a>
+        <a href="./contact-simulation.html" class="footer-link" style="color:var(--green);">Solicitar una Simulación</a>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">
+        © 2026 greenLi. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  (function () {
+    var v = document.getElementById('hero-video');
+    if (!v) return;
+    var blobs = document.querySelector('.hero-blobs');
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      if (blobs) blobs.classList.add('revealed');
+    }
+    // Bloom the blob in during the last ~1.2s of the video, overlapping its fade-out.
+    v.addEventListener('timeupdate', function () {
+      var d = v.duration;
+      if (isFinite(d) && d > 0 && v.currentTime >= d - 1.2) reveal();
+    });
+    v.addEventListener('ended', function () { v.style.opacity = '0'; reveal(); });
+    // Fallback: if autoplay is blocked or duration never resolves, still reveal the glow.
+    setTimeout(reveal, 6000);
+  })();
+
+  const toggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Animate counters on scroll
+  function animateCounter(el, target) {
+    const start = performance.now();
+    const update = (now) => {
+      const progress = Math.min((now - start) / 1200, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * ease);
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target, Number(e.target.dataset.target));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => obs.observe(el));
+</script>
+<script src="../greenli-animations.js" defer></script>
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  // Each deployable site is its own dot on the map, and only one asset shows
+  // in the panel at a time.
+  var GL_SITES = [
+    {
+      id: 'argentina',
+      label: 'Argentina',
+      coords: [-24.2, -66.3],
+      eyebrow: 'Salta · Jujuy · Lithium Triangle',
+      heading: 'Argentina — Salar Brine',
+      body: 'The Lithium Triangle holds a large share of the world\'s salar brine reserves. greenLi deploys directly on salar operations, recovering substantially more lithium from the same reserve volume without expanding the existing footprint.'
+    },
+    {
+      id: 'atacama',
+      label: 'Atacama',
+      coords: [-23.5, -68.2],
+      eyebrow: 'Atacama Desert · Lithium Triangle',
+      heading: 'Chile — Salar Brine',
+      body: 'The Atacama Desert holds more than 30% of global lithium reserves. greenLi is positioned to deploy directly on salar operations in the region, recovering more lithium from the same reserve volume without expanding the existing footprint.'
+    },
+    {
+      id: 'salton-sea',
+      label: 'Salton Sea',
+      coords: [33.3, -115.85],
+      eyebrow: 'Imperial Valley · California',
+      heading: 'Salton Sea — Geothermal Brine',
+      body: 'Salton Sea operators sit on lithium-rich geothermal brine. M.L.E. deploys on existing infrastructure, converting a disposal stream into a direct revenue stream. No new wells, no new plant.'
+    },
+    {
+      id: 'permian',
+      label: 'Permian Basin',
+      coords: [31.9, -102.3],
+      eyebrow: 'Permian Basin · Texas',
+      heading: 'Permian Basin — Produced Water',
+      body: 'Operators in the Permian Basin produce lithium-rich water with zero recovery today. M.L.E. deploys on existing infrastructure, converting a disposal cost into a direct revenue stream. No new wells, no new plant.'
+    },
+    {
+      id: 'portugal',
+      label: 'Portugal',
+      coords: [41.4, -7.4],
+      eyebrow: 'Northern Portugal',
+      heading: 'Portugal — Spodumene Mine',
+      body: 'Portuguese spodumene operations lose lithium to process wastewater. M.L.E. recovers it on site, adding output from assets that are already running, with no new mine or expanded plant.'
+    },
+    {
+      id: 'central-europe',
+      label: 'Central Europe',
+      coords: [50.0, 9.0],
+      eyebrow: 'German Automotive Corridor',
+      heading: 'Central Europe — Domestic Battery Supply',
+      body: 'European OEMs have committed to domestic battery supply chains by 2030. M.L.E. and D.C.M. give operators a path to cathode-grade output without building new refining infrastructure from scratch.'
+    },
+    {
+      id: 'botswana',
+      label: 'Botswana',
+      coords: [-20.7, 25.5],
+      eyebrow: 'Makgadikgadi Pans',
+      heading: 'Botswana — Salar Brine',
+      body: 'Botswana\'s salt pans hold lithium-bearing brine that conventional evaporation cannot economically recover. M.L.E. unlocks continuous extraction on site, turning a stranded resource into a revenue stream.'
+    },
+    {
+      id: 'zimbabwe',
+      label: 'Zimbabwe',
+      coords: [-20.0, 31.6],
+      eyebrow: 'Bikita · Goromonzi',
+      heading: 'Zimbabwe — Spodumene Mine',
+      body: 'Zimbabwe is one of the fastest-growing hard-rock lithium regions. M.L.E. captures the lithium lost to refinery wastewater, recovering a new revenue stream from what was previously a disposal cost.'
+    },
+    {
+      id: 'australia',
+      label: 'Australia',
+      coords: [-22.0, 118.6],
+      eyebrow: 'Pilbara · Kalgoorlie',
+      heading: 'Australia — Refinery Wastewater',
+      body: 'Pilbara spodumene refiners lose roughly 20% of their lithium to process wastewater. M.L.E. recovers it. No new mine, no expanded plant, just more revenue from assets that are already running.'
+    },
+    {
+      id: 'gulf',
+      label: 'The Gulf',
+      coords: [24.5, 54.5],
+      eyebrow: 'UAE · Saudi Arabia · Qatar',
+      heading: 'The Gulf — Desalination Infrastructure',
+      body: 'The Gulf\'s desalination plants already move vast volumes of mineral-rich brine. Retrofitting M.L.E. onto existing infrastructure creates a lithium revenue stream from assets built for a different purpose. Minimal capex, immediate upside.'
+    }
+  ];
+
+  var glMap, glMarkers = {}, glActive = null;
+
+  function glSelectSite(id) {
+    var site = GL_SITES.find(function (s) { return s.id === id; });
+    if (!site) return;
+    glActive = id;
+
+    document.querySelectorAll('.gl-region-pill').forEach(function (p) {
+      p.classList.toggle('gl-region-pill--active', p.dataset.id === id);
+    });
+    document.querySelectorAll('.gl-map-dot').forEach(function (d) {
+      d.classList.toggle('gl-map-dot--active', d.dataset.id === id);
+    });
+
+    // Only one asset shows in the panel at a time.
+    var panel = document.getElementById('gl-map-panel');
+    panel.innerHTML =
+      '<div class="gl-site-card">' +
+        '<p class="gl-site-eyebrow">' + site.eyebrow + '</p>' +
+        '<h3 class="gl-site-heading">' + site.heading + '</h3>' +
+        '<p class="gl-site-body">' + site.body + '</p>' +
+      '</div>';
+
+    // The map cell stretches to match the card height; tell Leaflet to re-fit.
+    if (glMap) {
+      requestAnimationFrame(function () {
+        glMap.invalidateSize();
+        requestAnimationFrame(function () { glMap.invalidateSize(); });
+      });
+    }
+  }
+
+  function glInitMap() {
+    if (!document.getElementById('gl-map') || typeof L === 'undefined') return;
+
+    glMap = L.map('gl-map', {
+      center: [15, -10],
+      zoom: 2,
+      zoomControl: false,
+      attributionControl: true,
+      scrollWheelZoom: false,
+      minZoom: 1,
+      maxZoom: 8
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(glMap);
+
+    var pillContainer = document.getElementById('gl-region-pills');
+
+    GL_SITES.forEach(function (site) {
+      var icon = L.divIcon({
+        className: '',
+        html: '<div class="gl-map-dot" data-id="' + site.id + '"></div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+      });
+
+      var marker = L.marker(site.coords, { icon: icon }).addTo(glMap);
+      marker.on('click', function () { glSelectSite(site.id); });
+      glMarkers[site.id] = marker;
+
+      var pill = document.createElement('button');
+      pill.className = 'gl-region-pill';
+      pill.dataset.id = site.id;
+      pill.textContent = site.label;
+      pill.addEventListener('click', function () { glSelectSite(site.id); });
+      pillContainer.appendChild(pill);
+    });
+
+    glSelectSite('argentina');
+  }
+
+  window.addEventListener('load', function () {
+    glInitMap();
+    setTimeout(function () { if (glMap) glMap.invalidateSize(); }, 300);
+  });
+})();
+</script>
+  <script src="../lang-toggle.js" defer></script>
 </body>
 </html>

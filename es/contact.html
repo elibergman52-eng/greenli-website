@@ -1,19 +1,77 @@
 <!DOCTYPE html>
-<!-- TODO: translate -->
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulación de extracción — greenLi</title>
   <link rel="alternate" hreflang="en" href="../contact.html">
   <link rel="alternate" hreflang="es" href="./contact.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contáctenos | greenLi</title>
+  <meta name="description" content="Get in touch with the greenLi team. Whether you are an investor, potential partner, or just curious, we respond to all inquiries personally.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --bg: #0A0C0B; --green: #3AE87A; --text: #F0F4F1; --muted: #8A9E8F; }
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--text); }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:linear-gradient(90deg,var(--green),var(--amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; margin-bottom:0.875rem; display:inline-block; }
+    .section-heading { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.15; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
+
+    #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
+    #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-link:hover { color:var(--text); }
+    .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; text-decoration:none; display:inline-block; }
+    #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
+    #mobile-menu.open { display:flex; }
+    #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
+    #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
+
+    .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:100; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
+    .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.05em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; display:block; }
+    .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
+    .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
+
+    .form-label { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.04em; color:var(--muted); display:block; margin-bottom:0.5rem; }
+    .form-input, .form-textarea { width:100%; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.75rem 1rem; outline:none; transition:border-color 0.2s ease,box-shadow 0.2s ease; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--dim); }
+    .form-input:focus, .form-textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(58,232,122,0.12); }
+    .form-input.error, .form-textarea.error { border-color:var(--error); }
+    .form-group { margin-bottom:1.375rem; }
+
+    .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
+    .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
+    .footer-link:hover { color:var(--text); }
+
+    @media (max-width:768px) {
+      .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
+      .footer-grid { grid-template-columns:1fr 1fr !important; }
+      #contact-form [style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
+    }
+    @media (max-width:480px) { .footer-grid { grid-template-columns:1fr !important; } }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
   
     /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
     body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -53,11 +111,225 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="../mobile.css">
 </head>
 <body>
-  <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:1rem;">greenLi · ES</p>
-  <h1 style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-0.03em; margin-bottom:1.25rem;">Versión en español próximamente.</h1>
-  <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:40ch; margin-bottom:2rem;">El contenido en español estará disponible próximamente. Por ahora, puede consultar la versión en inglés.</p>
-  <a href="../contact.html" style="font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:#0A0C0B; background:var(--green); padding:0.75rem 1.75rem; border-radius:4px; text-decoration:none;">View in English</a>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" style="flex-shrink:0;"><img src="../logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link" data-page="home">Inicio</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
+          <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Aguas Residuales de Refinería</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link" data-page="team">Quiénes Somos</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Perspectivas</a>
+      <a href="./contact.html" class="btn-primary-sm nav-cta-desktop nav-active" style="letter-spacing:0.04em;">Contáctenos</a>
+    </div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="./index.html" class="nav-link">Inicio</a>
+    <a href="./technology.html" class="nav-link">Tecnología</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem; font-size:0.875rem; color:var(--dim);">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link">Aplicaciones</a>
+    <a href="./team.html" class="nav-link">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link">Perspectivas</a>
+    <a href="./contact.html" class="nav-link nav-active">Contacto</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="min-height:50vh; display:flex; align-items:center; padding-top:120px; padding-bottom:72px;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 50%, rgba(58,232,122,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 85% 80%, rgba(58,232,122,0.04) 0%, transparent 50%),
+    var(--bg);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
+    <span class="eyebrow">Contacto</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:18ch; margin-bottom:1.5rem;">
+      Póngase en contacto.
+    </h1>
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:56ch; line-height:1.75;">
+      Ya sea que sea inversionista, socio potencial o simplemente tenga curiosidad por greenLi, nos encantaría saber de usted. Respondemos personalmente a todas las consultas.
+    </p>
+  </div>
+</section>
+
+
+<!-- CONTACT FORM -->
+<section id="contact-form" style="padding:6rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:680px; margin:0 auto;">
+
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:3rem; box-shadow:0 4px 16px rgba(0,0,0,0.3),0 0 60px rgba(58,232,122,0.05);">
+
+        <form id="contact-form-el" novalidate>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="c-name">Nombre Completo *</label>
+              <input type="text" id="c-name" name="name" required class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-email">Correo Electrónico *</label>
+              <input type="email" id="c-email" name="email" required class="form-input" placeholder="you@example.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-org">Organización</label>
+            <input type="text" id="c-org" name="organization" class="form-input" placeholder="Your company or institution">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-message">¿Cómo podemos ayudar? *</label>
+            <textarea id="c-message" name="message" required class="form-textarea" rows="5" style="resize:vertical; min-height:120px;" placeholder="Tell us a bit about why you are reaching out..."></textarea>
+          </div>
+
+          <button type="submit" id="contact-submit" class="btn-primary" style="width:100%; height:52px; display:flex; align-items:center; justify-content:center; gap:0.75rem;">
+            <span id="contact-submit-text">Enviar Mensaje</span>
+            <span id="contact-spinner" style="display:none; width:18px; height:18px; border:2px solid rgba(10,12,11,0.3); border-top-color:#0A0C0B; border-radius:50%; animation:spin 0.7s linear infinite;"></span>
+          </button>
+
+          <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-align:center; margin-top:1.25rem; line-height:1.6;">Normalmente respondemos en un plazo de un día hábil. No compartimos su información.</p>
+        </form>
+
+        <div id="contact-success" style="display:none; text-align:center; padding:3rem 1rem; animation:fadeIn 0.4s ease;">
+          <div style="width:56px; height:56px; background:rgba(58,232,122,0.1); border:2px solid rgba(58,232,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#3AE87A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.75rem;">Mensaje recibido.</h3>
+          <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.7;">Gracias por escribirnos. Nos pondremos en contacto en un plazo de un día hábil.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:0.5rem;">Para Operadores</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:0.875rem;">¿Quiere una simulación de extracción de litio para su activo específico?</p>
+          <a href="./contact-simulation.html" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:var(--green); text-decoration:none;">Solicitar una simulación →</a>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:0.5rem;">Correo Directo</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:0.875rem;">¿Prefiere escribir directamente? Comuníquese con el equipo en:</p>
+          <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:var(--green); text-decoration:none;">eitan@greenli.biz →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+    <!-- Newsletter block -->
+    <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:8px; padding:2.5rem; margin-bottom:4rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:240px;">
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:1.0625rem; font-weight:600; color:var(--text); margin-bottom:0.375rem;">Manténgase informado.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); line-height:1.6;">Actualizaciones de tecnología, hitos de pilotos e inteligencia de mercado. Sin ruido.</p>
+      </div>
+      <form style="display:flex; gap:0.75rem; flex-wrap:wrap; flex:1; min-width:280px; max-width:440px;" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'font-family:Inter,sans-serif;font-size:0.875rem;color:var(--green);\'>Está en la lista.</p>';">
+        <input type="email" placeholder="your@email.com" required style="flex:1; min-width:180px; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.625rem 1rem; outline:none;">
+        <button type="submit" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:#0A0C0B; background:var(--green); padding:0.625rem 1.25rem; border-radius:4px; border:none; cursor:pointer; white-space:nowrap;">Suscribirse</button>
+      </form>
+    </div>
+
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div>
+        <img src="../logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">extraemos litio, de forma eficiente, asequible y greenLi</p>
+      </div>
+      <div>
+        <p class="footer-heading">Empresa</p>
+        <a href="./team.html" class="footer-link">Quiénes Somos</a>
+        <a href="./insights.html" class="footer-link">Perspectivas</a>
+        <a href="./contact.html" class="footer-link" style="color:var(--green);">Contacto</a>
+      </div>
+      <div>
+        <p class="footer-heading">Tecnología</p>
+        <a href="./technology.html" class="footer-link">Resumen</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
+      </div>
+      <div>
+        <p class="footer-heading">Aplicaciones</p>
+        <a href="./app-brine.html" class="footer-link">Salmuera de Salar</a>
+        <a href="./app-hard-rock.html" class="footer-link">Aguas Residuales de Refinería</a>
+        <a href="./app-produced-water.html" class="footer-link">Petróleo y Gas</a>
+        <a href="./app-geothermal.html" class="footer-link">Geotermia</a>
+        <a href="./app-groundwater.html" class="footer-link">Aguas Subterráneas</a>
+        <a href="./contact-simulation.html" class="footer-link" style="color:var(--green);">Solicitar una Simulación</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">© 2026 greenLi. Todos los derechos reservados.</p>
+      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    const isOpen = m.classList.toggle('open');
+    document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
+  });
+
+  document.getElementById('contact-form-el').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let valid = true;
+    this.querySelectorAll('[required]').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      else { el.classList.remove('error'); }
+    });
+    if (!valid) { this.querySelector('.error')?.focus(); return; }
+
+    document.getElementById('contact-submit-text').style.display = 'none';
+    document.getElementById('contact-spinner').style.display = 'inline-block';
+    document.getElementById('contact-submit').disabled = true;
+
+    await new Promise(r => setTimeout(r, 1200));
+
+    const form = document.getElementById('contact-form-el');
+    form.style.opacity = '0';
+    form.style.transition = 'opacity 0.35s ease';
+    setTimeout(() => {
+      form.style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    }, 380);
+  });
+
+  document.querySelectorAll('.form-input, .form-textarea').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+</script>
+<script src="../greenli-animations.js" defer></script>
+  <script src="../lang-toggle.js" defer></script>
 </body>
 </html>

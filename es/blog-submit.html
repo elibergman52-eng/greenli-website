@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="alternate" hreflang="en" href="../blog-submit.html">
+  <link rel="alternate" hreflang="es" href="./blog-submit.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar una Publicación — Equipo greenLi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #4A5E50; --error: #E84A3A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; min-height: 100vh; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:linear-gradient(90deg,var(--green),var(--amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; margin-bottom:0.875rem; display:inline-block; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; width:100%; text-align:center; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-primary:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+    .form-label { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.04em; color:var(--muted); display:block; margin-bottom:0.5rem; }
+    .form-input, .form-select, .form-textarea { width:100%; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.75rem 1rem; outline:none; transition:border-color 0.2s ease,box-shadow 0.2s ease; appearance:none; -webkit-appearance:none; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--dim); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(58,232,122,0.12); }
+    .form-input.error, .form-select.error, .form-textarea.error { border-color:var(--error); }
+    .form-group { margin-bottom:1.375rem; }
+    .form-select { background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238A9E8F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
+    .form-select option { background:var(--surface-2); }
+
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+    .fade-in { animation:fadeIn 0.4s ease forwards; }
+
+    .gate-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; max-width:440px; margin:0 auto; }
+    .submit-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; max-width:680px; margin:0 auto; }
+    .success-card { background:var(--surface-2); border:1px solid rgba(58,232,122,0.3); border-radius:8px; padding:3rem; max-width:520px; margin:0 auto; text-align:center; }
+
+    .hint { font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:0.375rem; }
+    .error-msg { font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--error); margin-top:0.375rem; display:none; }
+
+    .char-count { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); text-align:right; margin-top:0.25rem; }
+    .char-count.warn { color:#E8C83A; }
+
+    .spinner { width:18px; height:18px; border:2px solid rgba(10,12,11,0.3); border-top-color:#0A0C0B; border-radius:50%; animation:spin 0.7s linear infinite; display:inline-block; vertical-align:middle; margin-right:0.5rem; }
+
+    .back-link { font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); text-decoration:none; display:inline-flex; align-items:center; gap:0.375rem; transition:color 0.2s; margin-bottom:2rem; }
+    .back-link:hover { color:var(--text); }
+  
+    /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
+    body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(ellipse 72% 55% at 12% 6%, rgba(58,232,122,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 62% 50% at 88% 94%, rgba(232,168,58,0.05) 0%, transparent 55%); }
+    body::after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.028;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E"); background-size:220px 220px; }
+    section[style*="background:var(--bg)"], section[style*="background: var(--bg)"] { background:transparent !important; }
+  
+    /* ── Ambient depth pass: hero blobs / glass photos / patterns / raised ── */
+    @keyframes blobPulse {
+      0%,100% { transform: scale(1) translate(0,0); opacity:0.5; }
+      50%     { transform: scale(1.18) translate(-14px,12px); opacity:0.85; }
+    }
+    .hero-blobs { position:absolute; top:-120px; right:-100px; width:540px; height:540px; z-index:2; pointer-events:none;
+      background: radial-gradient(circle at 55% 45%, rgba(127,255,184,0.16) 0%, transparent 62%); }
+    .hero-blobs::before, .hero-blobs::after { content:''; position:absolute; border-radius:50%; filter:blur(72px); will-change:transform,opacity; }
+    .hero-blobs::before { top:24px; right:110px; width:300px; height:300px; background:radial-gradient(circle, rgba(58,232,122,0.55) 0%, transparent 70%); animation:blobPulse 9s ease-in-out infinite; }
+    .hero-blobs::after  { top:150px; right:-30px; width:250px; height:250px; background:radial-gradient(circle, rgba(232,168,58,0.42) 0%, transparent 70%); animation:blobPulse 11.5s ease-in-out infinite 1.6s; }
+
+    .glass-photo { position:relative; background:rgba(255,255,255,0.045); backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%);
+      border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:10px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 24px rgba(0,0,0,0.45), 0 24px 60px rgba(0,0,0,0.35), 0 0 50px rgba(58,232,122,0.06);
+      transition:transform 0.3s ease, box-shadow 0.3s ease; }
+    .glass-photo img { border-radius:8px; display:block; }
+
+    .bg-dots, .bg-grid { position:relative; }
+    .bg-dots > *, .bg-grid > * { position:relative; z-index:1; }
+    .bg-dots::before, .bg-grid::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%);
+              mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%); }
+    .bg-dots::before { background-image:radial-gradient(rgba(240,244,241,0.05) 1px, transparent 1.6px); background-size:22px 22px; }
+    .bg-grid::before { background-image:linear-gradient(rgba(240,244,241,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(240,244,241,0.025) 1px, transparent 1px); background-size:44px 44px; }
+
+    .raised { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(58,232,122,0.05) !important; }
+    .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
+    @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
+  </style>
+  <link rel="stylesheet" href="../mobile.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div style="background:var(--surface); border-bottom:1px solid var(--border); padding:0.875rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
+  <a href="./index.html" style="flex-shrink:0; display:flex; align-items:center; gap:0.875rem; text-decoration:none;">
+    <img src="../logo-transparent.png" alt="greenLi" style="height:30px; filter:invert(1); display:block;">
+    <span style="font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim);">Portal del Equipo</span>
+  </a>
+  <a href="./insights.html" class="back-link" style="margin-bottom:0;">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Volver a Perspectivas
+  </a>
+</div>
+
+<!-- MAIN -->
+<main style="padding:4rem 1.5rem 6rem;">
+
+  <!-- GATE VIEW -->
+  <div id="gate-view" style="padding-top:1rem;">
+    <div class="gate-card">
+      <span class="eyebrow">Solo Equipo</span>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:1.75rem; font-weight:700; letter-spacing:-0.02em; color:var(--text); margin-bottom:0.75rem; line-height:1.2;">Enviar una publicación</h1>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; margin-bottom:2rem;">Este formulario es solo para miembros del equipo de greenLi. Ingrese el código del equipo para continuar.</p>
+
+      <div class="form-group">
+        <label class="form-label" for="passcode-input">Código del Equipo</label>
+        <input type="password" id="passcode-input" class="form-input" placeholder="Enter passcode" autocomplete="current-password">
+        <p class="error-msg" id="passcode-error">Código incorrecto. Inténtelo de nuevo.</p>
+      </div>
+
+      <button onclick="checkPasscode()" class="btn-primary" id="gate-btn">Continuar</button>
+    </div>
+  </div>
+
+  <!-- FORM VIEW (hidden until passcode) -->
+  <div id="form-view" style="display:none; padding-top:1rem;" class="fade-in">
+    <div class="submit-card">
+      <span class="eyebrow">Perspectivas</span>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:1.75rem; font-weight:700; letter-spacing:-0.02em; color:var(--text); margin-bottom:0.375rem; line-height:1.2;">Nueva publicación</h1>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; margin-bottom:2.5rem;">Complete los detalles a continuación. Su publicación aparecerá en Perspectivas una vez revisada y publicada.</p>
+
+      <form id="submit-form" onsubmit="handleSubmit(event)" novalidate>
+
+        <!-- Title -->
+        <div class="form-group">
+          <label class="form-label" for="f-title">Título de la Publicación <span style="color:var(--error)">*</span></label>
+          <input type="text" id="f-title" class="form-input" placeholder="e.g. What M.L.E. Recovery Rates Mean for Salar Operators" maxlength="120" oninput="updateCharCount(this,'title-count',120)">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">
+            <p class="error-msg" id="title-error">Por favor ingrese un título.</p>
+            <span class="char-count" id="title-count">0 / 120</span>
+          </div>
+        </div>
+
+        <!-- Category + Author (2-col) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="f-category">Categoría <span style="color:var(--error)">*</span></label>
+            <select id="f-category" class="form-select">
+              <option value="" disabled selected>Seleccione categoría</option>
+              <option value="Pilot Studies">Estudios Piloto</option>
+              <option value="Technical">Técnico</option>
+              <option value="Market Analysis">Análisis de Mercado</option>
+              <option value="Press">Prensa</option>
+            </select>
+            <p class="error-msg" id="category-error">Por favor seleccione una categoría.</p>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="f-author">Nombre del Autor <span style="color:var(--error)">*</span></label>
+            <input type="text" id="f-author" class="form-input" placeholder="Your full name">
+            <p class="error-msg" id="author-error">Por favor ingrese su nombre.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.375rem;"></div>
+
+        <!-- Read Time -->
+        <div class="form-group">
+          <label class="form-label" for="f-readtime">Tiempo de Lectura Estimado <span style="color:var(--error)">*</span></label>
+          <input type="text" id="f-readtime" class="form-input" placeholder="e.g. 5 min read">
+          <p class="error-msg" id="readtime-error">Por favor ingrese un tiempo de lectura estimado.</p>
+        </div>
+
+        <!-- Excerpt -->
+        <div class="form-group">
+          <label class="form-label" for="f-excerpt">Extracto <span style="color:var(--error)">*</span></label>
+          <textarea id="f-excerpt" class="form-textarea" rows="3" placeholder="2–3 sentences summarising the post. This appears on the Insights card." maxlength="280" oninput="updateCharCount(this,'excerpt-count',280)"></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">
+            <p class="error-msg" id="excerpt-error">Por favor escriba un breve extracto.</p>
+            <span class="char-count" id="excerpt-count">0 / 280</span>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="form-group">
+          <label class="form-label" for="f-body">Cuerpo de la Publicación <span style="color:var(--error)">*</span></label>
+          <textarea id="f-body" class="form-textarea" rows="12" placeholder="Write your full post here. Markdown formatting is supported (# headings, **bold**, *italic*, bullet lists)."></textarea>
+          <p class="hint">Admite Markdown. Use # para títulos, ** para negrita, * para cursiva.</p>
+          <p class="error-msg" id="body-error">Por favor escriba el cuerpo de la publicación.</p>
+        </div>
+
+        <!-- Hero Image URL (optional) -->
+        <div class="form-group">
+          <label class="form-label" for="f-image">URL de Imagen Principal <span style="color:var(--dim); font-weight:400;">(opcional)</span></label>
+          <input type="url" id="f-image" class="form-input" placeholder="https://...">
+          <p class="hint">Enlace a una imagen alojada en Google Drive, Dropbox o un CDN.</p>
+        </div>
+
+        <!-- Submit -->
+        <div style="margin-top:2rem; border-top:1px solid var(--border); padding-top:2rem;">
+          <button type="submit" class="btn-primary" id="submit-btn">Enviar Publicación para Revisión</button>
+          <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:0.875rem; text-align:center;">Las publicaciones se revisan antes de aparecer en Perspectivas. Recibirá un correo de confirmación al enviarla.</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS VIEW (hidden until submitted) -->
+  <div id="success-view" style="display:none; padding-top:1rem;" class="fade-in">
+    <div class="success-card">
+      <div style="width:56px; height:56px; background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.75rem;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#3AE87A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:1.625rem; font-weight:700; letter-spacing:-0.02em; color:var(--text); margin-bottom:0.75rem;">Publicación enviada.</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.7; margin-bottom:0.5rem;">Aparecerá en Perspectivas una vez revisada y publicada. Debería recibir un correo de confirmación en breve.</p>
+      <p id="success-author" style="font-family:'JetBrains Mono',monospace; font-size:0.8125rem; color:var(--dim); margin-bottom:2rem;"></p>
+      <a href="./insights.html" class="btn-primary" style="display:inline-block; text-decoration:none; width:auto; padding:0.75rem 2rem;">Volver a Perspectivas</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────────────────────────
+  // Set PASSCODE and WEBHOOK_URL before going live.
+  const PASSCODE = 'greenli2026';
+  const WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/blog-submit'; // replace with actual n8n webhook
+
+  // ── PASSCODE GATE ───────────────────────────────────────────────────────────
+  function checkPasscode() {
+    const input = document.getElementById('passcode-input');
+    const error = document.getElementById('passcode-error');
+    const btn   = document.getElementById('gate-btn');
+
+    if (input.value.trim() === PASSCODE) {
+      document.getElementById('gate-view').style.display = 'none';
+      const formView = document.getElementById('form-view');
+      formView.style.display = 'block';
+      formView.classList.add('fade-in');
+    } else {
+      input.classList.add('error');
+      error.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  document.getElementById('passcode-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPasscode();
+  });
+
+  // ── CHAR COUNTER ─────────────────────────────────────────────────────────────
+  function updateCharCount(el, countId, max) {
+    const count = el.value.length;
+    const span  = document.getElementById(countId);
+    span.textContent = count + ' / ' + max;
+    span.classList.toggle('warn', count > max * 0.85);
+  }
+
+  // ── VALIDATION ───────────────────────────────────────────────────────────────
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg || el.textContent; el.style.display = 'block'; }
+  }
+  function clearError(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  }
+  function markError(fieldId) {
+    const el = document.getElementById(fieldId);
+    if (el) el.classList.add('error');
+  }
+  function clearMark(fieldId) {
+    const el = document.getElementById(fieldId);
+    if (el) el.classList.remove('error');
+  }
+
+  function validateForm() {
+    let valid = true;
+    const checks = [
+      { field: 'f-title',    error: 'title-error',    check: v => v.trim().length > 0 },
+      { field: 'f-category', error: 'category-error', check: v => v !== '' },
+      { field: 'f-author',   error: 'author-error',   check: v => v.trim().length > 0 },
+      { field: 'f-readtime', error: 'readtime-error', check: v => v.trim().length > 0 },
+      { field: 'f-excerpt',  error: 'excerpt-error',  check: v => v.trim().length > 10 },
+      { field: 'f-body',     error: 'body-error',     check: v => v.trim().length > 20 },
+    ];
+
+    checks.forEach(({ field, error, check }) => {
+      const el = document.getElementById(field);
+      if (!check(el.value)) { markError(field); showError(error); valid = false; }
+      else { clearMark(field); clearError(error); }
+    });
+
+    return valid;
+  }
+
+  // Clear errors on input
+  ['f-title','f-category','f-author','f-readtime','f-excerpt','f-body'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => { clearMark(id); clearError(id.replace('f-','') + '-error'); });
+  });
+
+  // ── SUBMIT ───────────────────────────────────────────────────────────────────
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Submitting…';
+
+    const payload = {
+      title:    document.getElementById('f-title').value.trim(),
+      category: document.getElementById('f-category').value,
+      author:   document.getElementById('f-author').value.trim(),
+      readTime: document.getElementById('f-readtime').value.trim(),
+      excerpt:  document.getElementById('f-excerpt').value.trim(),
+      body:     document.getElementById('f-body').value.trim(),
+      imageUrl: document.getElementById('f-image').value.trim() || null,
+      submittedAt: new Date().toISOString(),
+      status:   'Draft',
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Server error ' + res.status);
+
+      // Show success
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-author').textContent = '— ' + payload.author;
+      const successView = document.getElementById('success-view');
+      successView.style.display = 'block';
+      successView.classList.add('fade-in');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Submit Post for Review';
+      alert('Something went wrong. Please try again or contact a developer.\n\n' + err.message);
+    }
+  }
+</script>
+
+  <script src="../lang-toggle.js" defer></script>
+</body>
+</html>

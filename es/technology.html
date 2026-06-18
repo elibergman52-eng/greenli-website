@@ -1,19 +1,90 @@
 <!DOCTYPE html>
-<!-- TODO: translate -->
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tecnología — greenLi</title>
   <link rel="alternate" hreflang="en" href="../technology.html">
   <link rel="alternate" hreflang="es" href="./technology.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecnología | greenLi</title>
+  <meta name="description" content="Two complementary systems. M.L.E. purifies lithium from any aqueous source. D.C.M. produces battery-ready cathode powder on site.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --bg: #0A0C0B; --green: #3AE87A; --text: #F0F4F1; --muted: #8A9E8F; }
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --amber: #E8A83A; --amber-dim: #C48C28; --amber-muted: rgba(232,168,58,0.12);
+      --blue-muted: rgba(58,168,232,0.10);
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--text); }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:linear-gradient(90deg,var(--green),var(--amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; margin-bottom:0.875rem; display:inline-block; }
+    .section-heading { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.15; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-outline { display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.04em; color:var(--green); border:1px solid var(--green); padding:0.625rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-outline:hover { background:rgba(58,232,122,0.1); }
+    .btn-outline:active { transform:scale(0.97); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
+
+    /* NAV */
+    #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
+    #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-link:hover { color:var(--text); }
+    .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
+    .nav-links { display:flex; align-items:center; gap:1.75rem; }
+    #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
+    #mobile-menu.open { display:flex; }
+    #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
+    #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
+
+    /* NAV DROPDOWN */
+    .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:150px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+    .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
+    .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; }
+    .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; text-decoration:none; display:inline-block; }
+    .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
+
+    /* FOOTER */
+    .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
+    .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
+    .footer-link:hover { color:var(--text); }
+
+    /* SYSTEM CARDS */
+    .system-card { border-radius:12px; padding:2.5rem; transition:transform 0.25s ease,box-shadow 0.25s ease; display:flex; flex-direction:column; }
+    .system-cards-grid { align-items:stretch; }
+    .system-card-cta { margin-top:auto; }
+    .system-card:hover { transform:translateY(-4px); }
+
+    /* VISUAL PLACEHOLDER */
+    .visual-placeholder { border:1.5px dashed var(--border-hi); border-radius:8px; background:rgba(58,232,122,0.025); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:3rem 2rem; }
+    .visual-placeholder-label { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); letter-spacing:0.08em; text-transform:uppercase; text-align:center; }
+
+    @media (max-width:768px) {
+      .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
+      .footer-grid { grid-template-columns:1fr 1fr !important; }
+      .system-cards-grid { grid-template-columns:1fr !important; }
+      .chain-row { flex-direction:column !important; }
+      .chain-arrow { transform:rotate(90deg); }
+    }
+    @media (max-width:480px) {
+      .footer-grid { grid-template-columns:1fr !important; }
+    }
   
     /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
     body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -53,11 +124,369 @@
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
   </style>
+  <link rel="stylesheet" href="../mobile.css">
 </head>
 <body>
-  <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:1rem;">greenLi · ES</p>
-  <h1 style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-0.03em; margin-bottom:1.25rem;">Versión en español próximamente.</h1>
-  <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.75; max-width:40ch; margin-bottom:2rem;">El contenido en español estará disponible próximamente. Por ahora, puede consultar la versión en inglés.</p>
-  <a href="../technology.html" style="font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; color:#0A0C0B; background:var(--green); padding:0.75rem 1.75rem; border-radius:4px; text-decoration:none;">View in English</a>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
+      <img src="../logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;">
+    </a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link" data-page="home">Inicio</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link nav-active" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
+          <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Aguas Residuales de Refinería</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link" data-page="about">Quiénes Somos</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Perspectivas</a>
+      <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Solicitar una Simulación</a>
+    </div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="./index.html" class="nav-link">Inicio</a>
+    <a href="./technology.html" class="nav-link nav-active">Tecnología</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link">Aplicaciones</a>
+    <a href="./team.html" class="nav-link">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link">Perspectivas</a>
+    <a href="./contact.html" class="nav-link">Contacto</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section style="min-height:62vh; display:flex; align-items:center; padding-top:120px; padding-bottom:80px;
+  background:
+    radial-gradient(ellipse 65% 80% at 10% 40%, rgba(58,232,122,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 90% 80%, rgba(58,232,122,0.04) 0%, transparent 55%),
+    var(--bg);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
+    <span class="eyebrow">Tecnología</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:18ch; margin-bottom:1.5rem;">
+      Dos sistemas. Una plataforma.
+    </h1>
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75; margin-bottom:2.5rem;">
+      La Extracción de Litio por Membrana (M.L.E.) purifica el activo de litio en bruto. La Fabricación Directa de Cátodo (D.C.M.) produce el producto final. Juntas permiten a los operadores de activos capturar margen a lo largo de toda la cadena de suministro.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="./mle.html" class="btn-outline">Explorar M.L.E.</a>
+      <a href="./dcm.html" class="btn-outline" style="color:var(--amber); border-color:rgba(232,168,58,0.5);">Explorar D.C.M.</a>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem; max-width:52ch;">Sin acuerdo de confidencialidad, sin compromiso.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SUPPLY CHAIN DIAGRAM
+══════════════════════════════════════════ -->
+<section class="bg-dots" style="padding:7rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">La Oportunidad</span>
+    <h2 class="section-heading" style="margin-bottom:1rem;">Dónde está el valor.</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:1.0625rem; color:var(--muted); line-height:1.75; max-width:64ch; margin-bottom:3.5rem;">
+      El valor vendible de un átomo de litio se multiplica por más de 100 veces a medida que pasa de la salmuera en bruto al cátodo de batería. Los operadores de activos hoy capturan la parte baja de esa curva. La plataforma de greenLi les permite capturar más de ella.
+    </p>
+
+    <!-- Chain Diagram -->
+    <div class="raised" style="background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:2.5rem; overflow-x:auto; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+
+      <!-- Chain steps row -->
+      <div style="display:flex; align-items:flex-start; gap:0; min-width:820px;">
+
+        <!-- Step 1 -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Salmuera en Bruto</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="flex:1.3; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Salmuera Semiprocesada</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 3 — "purified brine" is where MLE outputs and DCM inputs -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(58,232,122,0.07); border:1px solid rgba(58,232,122,0.2); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--green); line-height:1.3;">Salmuera Purificada</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Sales Intermedias</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 5 -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:var(--surface-3); border:1px solid var(--border-hi); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--muted); line-height:1.3;">Cátodos en Bruto</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="flex-shrink:0; padding:0 0.25rem; padding-top:0.875rem; color:var(--dim);">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M0 6h17M13 1l5 5-5 5" stroke="#4A5E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Step 6 -->
+        <div style="flex:1.2; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.25); border-radius:6px; padding:0.75rem 0.5rem; width:100%; text-align:center;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:600; color:var(--amber); line-height:1.3;">Cátodo Listo para Batería</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Brackets row -->
+      <div style="display:flex; margin-top:1.5rem; gap:0; min-width:820px;">
+
+        <!-- MLE bracket — spans steps 1-3 (roughly first 44%) -->
+        <div style="flex:3.8; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.18); border-radius:6px; padding:0.875rem 1rem; margin-right:0.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--green); letter-spacing:0.06em;">M.L.E.</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Purifica cualquier fuente acuosa de Li en permeado de alto valor.</p>
+            </div>
+            <a href="./mle.html" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--green); text-decoration:none; white-space:nowrap; letter-spacing:0.04em;">Explorar M.L.E. →</a>
+          </div>
+        </div>
+
+        <!-- DCM bracket — spans steps 3-6 (roughly last 56%) -->
+        <div style="flex:4.2; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.18); border-radius:6px; padding:0.875rem 1rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--amber); letter-spacing:0.06em;">D.C.M.</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:0.25rem; line-height:1.5;">Genera materiales de cátodo listos para batería directamente de salmueras de Li purificadas.</p>
+            </div>
+            <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; color:var(--amber); text-decoration:none; white-space:nowrap; letter-spacing:0.04em;">Explorar D.C.M. →</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TWO SYSTEM CARDS
+══════════════════════════════════════════ -->
+<section class="bg-grid" style="padding:7rem 1.5rem; background:var(--bg);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <span class="eyebrow">Nuestras Tecnologías</span>
+    <h2 class="section-heading" style="margin-bottom:3.5rem;">Complementarias por diseño.</h2>
+
+    <div class="system-cards-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+      <!-- MLE Card -->
+      <div class="system-card" style="background:var(--surface-2); border:1px solid rgba(58,232,122,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 60px rgba(58,232,122,0.05);">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem;">
+          <div style="background:rgba(58,232,122,0.1); border:1px solid rgba(58,232,122,0.2); border-radius:8px; padding:0.875rem 1.25rem;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:700; color:var(--green); letter-spacing:0.08em;">M.L.E.</p>
+          </div>
+          <div>
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:600; color:var(--text); letter-spacing:-0.02em;">Extracción de Litio por Membrana</p>
+          </div>
+        </div>
+
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:2rem;">
+          Usando una membrana selectiva de Li propietaria desarrollada en la Universidad de Tel Aviv, nuestro sistema M.L.E. separa el Li de los iones competidores, purificando recursos acuosos que contienen Li a cualquier concentración. Nuestro sistema traslada la industria de la desalinización a una solución de Extracción Directa de Litio (D.L.E.) eficaz y continua.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.625rem; margin-bottom:2rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Agnóstico a la fuente de litio</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Modular y escalable</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(58,232,122,0.06); border:1px solid rgba(58,232,122,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--green); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Operación continua, sin evaporación</span>
+          </div>
+        </div>
+
+        <div class="system-card-cta" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <a href="./mle.html" class="btn-primary" style="font-size:0.875rem; padding:0.6875rem 1.5rem;">Análisis a fondo: M.L.E. →</a>
+        </div>
+      </div>
+
+      <!-- DCM Card -->
+      <div class="system-card" style="background:var(--surface-2); border:1px solid rgba(232,168,58,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 60px rgba(232,168,58,0.05);">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem;">
+          <div style="background:rgba(232,168,58,0.1); border:1px solid rgba(232,168,58,0.2); border-radius:8px; padding:0.875rem 1.25rem;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.125rem; font-weight:700; color:var(--amber); letter-spacing:0.08em;">D.C.M.</p>
+          </div>
+          <div>
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:1.375rem; font-weight:600; color:var(--text); letter-spacing:-0.02em;">Fabricación Directa de Cátodo</p>
+          </div>
+        </div>
+
+        <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:2rem;">
+          Con un enfoque revolucionario, nuestro sistema propietario ofrece una solución de "salmuera a batería" que genera polvos de cátodo listos para batería de alta calidad directamente de salmueras de Li purificadas. Con D.C.M., los propietarios de activos de litio pueden integrarse verticalmente a lo largo de la cadena de suministro.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.625rem; margin-bottom:2rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Agnóstico a la química del cátodo</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Acoplable a cualquier DLE o mina</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(232,168,58,0.06); border:1px solid rgba(232,168,58,0.12); border-radius:4px; padding:0.5rem 0.75rem;">
+            <span style="color:var(--amber); font-size:0.75rem; font-weight:700;">+</span>
+            <span style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted);">Integración vertical sin una refinería</span>
+          </div>
+        </div>
+
+        <div class="system-card-cta" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <a href="./dcm.html" style="display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--amber); padding:0.6875rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease;" onmouseover="this.style.background='#C48C28'" onmouseout="this.style.background='var(--amber)'">Análisis a fondo: D.C.M. →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══════════════════════════════════════════
+     PILOT CTA
+══════════════════════════════════════════ -->
+<section style="padding:10rem 1.5rem; text-align:center;
+  background: radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%), var(--bg);">
+  <div style="max-width:580px; margin:0 auto;">
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.875rem,4vw,2.875rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:1.25rem; line-height:1.1;">
+      ¿Listo para probar su alimentación?
+    </h2>
+    <p style="font-family:'Inter',sans-serif; color:var(--muted); font-size:1.0625rem; line-height:1.75; margin-bottom:2.75rem;">
+      Comparta la química de su agua. Modelamos el potencial de recuperación antes de cualquier trabajo de laboratorio o compromiso.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="./contact-simulation.html" class="btn-primary">Solicitar una Simulación</a>
+      <a href="./index.html#pilot-process" class="btn-outline">Vea cómo colaboramos</a>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.6; margin-top:1rem;">Sin acuerdo de confidencialidad, sin compromiso.</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+
+    <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:3rem;">
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.625rem;">Manténgase al día sobre el litio y la fabricación de baterías.</h3>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.65; max-width:52ch; margin-bottom:1.5rem;">Suscríbase a nuestro boletín para recibir actualizaciones regulares sobre lo que ocurre actualmente en las industrias del litio y la fabricación de baterías, y sobre greenLi. Cancele cuando quiera.</p>
+      <div id="footer-nl-wrap" style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <input type="email" id="footer-nl-email" placeholder="Email address" style="flex:1; min-width:200px; background:var(--bg); border:1px solid var(--border-hi); border-radius:4px; color:var(--text); font-family:'Inter',sans-serif; font-size:0.9375rem; padding:0.6875rem 1rem; outline:none; transition:border-color 0.2s ease; appearance:none;">
+        <button onclick="(function(){var e=document.getElementById('footer-nl-email');if(!e.value.trim()){e.style.borderColor='#E84A3A';return;}document.getElementById('footer-nl-wrap').innerHTML='<p style=\'font-family:Inter,sans-serif;font-size:0.9375rem;color:var(--green);font-weight:500;\'>Subscribed.</p>';})()" class="btn-primary-sm" style="flex-shrink:0;">Suscribirse</button>
+      </div>
+    </div>
+
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div>
+        <img src="../logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">extraemos litio, de forma eficiente, asequible y greenLi</p>
+      </div>
+      <div>
+        <p class="footer-heading">Empresa</p>
+        <a href="./team.html" class="footer-link">Equipo</a>
+        <a href="./insights.html" class="footer-link">Perspectivas</a>
+        <a href="./contact.html" class="footer-link">Contacto</a>
+      </div>
+      <div>
+        <p class="footer-heading">Tecnología</p>
+        <a href="./technology.html" class="footer-link">Resumen</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
+      </div>
+      <div>
+        <p class="footer-heading">Aplicaciones</p>
+        <a href="./applications.html#brine" class="footer-link">Salmuera de Salar</a>
+        <a href="./applications.html#hard-rock" class="footer-link">Aguas Residuales de Refinería</a>
+        <a href="./app-geothermal.html" class="footer-link">Geotermia</a>
+        <a href="./app-groundwater.html" class="footer-link">Aguas Subterráneas</a>
+        <a href="./applications.html#produced-water" class="footer-link">Agua Producida</a>
+        <a href="./contact-simulation.html" class="footer-link" style="color:var(--green);">Solicitar una Simulación</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">© 2026 greenLi. Todos los derechos reservados.</p>
+      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    const isOpen = m.classList.toggle('open');
+    document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
+  });
+</script>
+<script src="../greenli-animations.js" defer></script>
+  <script src="../lang-toggle.js" defer></script>
 </body>
 </html>

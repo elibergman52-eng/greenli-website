@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="alternate" hreflang="en" href="../app-hard-rock.html">
+  <link rel="alternate" hreflang="es" href="./app-hard-rock.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aguas Residuales de Refinería de Roca Dura | Aplicaciones | greenLi</title>
+  <meta name="description" content="Spodumene refiners discard an estimated 96% of the lithium in their wastewater. greenLi's M.L.E. converts that liability into a revenue stream without changing upstream operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
+      --border: #1F2820; --border-hi: #2A3828;
+      --green: #3AE87A; --green-dim: #28C45C; --green-light: #7FFFB8;
+      --text: #F0F4F1; --muted: #8A9E8F; --dim: #748C80; --error: #E84A3A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); overflow-x: hidden; }
+    :focus-visible { outline: 2px solid var(--green-light); outline-offset: 3px; }
+
+    .eyebrow { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:linear-gradient(90deg,var(--green),var(--amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; margin-bottom:0.875rem; display:inline-block; }
+    .section-heading { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); line-height:1.15; }
+
+    .btn-primary { display:inline-block; font-family:'Inter',sans-serif; font-size:0.9375rem; font-weight:600; letter-spacing:0.03em; color:#0A0C0B; background:var(--green); padding:0.8125rem 1.875rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary:hover { background:var(--green-dim); }
+    .btn-primary:active { transform:scale(0.97); }
+    .btn-outline { display:inline-block; font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; letter-spacing:0.04em; color:var(--green); border:1px solid var(--green); padding:0.625rem 1.5rem; border-radius:4px; text-decoration:none; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-outline:hover { background:rgba(58,232,122,0.1); }
+    .btn-primary-sm { display:inline-block; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:600; letter-spacing:0.05em; color:#0A0C0B; background:var(--green); padding:0.5rem 1.25rem; border-radius:4px; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s ease,transform 0.15s ease; }
+    .btn-primary-sm:hover { background:var(--green-dim); }
+
+    #main-nav { position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; transition:background 0.3s ease,border-color 0.3s ease; border-bottom:1px solid transparent; }
+    #main-nav.scrolled { background:rgba(10,12,11,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 1.5rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-link { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.07em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s ease; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-link:hover { color:var(--text); }
+    .nav-link.nav-active { color:var(--green); border-bottom-color:var(--green); }
+    .nav-links { display:flex; align-items:center; gap:1.75rem; }
+    #nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    #mobile-menu { display:none; flex-direction:column; gap:0; background:rgba(10,12,11,0.98); border-top:1px solid var(--border); padding:1rem 1.5rem 1.5rem; }
+    #mobile-menu.open { display:flex; }
+    #mobile-menu .nav-link { padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.9375rem; }
+    #mobile-menu .btn-primary-sm { margin-top:1rem; text-align:center; display:block; }
+
+    .nav-dropdown { position:relative; display:inline-flex; align-items:center; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid var(--border-hi); border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:100; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:flex; flex-direction:column; }
+    .nav-dropdown-item { font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.05em; color:var(--muted); text-decoration:none; text-transform:uppercase; padding:0.5625rem 0.875rem; border-radius:4px; transition:background 0.15s ease,color 0.15s ease; white-space:nowrap; display:block; }
+    .nav-dropdown-item:hover { background:var(--surface-3); color:var(--text); }
+    .nav-dropdown-item.active { color:var(--green); }
+    .nav-caret { font-size:0.55em; color:var(--dim); margin-left:0.3em; transition:transform 0.2s ease; line-height:1; text-decoration:none; display:inline-block; }
+    .nav-dropdown:hover .nav-caret { transform:rotate(180deg); }
+
+    .footer-heading { font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); margin-bottom:1.25rem; }
+    .footer-link { display:block; font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--muted); text-decoration:none; margin-bottom:0.625rem; transition:color 0.2s ease; }
+    .footer-link:hover { color:var(--text); }
+
+    .stat-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:1.5rem 2rem; }
+    .stat-number { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-0.04em; color:var(--green); line-height:1; margin-bottom:0.375rem; }
+    .stat-label { font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); line-height:1.5; }
+    .bullet-item { display:flex; gap:1rem; padding:1.125rem 0; border-bottom:1px solid var(--border); }
+    .bullet-item:last-child { border-bottom:none; }
+    .bullet-dot { flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--green); margin-top:0.45rem; opacity:0.75; }
+
+    @media (max-width:768px) {
+      .nav-links { display:none; } .nav-cta-desktop { display:none; } #nav-toggle { display:block; }
+      .stats-grid { grid-template-columns:1fr 1fr !important; }
+      .content-grid { grid-template-columns:1fr !important; }
+      .footer-grid { grid-template-columns:1fr 1fr !important; }
+    }
+    @media (max-width:480px) {
+      .stats-grid { grid-template-columns:1fr !important; }
+      .footer-grid { grid-template-columns:1fr !important; }
+    }
+  
+    /* ── Page texture: radial gradients + subtle noise (review #133/#58) ── */
+    body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(ellipse 72% 55% at 12% 6%, rgba(58,232,122,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 62% 50% at 88% 94%, rgba(232,168,58,0.05) 0%, transparent 55%); }
+    body::after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.028;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E"); background-size:220px 220px; }
+    section[style*="background:var(--bg)"], section[style*="background: var(--bg)"] { background:transparent !important; }
+  
+    /* ── Ambient depth pass: hero blobs / glass photos / patterns / raised ── */
+    @keyframes blobPulse {
+      0%,100% { transform: scale(1) translate(0,0); opacity:0.5; }
+      50%     { transform: scale(1.18) translate(-14px,12px); opacity:0.85; }
+    }
+    .hero-blobs { position:absolute; top:-120px; right:-100px; width:540px; height:540px; z-index:2; pointer-events:none;
+      background: radial-gradient(circle at 55% 45%, rgba(127,255,184,0.16) 0%, transparent 62%); }
+    .hero-blobs::before, .hero-blobs::after { content:''; position:absolute; border-radius:50%; filter:blur(72px); will-change:transform,opacity; }
+    .hero-blobs::before { top:24px; right:110px; width:300px; height:300px; background:radial-gradient(circle, rgba(58,232,122,0.55) 0%, transparent 70%); animation:blobPulse 9s ease-in-out infinite; }
+    .hero-blobs::after  { top:150px; right:-30px; width:250px; height:250px; background:radial-gradient(circle, rgba(232,168,58,0.42) 0%, transparent 70%); animation:blobPulse 11.5s ease-in-out infinite 1.6s; }
+
+    .glass-photo { position:relative; background:rgba(255,255,255,0.045); backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%);
+      border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:10px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 24px rgba(0,0,0,0.45), 0 24px 60px rgba(0,0,0,0.35), 0 0 50px rgba(58,232,122,0.06);
+      transition:transform 0.3s ease, box-shadow 0.3s ease; }
+    .glass-photo img { border-radius:8px; display:block; }
+
+    .bg-dots, .bg-grid { position:relative; }
+    .bg-dots > *, .bg-grid > * { position:relative; z-index:1; }
+    .bg-dots::before, .bg-grid::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%);
+              mask-image:radial-gradient(ellipse 85% 75% at 50% 45%, #000 30%, transparent 80%); }
+    .bg-dots::before { background-image:radial-gradient(rgba(240,244,241,0.05) 1px, transparent 1.6px); background-size:22px 22px; }
+    .bg-grid::before { background-image:linear-gradient(rgba(240,244,241,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(240,244,241,0.025) 1px, transparent 1px); background-size:44px 44px; }
+
+    .raised { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(58,232,122,0.05) !important; }
+    .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
+    @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
+  </style>
+  <link rel="stylesheet" href="../mobile.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" style="flex-shrink:0;"><img src="../logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link">Inicio</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link nav-active" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
+          <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item active">Aguas Residuales de Refinería</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link">Quiénes Somos</a>
+      <a href="./insights.html" class="nav-link">Perspectivas</a>
+      <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Solicitar una Simulación</a>
+    </div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="./index.html" class="nav-link">Inicio</a>
+    <a href="./technology.html" class="nav-link">Tecnología</a>
+    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link nav-active">Aplicaciones</a>
+    <a href="./app-brine.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Salmuera de Salar</a>
+    <a href="./app-hard-rock.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--green);">— Aguas Residuales de Refinería</a>
+    <a href="./app-produced-water.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Petróleo y Gas</a>
+    <a href="./app-geothermal.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Geotermia</a>
+    <a href="./app-groundwater.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Aguas Subterráneas</a>
+    <a href="./team.html" class="nav-link">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link">Perspectivas</a>
+    <a href="./contact.html" class="nav-link">Contacto</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="min-height:62vh; display:flex; align-items:center; padding-top:120px; padding-bottom:80px;
+  background:
+    radial-gradient(ellipse 65% 75% at 92% 30%, rgba(58,232,122,0.07) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 65% at 5% 80%, rgba(58,232,122,0.04) 0%, transparent 52%),
+    var(--bg);">
+
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; width:100%;">
+    <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem;">
+      <a href="./applications.html" style="font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='var(--muted)'" onmouseout="this.style.color='var(--dim)'">Aplicaciones</a>
+      <span style="color:var(--border-hi); font-size:0.75rem;">›</span>
+      <span style="font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--green);">Aguas Residuales de Refinería</span>
+    </div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1.08; color:var(--text); max-width:22ch; margin-bottom:1.5rem;">
+      El 20 por ciento que actualmente está desechando.
+    </h1>
+    <p style="font-family:'Inter',sans-serif; font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300; color:var(--muted); max-width:58ch; line-height:1.75; margin-bottom:2.5rem;">
+      Las refinerías de espodumeno de roca dura pierden aproximadamente el 20% de todo el litio disponible en las aguas residuales de proceso, y a nivel de industria solo se captura alrededor del 4% de ese litio. M.L.E. se acopla al manejo de aguas residuales existente y convierte el resto, de un pasivo ambiental a una línea de ingresos.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="./contact.html" class="btn-primary">Obtener mi estimación de recuperación</a>
+      <a href="./technology.html" class="btn-outline">Cómo funciona M.L.E.</a>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--muted); margin-top:1rem;">Específico para su refinería. Respuesta rápida. Sin compromiso.</p>
+  </div>
+</section>
+
+
+<!-- STATS STRIP -->
+<section class="bg-dots" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:3rem 1.5rem;">
+    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;">
+
+      <div class="stat-card">
+        <p class="stat-number">&gt;30k</p>
+        <p class="stat-label">ppm de Li en aguas residuales de refinería de espodumeno</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-number">~4%</p>
+        <p class="stat-label">Litio actualmente capturado de las aguas residuales en toda la industria</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-number">0</p>
+        <p class="stat-label">Cambios de proceso aguas arriba necesarios para desplegar M.L.E.</p>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTEXT + PHOTO -->
+<section class="bg-grid" style="padding:7rem 1.5rem; background:var(--bg);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div class="content-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
+
+      <div>
+        <span class="eyebrow">La Oportunidad de la Roca Dura</span>
+        <h2 class="section-heading" style="margin-bottom:1.5rem;">Un flujo de residuos que la industria ignora en gran medida.</h2>
+        <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem;">
+          Las refinerías de espodumeno, las procesadoras que convierten el mineral de litio de roca dura en material de grado batería, generan grandes volúmenes de aguas residuales ricas en litio como subproducto del proceso de refinación. A concentraciones que superan las 30.000 ppm, este flujo lleva un enorme valor de litio.
+        </p>
+        <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem;">
+          A pesar de ello, la industria captura un estimado del 4% de ese litio. El resto se descarga como relaves, una pérdida financiera y, en muchas jurisdicciones, un pasivo ambiental creciente a medida que se endurecen los estándares de descarga.
+        </p>
+        <p style="font-family:'Inter',sans-serif; font-size:1rem; color:var(--muted); line-height:1.8;">
+          M.L.E. es una solución de acoplamiento. Se integra con la infraestructura de manejo de aguas residuales ya existente, no requiere modificación de las líneas de refinación aguas arriba y convierte el flujo de descarga en una salida generadora de ingresos.
+        </p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+          <div style="padding:1rem 1.5rem; background:var(--surface-3); border-bottom:1px solid var(--border);">
+            <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim);">A dónde va el litio, por cada 100 unidades que entran en la refinería</p>
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; flex-direction:column; gap:0.875rem;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted);">Salida de producto (Li refinado)</p>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--text); white-space:nowrap;">~80 unidades</p>
+              </div>
+              <div style="height:1px; background:var(--border);"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted);">Al flujo de aguas residuales</p>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--text); white-space:nowrap;">~20 unidades</p>
+              </div>
+              <div style="height:1px; background:var(--border);"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--dim);">Actualmente recuperado de las aguas residuales</p>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--error); white-space:nowrap;">&lt;1 unidad</p>
+              </div>
+              <div style="height:1px; background:var(--border);"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--muted);">Recuperable con M.L.E.</p>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--green); white-space:nowrap;">La mayor parte</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WHAT MLE DOES HERE -->
+<section class="bg-dots" style="padding:7rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div class="content-grid" style="display:grid; grid-template-columns:5fr 4fr; gap:5rem; align-items:start;">
+
+      <div>
+        <span class="eyebrow">Resultados Medibles</span>
+        <h2 class="section-heading" style="margin-bottom:2.5rem;">Convierta un costo de eliminación en una línea de margen.</h2>
+
+        <div>
+          <div class="bullet-item">
+            <div class="bullet-dot"></div>
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.375rem;">Convierta un flujo de residuos en un flujo de ingresos</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">El litio recuperado de las aguas residuales se purifica a calidad de grado batería. Una nueva salida vendible sin cambios en las operaciones de refinación aguas arriba.</p>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-dot"></div>
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.375rem;">Reduzca el pasivo ambiental por descarga de relaves</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">El efluente sin litio tras el procesamiento con M.L.E. tiene una concentración de litio materialmente menor, reduciendo el impacto ambiental y la exposición regulatoria futura.</p>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-dot"></div>
+            <div>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.375rem;">Mejore la recuperación total de litio por tonelada de mineral procesado</p>
+              <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">Cada tonelada de mineral ya extraída, transportada y refinada. M.L.E. captura un valor que ya se pagó, sin costo de extracción adicional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="background:var(--surface-2); border:1px solid var(--border-hi); border-radius:10px; padding:2rem; margin-bottom:1.5rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem;">Operadores Relevantes</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">
+            Refinerías de espodumeno como Talison, Covalent, Pilbara Minerals, Core Lithium y otras que procesan mineral de litio de roca dura en Australia y más allá.
+          </p>
+        </div>
+        <div style="background:rgba(58,232,122,0.05); border:1px solid rgba(58,232,122,0.15); border-radius:10px; padding:2rem;">
+          <p style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); margin-bottom:0.75rem;">Modelo de Despliegue</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.7;">
+            Skid de membrana de acoplamiento integrado con la infraestructura existente de manejo de aguas residuales. Sin cambios de proceso aguas arriba. Servicio con precio por metro cúbico de alimentación procesada.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- DCM INTEGRATION -->
+<section class="bg-grid" style="padding:5rem 1.5rem; background:var(--surface);">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="background:rgba(232,168,58,0.05); border:1px solid rgba(232,168,58,0.2); border-radius:10px; padding:2.5rem;">
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin-bottom:0.875rem;">Integración D.C.M. Disponible</h3>
+      <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; color:var(--muted); line-height:1.75; margin-bottom:1.25rem;">Los operadores que procesan litio mediante M.L.E. pueden integrar opcionalmente D.C.M. para convertir el litio purificado directamente en material de cátodo listo para batería en el sitio, capturando margen adicional a lo largo de la cadena de suministro.</p>
+      <a href="./dcm.html" style="font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:600; color:#E8A83A; text-decoration:none; letter-spacing:0.03em;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Conocer D.C.M. →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:9rem 1.5rem; text-align:center; background:radial-gradient(ellipse 80% 55% at 50% 110%, rgba(58,232,122,0.08) 0%, transparent 65%), var(--bg);">
+  <div style="max-width:560px; margin:0 auto;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:1.25rem;">Aguas Residuales de Refinería</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.875rem,4vw,2.875rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); margin-bottom:1.25rem; line-height:1.1;">
+      Vea cuánto valen sus aguas residuales.
+    </h2>
+    <p style="font-family:'Inter',sans-serif; color:var(--muted); font-size:1.0625rem; line-height:1.75; margin-bottom:2.75rem;">
+      Comparta la química de sus aguas residuales. Modelamos el potencial de recuperación y los ingresos antes de cualquier trabajo de laboratorio o compromiso.
+    </p>
+    <a href="./contact.html" class="btn-primary">Obtener mi estimación de recuperación</a>
+    <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); margin-top:1.25rem; line-height:1.6;">Específico para el flujo de su refinería. Respuesta rápida. Sin compromiso requerido.</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--bg); border-top:1px solid var(--border);">
+  <div style="max-width:1280px; margin:0 auto; padding:5rem 1.5rem 3rem;">
+    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div>
+        <img src="../logo-transparent.png" alt="greenLi" style="height:38px; filter:invert(1); display:block; margin-bottom:1.25rem;">
+        <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:var(--dim); line-height:1.75; max-width:260px;">extraemos litio, de forma eficiente, asequible y greenLi</p>
+      </div>
+      <div>
+        <p class="footer-heading">Empresa</p>
+        <a href="./team.html" class="footer-link">Quiénes Somos</a>
+        <a href="./insights.html" class="footer-link">Perspectivas</a>
+        <a href="./contact.html" class="footer-link">Contacto</a>
+      </div>
+      <div>
+        <p class="footer-heading">Tecnología</p>
+        <a href="./technology.html" class="footer-link">Resumen</a>
+        <a href="./mle.html" class="footer-link">M.L.E.</a>
+        <a href="./dcm.html" class="footer-link">D.C.M.</a>
+      </div>
+      <div>
+        <p class="footer-heading">Aplicaciones</p>
+        <a href="./app-brine.html" class="footer-link">Salmuera de Salar</a>
+        <a href="./app-hard-rock.html" class="footer-link" style="color:var(--green);">Aguas Residuales de Refinería</a>
+        <a href="./app-produced-water.html" class="footer-link">Petróleo y Gas</a>
+        <a href="./app-geothermal.html" class="footer-link">Geotermia</a>
+        <a href="./app-groundwater.html" class="footer-link">Aguas Subterráneas</a>
+        <a href="./contact.html" class="footer-link" style="color:var(--green); margin-top:0.5rem;">Solicitar una Simulación</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">© 2026 greenLi. Todos los derechos reservados.</p>
+      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    const isOpen = m.classList.toggle('open');
+    document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
+  });
+</script>
+<script src="../greenli-animations.js" defer></script>
+  <script src="../lang-toggle.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* greenLi shared mobile refinements. Loaded on every page (EN + ES).
+   Desktop layout is unchanged; these rules only apply on small screens and
+   override the generous inline section padding so phones don't scroll through
+   huge empty gaps. */
+
+@media (max-width: 640px) {
+  /* Tame the large inline section padding (8rem / 9rem / 10rem) on phones. */
+  section[style*="padding:8rem"],  section[style*="padding: 8rem"],
+  section[style*="padding:9rem"],  section[style*="padding: 9rem"],
+  section[style*="padding:10rem"], section[style*="padding: 10rem"] {
+    padding-top: 4.25rem !important;
+    padding-bottom: 4.25rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  section[style*="padding:6rem"], section[style*="padding: 6rem"],
+  section[style*="padding:5rem"], section[style*="padding: 5rem"] {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  /* Comfortable side gutters everywhere. */
+  .nav-inner { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+
+  /* Scrollable technical diagrams: hint that they pan horizontally. */
+  .raised[style*="overflow-x:auto"], div[style*="overflow-x:auto"] {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Generous tap targets for inline text CTAs / nav. */
+  .nav-link, .footer-link, .nav-dropdown-item { min-height: 40px; display: flex; align-items: center; }
+  #mobile-menu .nav-link { min-height: 44px; }
+
+  /* Keep large hero/section headings from overflowing very narrow screens. */
+  h1 { word-break: break-word; overflow-wrap: anywhere; }
+}
+
+/* Very small phones: single-column safety net for any remaining 2-up grids. */
+@media (max-width: 460px) {
+  .stats-grid, .three-col, .two-col, .benefits-grid, .timeline-grid,
+  .team-grid, .founder-grid, .dcm-app-grid, .system-cards-grid, .blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+}
