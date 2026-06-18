@@ -91,6 +91,15 @@
   #gl-map { min-height: 300px !important; }
 }
 
+/* Footer "Stay informed" newsletter card: the form had min-width:280px and the
+   email input min-width:180px, which overran the card on phones. Let them shrink
+   to the card width and stack the button full-width. */
+@media (max-width: 640px) {
+  form[style*="min-width:280px"] { min-width: 0 !important; max-width: none !important; width: 100%; }
+  form[style*="min-width:280px"] input[type="email"] { min-width: 0 !important; width: 100%; }
+  form[style*="min-width:280px"] button[type="submit"] { width: 100%; }
+}
+
 /* Very small phones: single-column safety net for any remaining 2-up grids. */
 @media (max-width: 460px) {
   .stats-grid, .three-col, .two-col, .benefits-grid, .timeline-grid,
