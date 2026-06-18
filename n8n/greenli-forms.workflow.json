@@ -1,0 +1,85 @@
+{
+  "name": "greenLi — Website Form Submissions → Email",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "greenli-forms",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "11111111-1111-4111-8111-111111111111",
+      "name": "Webhook (form submissions)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [260, 300],
+      "webhookId": "greenli-forms"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turn any greenLi form payload into a clean subject + email body.\nconst out = [];\nfor (const item of $input.all()) {\n  const inp = item.json || {};\n  // n8n puts the posted JSON under .body; fall back to the root just in case.\n  const d = (inp.body && typeof inp.body === 'object') ? inp.body : inp;\n  const type = d.formType || 'contact';\n\n  let subject;\n  if (type === 'extraction_simulation') subject = 'New extraction simulation request — greenLi website';\n  else if (type === 'newsletter') subject = 'New newsletter signup — greenLi website';\n  else subject = 'New contact form submission — greenLi website';\n\n  const pretty = (k) => k.replace(/[_-]+/g, ' ').replace(/\\b\\w/g, (c) => c.toUpperCase());\n  const skip = ['formType', 'sourceUrl'];\n  const lines = [];\n  for (const k of Object.keys(d)) {\n    if (skip.includes(k)) continue;\n    const v = d[k];\n    if (v === null || v === undefined || v === '') continue;\n    lines.push(pretty(k) + ': ' + v);\n  }\n\n  const text =\n    'Form: ' + type + '\\n' +\n    'Submitted: ' + new Date().toISOString() + '\\n' +\n    (d.sourceUrl ? 'Page: ' + d.sourceUrl + '\\n' : '') +\n    '\\n' + lines.join('\\n');\n\n  out.push({ json: { to: 'eitan@greenli.biz', subject: subject, text: text } });\n}\nreturn out;"
+      },
+      "id": "22222222-2222-4222-8222-222222222222",
+      "name": "Format submission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.text }}",
+        "options": {}
+      },
+      "id": "33333333-3333-4333-8333-333333333333",
+      "name": "Send Email (Gmail)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [700, 300],
+      "notesInFlow": true,
+      "notes": "Attach your Gmail credential here. If greenli.biz is NOT on Google Workspace, replace this node with the 'Send Email' (SMTP) node and keep the same field mappings: To = {{ $json.to }}, Subject = {{ $json.subject }}, Text = {{ $json.text }}."
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true }) }}",
+        "options": {}
+      },
+      "id": "44444444-4444-4444-8444-444444444444",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "content": "## greenLi website forms → email\n\nThe website (greenli-website.vercel.app) POSTs every contact, extraction-simulation, and newsletter submission here as JSON with a `formType` field.\n\n**To finish setup:**\n1. Open **Send Email (Gmail)** and attach your email credential (Gmail OAuth, or swap to the SMTP 'Send Email' node).\n2. **Save** and toggle the workflow **Active**.\n3. Confirm the production webhook URL is `https://elib.app.n8n.cloud/webhook/greenli-forms` (matches the site's forms.js). If you change the path, update `GREENLI_WEBHOOK` in the site's forms.js.\n\nChange the recipient anytime by editing `to: 'eitan@greenli.biz'` in the **Format submission** node — no site change needed.",
+        "height": 320,
+        "width": 420
+      },
+      "id": "55555555-5555-4555-8555-555555555555",
+      "name": "README",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [240, 460]
+    }
+  ],
+  "connections": {
+    "Webhook (form submissions)": {
+      "main": [[{ "node": "Format submission", "type": "main", "index": 0 }]]
+    },
+    "Format submission": {
+      "main": [[{ "node": "Send Email (Gmail)", "type": "main", "index": 0 }]]
+    },
+    "Send Email (Gmail)": {
+      "main": [[{ "node": "Respond 200", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}
