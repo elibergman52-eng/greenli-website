@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
       --bg: #0A0C0B; --surface: #0F1210; --surface-2: #141814; --surface-3: #1C2219;
@@ -231,27 +230,51 @@
 
 <script>
   // ── CONFIG ──────────────────────────────────────────────────────────────────
-  // Set PASSCODE and WEBHOOK_URL before going live.
-  const PASSCODE = 'greenli2026';
-  const WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/blog-submit'; // replace with actual n8n webhook
+  // The team passcode is validated SERVER-SIDE by the n8n workflow — it is
+  // intentionally NOT stored in this file. A static page cannot keep a secret,
+  // so the webhook must reject submissions whose `teamPasscode` is wrong
+  // (respond 401/403). The gate below is only UX; the real boundary is the server.
+  const WEBHOOK_URL = 'https://elib.app.n8n.cloud/webhook/blog-submit';
+  let teamPasscode = '';
 
-  // ── PASSCODE GATE ───────────────────────────────────────────────────────────
+  // ── PASSCODE GATE (UX only — server is the authority) ────────────────────────
   function checkPasscode() {
     const input = document.getElementById('passcode-input');
     const error = document.getElementById('passcode-error');
-    const btn   = document.getElementById('gate-btn');
+    const val   = input.value.trim();
 
-    if (input.value.trim() === PASSCODE) {
-      document.getElementById('gate-view').style.display = 'none';
-      const formView = document.getElementById('form-view');
-      formView.style.display = 'block';
-      formView.classList.add('fade-in');
-    } else {
+    if (!val) {
       input.classList.add('error');
+      error.textContent = 'Please enter the team passcode.';
       error.style.display = 'block';
-      input.value = '';
       input.focus();
+      return;
     }
+
+    // Carry the entered passcode to the submission; the n8n workflow verifies it.
+    teamPasscode = val;
+    input.classList.remove('error');
+    error.style.display = 'none';
+    document.getElementById('gate-view').style.display = 'none';
+    const formView = document.getElementById('form-view');
+    formView.style.display = 'block';
+    formView.classList.add('fade-in');
+  }
+
+  // Send the user back to the gate when the server rejects the passcode.
+  function rejectPasscode() {
+    document.getElementById('form-view').style.display = 'none';
+    const gate = document.getElementById('gate-view');
+    gate.style.display = 'block';
+    const input = document.getElementById('passcode-input');
+    input.value = '';
+    input.classList.add('error');
+    const error = document.getElementById('passcode-error');
+    error.textContent = 'Incorrect passcode. Please try again.';
+    error.style.display = 'block';
+    teamPasscode = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    input.focus();
   }
 
   document.getElementById('passcode-input').addEventListener('keydown', function(e) {
@@ -329,6 +352,7 @@
       imageUrl: document.getElementById('f-image').value.trim() || null,
       submittedAt: new Date().toISOString(),
       status:   'Draft',
+      teamPasscode: teamPasscode,   // validated server-side; never trusted on the client
     };
 
     try {
@@ -338,6 +362,7 @@
         body: JSON.stringify(payload),
       });
 
+      if (res.status === 401 || res.status === 403) { rejectPasscode(); return; }
       if (!res.ok) throw new Error('Server error ' + res.status);
 
       // Show success

@@ -285,13 +285,24 @@
   /* ═══════════════════════════════════════════════════════════
      Boot
   ═══════════════════════════════════════════════════════════ */
-  document.addEventListener('DOMContentLoaded', function () {
+  function boot() {
     autoTag();
     initReveal();
     initCounters();
     initTransitions();
     initShimmer();
     initCTASection();
-  });
+  }
+
+  /* This script is loaded synchronously at the end of <body>, so the DOM above
+     it is fully parsed but the page has NOT painted yet. Running boot() now means
+     the reveal-hidden states (.glr etc.) and responsive rules are applied before
+     first paint — no flash of fully-rendered content that then "adjusts". The
+     listener is only a fallback in case the script is ever loaded in <head>. */
+  if (document.body) {
+    boot();
+  } else {
+    document.addEventListener('DOMContentLoaded', boot);
+  }
 
 })();

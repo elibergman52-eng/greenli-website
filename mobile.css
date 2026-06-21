@@ -3,6 +3,15 @@
    override the generous inline section padding so phones don't scroll through
    huge empty gaps. */
 
+/* ── Replaces the Tailwind Play CDN (removed) ──────────────────────────────
+   The CDN was a runtime JIT compiler that injected styles AFTER first paint,
+   causing a visible restyle on load. Site-wide it supplied exactly one utility
+   (`grid`) plus its preflight reset. Both are reproduced here statically so they
+   apply before first paint with no flash. */
+.grid { display: grid; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+button, input, select, textarea, optgroup { font: inherit; color: inherit; }
+
 /* ── Home hero (the only full-height 100vh section) ── */
 @media (max-width: 768px) {
   /* Top-align and let it grow so the centered content never rides up under the
