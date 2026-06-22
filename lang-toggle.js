@@ -1,9 +1,10 @@
 /* greenLi language toggle (EN / ES). Shared by English (root) and Spanish (/es/) pages. */
 (function () {
   var path = location.pathname;
-  var inES = /\/es\//.test(path);
-  var file = path.split('/').pop();
-  if (!file) file = 'index.html';
+  var inES = /\/es(\/|$)/.test(path);
+  // Clean URLs: strip any .html and treat a folder index as an empty slug.
+  var file = path.split('/').pop().replace(/\.html$/, '');
+  if (file === 'es' || file === 'index') file = '';
   var enHref = inES ? ('../' + file) : ('./' + file);
   var esHref = inES ? ('./' + file) : ('./es/' + file);
 
