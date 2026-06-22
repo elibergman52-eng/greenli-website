@@ -6,6 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perspectivas — greenLi</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="description" content="Monthly briefings on lithium extraction economics, technology shifts, and supply chain dynamics. Written for operators, investors, and project developers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,42 +114,79 @@
     .raised { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(58,232,122,0.05) !important; }
     .raised-amber { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.45), 0 16px 36px rgba(0,0,0,0.5), 0 0 60px rgba(232,168,58,0.05) !important; }
     @media (prefers-reduced-motion: reduce) { .hero-blobs, .hero-blobs::before, .hero-blobs::after { animation:none !important; } }
-  </style>
+      /* Nav Dropdown (standardized) */
+    .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: rgba(10,12,11,0.98); border: 1px solid var(--border-hi); border-radius: 6px;
+      padding: 0.375rem; padding-top: 0.625rem; min-width: 150px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); flex-direction: column;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: flex; }
+    .nav-dropdown-item {
+      font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.07em; color: var(--muted); text-decoration: none;
+      text-transform: uppercase; padding: 0.5625rem 0.875rem; border-radius: 4px;
+      transition: background 0.15s ease, color 0.15s ease; white-space: nowrap;
+    }
+    .nav-dropdown-item:hover { background: var(--surface-3); color: var(--text); }
+    .nav-caret { font-size: 0.55em; color: var(--dim); margin-left: 0.3em; transition: transform 0.2s ease; line-height: 1; text-decoration: none; display: inline-block; }
+    .nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+    .nav-dropdown-item.nav-active { color: var(--green); }
+</style>
   <link rel="stylesheet" href="../mobile.css">
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="main-nav">
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="../logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
+      <img src="../logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
+    </a>
     <div class="nav-links">
       <a href="./index.html" class="nav-link" data-page="home">Inicio</a>
-      <div id="tech-nav-wrapper" style="position:relative; display:inline-flex; align-items:center;">
-        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;">Tecnología <span style="font-size:0.55em;color:#4A5E50;margin-left:0.3em;">▾</span></a>
-        <div class="tech-dropdown-menu" style="display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,12,11,0.98); border:1px solid #2A3828; border-radius:6px; padding:0.375rem; padding-top:0.625rem; min-width:150px; box-shadow:0 8px 32px rgba(0,0,0,0.5); backdrop-filter:blur(16px); z-index:100; flex-direction:column;">
-          <a href="./mle.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.07em;color:#8A9E8F;text-decoration:none;text-transform:uppercase;padding:0.5625rem 0.875rem;border-radius:4px;" onmouseover="this.style.background='#1C2219';this.style.color='#F0F4F1'" onmouseout="this.style.background='transparent';this.style.color='#8A9E8F'">M.L.E.</a>
-          <a href="./dcm.html" style="display:block;font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;letter-spacing:0.07em;color:#8A9E8F;text-decoration:none;text-transform:uppercase;padding:0.5625rem 0.875rem;border-radius:4px;" onmouseover="this.style.background='#1C2219';this.style.color='#F0F4F1'" onmouseout="this.style.background='transparent';this.style.color='#8A9E8F'">D.C.M.</a>
+      <div class="nav-dropdown">
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
+          <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
+          <a href="./dcm.html" class="nav-dropdown-item">D.C.M.</a>
         </div>
       </div>
-      <a href="./applications.html" class="nav-link" data-page="applications">Aplicaciones</a>
-      <a href="./team.html" class="nav-link" data-page="team">Quiénes Somos</a>
+      <div class="nav-dropdown">
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
+          <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item">Aguas Residuales de Refinería</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
+          <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
+          <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
+        </div>
+      </div>
+      <a href="./team.html" class="nav-link" data-page="about">Quiénes Somos</a>
       <a href="./insights.html" class="nav-link nav-active" data-page="insights">Perspectivas</a>
       <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Solicitar una Simulación</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/>
+      </svg>
     </button>
   </div>
-  <div id="mobile-menu">
-    <a href="./index.html" class="nav-link">Inicio</a>
-    <a href="./technology.html" class="nav-link">Tecnología</a>
-    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
-    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
-    <a href="./applications.html" class="nav-link">Aplicaciones</a>
-    <a href="./team.html" class="nav-link">Quiénes Somos</a>
-    <a href="./insights.html" class="nav-link nav-active">Perspectivas</a>
-    <a href="./contact.html" class="nav-link">Contacto</a>
+  <div id="mobile-menu" role="menu">
+    <a href="./index.html" class="nav-link" role="menuitem">Inicio</a>
+    <a href="./technology.html" class="nav-link" role="menuitem">Tecnología</a>
+    <a href="./mle.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link" role="menuitem">Aplicaciones</a>
+    <a href="./team.html" class="nav-link" role="menuitem">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link nav-active" role="menuitem">Perspectivas</a>
+    <a href="./contact.html" class="nav-link" role="menuitem">Contacto</a>
   </div>
 </nav>
 
@@ -258,9 +299,6 @@
     document.getElementById('nav-toggle').setAttribute('aria-expanded', isOpen);
   });
   document.querySelector('[data-page="insights"]')?.classList.add('nav-active');
-  (function(){ var w=document.getElementById('tech-nav-wrapper'); var d=w&&w.querySelector('.tech-dropdown-menu'); if(!w||!d)return; w.addEventListener('mouseenter',function(){d.style.display='flex';}); w.addEventListener('mouseleave',function(){d.style.display='none';}); })();
-
-
   // Newsletter
   document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
     e.preventDefault();

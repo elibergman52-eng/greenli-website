@@ -283,6 +283,18 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     Back / forward restore fix
+     When a link is clicked we add body._gl_out (opacity:0) and then
+     navigate. Browsers store that faded-out page in the back/forward
+     cache, so pressing "Back" restores a blank page. pageshow fires on
+     every show (including bfcache restore) — clear the class so the
+     restored page is visible again.
+  ═══════════════════════════════════════════════════════════ */
+  window.addEventListener('pageshow', function () {
+    document.body.classList.remove('_gl_out');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
      Boot
   ═══════════════════════════════════════════════════════════ */
   function boot() {

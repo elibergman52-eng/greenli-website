@@ -6,6 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aguas Residuales de Refinería de Roca Dura | Aplicaciones | greenLi</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="description" content="Spodumene refiners discard an estimated 96% of the lithium in their wastewater. greenLi's M.L.E. converts that liability into a revenue stream without changing upstream operations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,13 +124,15 @@
 <body>
 
 <!-- NAV -->
-<nav id="main-nav">
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="../logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
+      <img src="../logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
+    </a>
     <div class="nav-links">
-      <a href="./index.html" class="nav-link">Inicio</a>
+      <a href="./index.html" class="nav-link" data-page="home">Inicio</a>
       <div class="nav-dropdown">
-        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Tecnología</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./technology.html" class="nav-dropdown-item">Resumen de Tecnología</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
@@ -134,38 +140,37 @@
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="./applications.html" class="nav-link nav-active" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Aplicaciones</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./applications.html" class="nav-dropdown-item">Resumen de Aplicaciones</a>
           <a href="./app-brine.html" class="nav-dropdown-item">Salmuera de Salar</a>
-          <a href="./app-hard-rock.html" class="nav-dropdown-item active">Aguas Residuales de Refinería</a>
+          <a href="./app-hard-rock.html" class="nav-dropdown-item" style="color:var(--green);">Aguas Residuales de Refinería</a>
           <a href="./app-produced-water.html" class="nav-dropdown-item">Petróleo y Gas</a>
           <a href="./app-geothermal.html" class="nav-dropdown-item">Geotermia</a>
           <a href="./app-groundwater.html" class="nav-dropdown-item">Aguas Subterráneas</a>
         </div>
       </div>
-      <a href="./team.html" class="nav-link">Quiénes Somos</a>
-      <a href="./insights.html" class="nav-link">Perspectivas</a>
+      <a href="./team.html" class="nav-link" data-page="about">Quiénes Somos</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Perspectivas</a>
       <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Solicitar una Simulación</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/>
+      </svg>
     </button>
   </div>
-  <div id="mobile-menu">
-    <a href="./index.html" class="nav-link">Inicio</a>
-    <a href="./technology.html" class="nav-link">Tecnología</a>
-    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— M.L.E.</a>
-    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— D.C.M.</a>
-    <a href="./applications.html" class="nav-link nav-active">Aplicaciones</a>
-    <a href="./app-brine.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Salmuera de Salar</a>
-    <a href="./app-hard-rock.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--green);">— Aguas Residuales de Refinería</a>
-    <a href="./app-produced-water.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Petróleo y Gas</a>
-    <a href="./app-geothermal.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Geotermia</a>
-    <a href="./app-groundwater.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Aguas Subterráneas</a>
-    <a href="./team.html" class="nav-link">Quiénes Somos</a>
-    <a href="./insights.html" class="nav-link">Perspectivas</a>
-    <a href="./contact.html" class="nav-link">Contacto</a>
+  <div id="mobile-menu" role="menu">
+    <a href="./index.html" class="nav-link" role="menuitem">Inicio</a>
+    <a href="./technology.html" class="nav-link" role="menuitem">Tecnología</a>
+    <a href="./mle.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link nav-active" role="menuitem">Aplicaciones</a>
+    <a href="./team.html" class="nav-link" role="menuitem">Quiénes Somos</a>
+    <a href="./insights.html" class="nav-link" role="menuitem">Perspectivas</a>
+    <a href="./contact.html" class="nav-link" role="menuitem">Contacto</a>
   </div>
 </nav>
 
@@ -390,7 +395,7 @@
     </div>
     <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
       <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">© 2026 greenLi. Todos los derechos reservados.</p>
-      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+      <a href="mailto:daniel@green.li" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">daniel@green.li</a>
     </div>
   </div>
 </footer>

@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oil &amp; Gas Produced Water | Applications | greenLi</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <meta name="description" content="Oil and gas operators manage billions of barrels of lithium-bearing produced water every year. M.L.E. adds a revenue stream to existing operations with no change to hydrocarbon production.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,13 +122,15 @@
 <body>
 
 <!-- NAV -->
-<nav id="main-nav">
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="./index.html" style="flex-shrink:0;"><img src="./logo-transparent.png" alt="greenLi" style="height:34px; filter:invert(1); display:block;"></a>
+    <a href="./index.html" aria-label="greenLi home" style="flex-shrink:0;">
+      <img src="./logo-transparent.png" alt="greenLi" style="height:40px; display:block; filter:invert(1); transition:opacity 0.2s ease;">
+    </a>
     <div class="nav-links">
-      <a href="./index.html" class="nav-link">Home</a>
+      <a href="./index.html" class="nav-link" data-page="home">Home</a>
       <div class="nav-dropdown">
-        <a href="./technology.html" class="nav-link" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./technology.html" class="nav-link" data-page="technology" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Technology</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./technology.html" class="nav-dropdown-item">Technology Overview</a>
           <a href="./mle.html" class="nav-dropdown-item">M.L.E.</a>
@@ -132,38 +138,37 @@
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="./applications.html" class="nav-link nav-active" style="display:flex;align-items:center;text-decoration:none;"><span style="" class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
+        <a href="./applications.html" class="nav-link" data-page="applications" style="display:flex;align-items:center;text-decoration:none;"><span class="nav-text">Applications</span><span class="nav-caret" style="text-decoration:none;">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="./applications.html" class="nav-dropdown-item">Applications Overview</a>
           <a href="./app-brine.html" class="nav-dropdown-item">Salar Brine</a>
           <a href="./app-hard-rock.html" class="nav-dropdown-item">Refinery Wastewater</a>
-          <a href="./app-produced-water.html" class="nav-dropdown-item active">Oil &amp; Gas</a>
+          <a href="./app-produced-water.html" class="nav-dropdown-item" style="color:var(--green);">Oil &amp; Gas</a>
           <a href="./app-geothermal.html" class="nav-dropdown-item">Geothermal</a>
           <a href="./app-groundwater.html" class="nav-dropdown-item">Groundwater</a>
         </div>
       </div>
-      <a href="./team.html" class="nav-link">About Us</a>
-      <a href="./insights.html" class="nav-link">Insights</a>
+      <a href="./team.html" class="nav-link" data-page="about">About Us</a>
+      <a href="./insights.html" class="nav-link" data-page="insights">Insights</a>
       <a href="./contact-simulation.html" class="btn-primary-sm nav-cta-desktop" style="letter-spacing:0.04em;">Request a Simulation</a>
     </div>
     <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/><rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/></svg>
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect y="0" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="8" width="22" height="2" rx="1" fill="#F0F4F1"/>
+        <rect y="16" width="22" height="2" rx="1" fill="#F0F4F1"/>
+      </svg>
     </button>
   </div>
-  <div id="mobile-menu">
-    <a href="./index.html" class="nav-link">Home</a>
-    <a href="./technology.html" class="nav-link">Technology</a>
-    <a href="./mle.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— M.L.E.</a>
-    <a href="./dcm.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— D.C.M.</a>
-    <a href="./applications.html" class="nav-link nav-active">Applications</a>
-    <a href="./app-brine.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Salar Brine</a>
-    <a href="./app-hard-rock.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Refinery Wastewater</a>
-    <a href="./app-produced-water.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--green);">— Oil &amp; Gas</a>
-    <a href="./app-geothermal.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Geothermal</a>
-    <a href="./app-groundwater.html" class="nav-link" style="padding-left:1.5rem;font-size:0.875rem;color:var(--dim);">— Groundwater</a>
-    <a href="./team.html" class="nav-link">About Us</a>
-    <a href="./insights.html" class="nav-link">Insights</a>
-    <a href="./contact.html" class="nav-link">Contact</a>
+  <div id="mobile-menu" role="menu">
+    <a href="./index.html" class="nav-link" role="menuitem">Home</a>
+    <a href="./technology.html" class="nav-link" role="menuitem">Technology</a>
+    <a href="./mle.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— M.L.E.</a>
+    <a href="./dcm.html" class="nav-link" role="menuitem" style="padding-left:1.5rem;font-size:0.875rem;color:#4A5E50;">— D.C.M.</a>
+    <a href="./applications.html" class="nav-link nav-active" role="menuitem">Applications</a>
+    <a href="./team.html" class="nav-link" role="menuitem">About Us</a>
+    <a href="./insights.html" class="nav-link" role="menuitem">Insights</a>
+    <a href="./contact.html" class="nav-link" role="menuitem">Contact</a>
   </div>
 </nav>
 
@@ -416,7 +421,7 @@
     </div>
     <div style="border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
       <p style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim);">&copy; 2026 greenLi. All rights reserved.</p>
-      <a href="mailto:eitan@greenli.biz" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">eitan@greenli.biz</a>
+      <a href="mailto:daniel@green.li" style="font-family:'Inter',sans-serif; font-size:0.8125rem; color:var(--dim); text-decoration:none;">daniel@green.li</a>
     </div>
   </div>
 </footer>
